@@ -3,10 +3,12 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import { Award, CheckCircle, ArrowRight, ShieldCheck, Target, Eye, Maximize2, X } from "lucide-react";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import CoreValuesSection from "@/components/home/CoreValuesSection";
 import CtaBanner from "@/components/home/CtaBanner";
+import { ScrollReveal, ScrollStagger, ScrollStaggerItem } from "@/components/shared/ScrollReveal";
 import { COMPANY_INFO, WHY_CHOOSE_US } from "@/data/company";
 import { useQuoteModal } from "@/context/QuoteModalContext";
 
@@ -48,7 +50,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Story Text */}
-            <div className="lg:col-span-7 space-y-6">
+            <ScrollReveal direction="right" distance={30} className="lg:col-span-7 space-y-6">
               <div className="text-xs font-bold uppercase tracking-wider text-brand-purple">
                 Who We Are
               </div>
@@ -63,7 +65,7 @@ export default function AboutPage() {
               </p>
 
               {/* Key Highlights Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <ScrollStagger staggerDelay={0.08} className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 {[
                   "Headquartered in Dar Es Salaam, Tanzania",
                   "Over 7 Years of Field Engineering Track Record",
@@ -72,17 +74,17 @@ export default function AboutPage() {
                   "Rapid Emergency On-Site Engineering Dispatch",
                   "Future-Ready IIoT & AI Digital Transformation",
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5 text-sm text-gray-700">
+                  <ScrollStaggerItem key={idx} direction="up" distance={15} className="flex items-start gap-2.5 text-sm text-gray-700">
                     <CheckCircle className="w-4 h-4 text-brand-purple shrink-0 mt-0.5" />
                     <span>{item}</span>
-                  </div>
+                  </ScrollStaggerItem>
                 ))}
-              </div>
+              </ScrollStagger>
 
               <div className="pt-4 flex flex-wrap items-center gap-4">
                 <button
                   onClick={() => openQuoteModal()}
-                  className="bg-brand-purple hover:bg-brand-purple-hover text-white text-sm font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200"
+                  className="bg-brand-purple hover:bg-brand-purple-hover text-white text-sm font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200 active:scale-95"
                 >
                   Request a Consultation
                 </button>
@@ -94,10 +96,10 @@ export default function AboutPage() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
-            </div>
+            </ScrollReveal>
 
             {/* Right Box with image copy 12 (Engineer with laptop) + Popup Modal */}
-            <div className="lg:col-span-5 relative">
+            <ScrollReveal direction="left" distance={30} className="lg:col-span-5 relative">
               <div
                 onClick={() => setLightboxOpen(true)}
                 className="relative h-72 sm:h-80 md:h-[400px] lg:h-[440px] rounded-2xl overflow-hidden shadow-xl border-4 border-white cursor-pointer group transition-all duration-300 hover:shadow-brand"
@@ -125,75 +127,91 @@ export default function AboutPage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* Lightbox Popup Modal for the Image */}
-      {lightboxOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200"
-          onClick={() => setLightboxOpen(false)}
-        >
+      {/* Lightbox Popup Modal for the Image with Framer Motion */}
+      <AnimatePresence>
+        {lightboxOpen && (
           <div
-            className="relative max-w-4xl w-full max-h-[90vh] bg-white rounded-2xl overflow-hidden shadow-2xl p-2"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-hidden"
+            onClick={() => setLightboxOpen(false)}
           >
-            <button
-              onClick={() => setLightboxOpen(false)}
-              className="absolute top-4 right-4 z-10 p-2 bg-black/60 hover:bg-black text-white rounded-full transition-colors"
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative max-w-4xl w-full max-h-[90vh] bg-white rounded-2xl overflow-hidden shadow-2xl p-2 z-10"
+              onClick={(e) => e.stopPropagation()}
             >
-              <X className="w-5 h-5" />
-            </button>
-            <div className="relative w-full h-[60vh] sm:h-[70vh]">
-              <Image
-                src="/images/about-engineer-laptop.jpg"
-                alt="Ingram Automation Engineer Preview"
-                fill
-                className="object-contain"
-              />
-            </div>
-            <div className="p-4 bg-gray-50 text-center">
-              <h4 className="text-base font-bold text-gray-900">
-                Ingram Enterprises Ltd - On-Site Industrial Engineering & Digital Telemetry
-              </h4>
-              <p className="text-xs text-gray-600 mt-1">
-                Robotics, Distributed Automation and IoT Telemetry deployment across Tanzanian plants.
-              </p>
-            </div>
+              <button
+                onClick={() => setLightboxOpen(false)}
+                className="absolute top-4 right-4 z-10 p-2 bg-black/60 hover:bg-black text-white rounded-full transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <div className="relative w-full h-[55vh] sm:h-[65vh]">
+                <Image
+                  src="/images/about-engineer-laptop.jpg"
+                  alt="Ingram Automation Engineer Preview"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="p-4 bg-gray-50 text-center">
+                <h4 className="text-sm sm:text-base font-bold text-gray-900">
+                  Ingram Enterprises Ltd - On-Site Industrial Engineering & Digital Telemetry
+                </h4>
+                <p className="text-xs text-gray-600 mt-1">
+                  Robotics, Distributed Automation and IoT Telemetry deployment across Tanzanian plants.
+                </p>
+              </div>
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
 
       {/* Mission & Vision Feature Cards */}
       <section className="py-16 bg-gradient-to-b from-[#F0F6FF] to-white border-t border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-brand-purple-tint text-brand-purple flex items-center justify-center">
-                <Target className="w-6 h-6" />
+          <ScrollStagger staggerDelay={0.15} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <ScrollStaggerItem direction="up" distance={20} className="flex">
+              <div className="w-full bg-white p-8 rounded-2xl border border-gray-200 shadow-sm space-y-4 hover:shadow-brand hover:-translate-y-1 transition-all duration-300">
+                <div className="w-12 h-12 rounded-xl bg-brand-purple-tint text-brand-purple flex items-center justify-center">
+                  <Target className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 uppercase tracking-wide">
+                  Our Mission
+                </h3>
+                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                  &ldquo;{COMPANY_INFO.mission}&rdquo;
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 uppercase tracking-wide">
-                Our Mission
-              </h3>
-              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                &ldquo;{COMPANY_INFO.mission}&rdquo;
-              </p>
-            </div>
+            </ScrollStaggerItem>
 
-            <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-brand-purple-tint text-brand-purple flex items-center justify-center">
-                <Eye className="w-6 h-6" />
+            <ScrollStaggerItem direction="up" distance={20} className="flex">
+              <div className="w-full bg-white p-8 rounded-2xl border border-gray-200 shadow-sm space-y-4 hover:shadow-brand hover:-translate-y-1 transition-all duration-300">
+                <div className="w-12 h-12 rounded-xl bg-brand-purple-tint text-brand-purple flex items-center justify-center">
+                  <Eye className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 uppercase tracking-wide">
+                  Our Vision
+                </h3>
+                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                  &ldquo;{COMPANY_INFO.vision}&rdquo;
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 uppercase tracking-wide">
-                Our Vision
-              </h3>
-              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                &ldquo;{COMPANY_INFO.vision}&rdquo;
-              </p>
-            </div>
-          </div>
+            </ScrollStaggerItem>
+          </ScrollStagger>
         </div>
       </section>
 
@@ -203,7 +221,7 @@ export default function AboutPage() {
       {/* Why Choose Ingram */}
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-14">
+          <ScrollReveal direction="up" distance={20} className="text-center max-w-2xl mx-auto mb-14">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight uppercase">
               Why Choose Ingram Enterprises?
             </h2>
@@ -211,22 +229,21 @@ export default function AboutPage() {
             <p className="text-sm text-gray-600 mt-3">
               Six foundational pillars that make Ingram Enterprises the trusted partner for top-tier industrial organizations in Tanzania.
             </p>
-          </div>
+          </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <ScrollStagger staggerDelay={0.08} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {WHY_CHOOSE_US.map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-white p-6 rounded-xl border border-gray-200 hover:border-brand-purple/40 hover:shadow-brand transition-all duration-200 space-y-3"
-              >
-                <div className="w-10 h-10 rounded-lg bg-brand-purple text-white flex items-center justify-center shadow-sm">
-                  <ShieldCheck className="w-5 h-5" />
+              <ScrollStaggerItem key={idx} direction="up" distance={25} className="flex">
+                <div className="w-full bg-white p-6 rounded-xl border border-gray-200 hover:border-brand-purple/40 hover:shadow-brand hover:-translate-y-1 transition-all duration-300 space-y-3">
+                  <div className="w-10 h-10 rounded-lg bg-brand-purple text-white flex items-center justify-center shadow-sm">
+                    <ShieldCheck className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-base font-bold text-gray-900">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{item.description}</p>
                 </div>
-                <h3 className="text-base font-bold text-gray-900">{item.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{item.description}</p>
-              </div>
+              </ScrollStaggerItem>
             ))}
-          </div>
+          </ScrollStagger>
         </div>
       </section>
 

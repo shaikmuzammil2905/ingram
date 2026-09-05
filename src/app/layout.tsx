@@ -6,6 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFloatingButton from "@/components/shared/WhatsAppFloatingButton";
 import QuoteModal from "@/components/shared/QuoteModal";
+import MobileEngagementPopup from "@/components/shared/MobileEngagementPopup";
 import { QuoteModalProvider } from "@/context/QuoteModalContext";
 import { COMPANY_INFO } from "@/data/company";
 
@@ -75,6 +76,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
           <WhatsAppFloatingButton />
+          <MobileEngagementPopup />
           <QuoteModal />
         </QuoteModalProvider>
       </body>

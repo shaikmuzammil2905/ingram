@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, CheckCircle2, MessageSquare, Building2, Phone, Mail, User, Layers, ArrowRight } from "lucide-react";
 import { useQuoteModal } from "@/context/QuoteModalContext";
 import { getWhatsAppUrl, QuoteFormData } from "@/lib/whatsapp";
@@ -35,8 +36,6 @@ export default function QuoteModal() {
     }
   }, [isOpen]);
 
-  if (!isOpen) return null;
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -60,35 +59,50 @@ export default function QuoteModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-      {/* Dark overlay backdrop */}
-      <div
-        className="fixed inset-0 bg-brand-navy-dark/70 backdrop-blur-sm transition-opacity"
-        onClick={closeQuoteModal}
-      />
-
-      {/* Modal dialog box */}
-      <div className="relative w-full max-w-xl bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100 z-10 animate-in zoom-in-95 duration-200">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-brand-purple to-brand-navy p-6 text-white relative">
-          <button
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 md:p-6 overflow-hidden">
+          {/* Dark overlay backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-brand-navy-dark/75 backdrop-blur-sm"
             onClick={closeQuoteModal}
-            className="absolute top-4 right-4 p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
-            aria-label="Close quote modal"
-          >
-            <X className="w-5 h-5" />
-          </button>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-xs font-semibold uppercase tracking-wider mb-2 text-brand-purple-tint">
-            <MessageSquare className="w-3.5 h-3.5" />
-            <span>Fast WhatsApp Quotation</span>
-          </div>
-          <h3 className="text-2xl font-bold">Request a Consultation & Quote</h3>
-          <p className="text-sm text-purple-100 mt-1">
-            Submit your requirements to connect instantly with our engineering team on WhatsApp ({COMPANY_INFO.phone}).
-          </p>
-        </div>
+          />
 
-        {/* Content */}
+          {/* Modal dialog box / Mobile Bottom Sheet */}
+          <motion.div
+            initial={{ y: "100%", opacity: 0.6 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: "100%", opacity: 0 }}
+            transition={{ type: "spring", damping: 28, stiffness: 320 }}
+            className="relative w-full sm:max-w-xl bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl overflow-hidden border-t sm:border border-gray-100 z-10 max-h-[92vh] flex flex-col"
+          >
+            {/* Header */}
+            <div className="bg-gradient-to-r from-brand-purple to-brand-navy p-5 sm:p-6 text-white relative shrink-0">
+              {/* Mobile Drag Indicator */}
+              <div className="w-12 h-1.5 bg-white/40 rounded-full mx-auto mb-3 sm:hidden" />
+
+              <button
+                onClick={closeQuoteModal}
+                className="absolute top-4 right-4 p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+                aria-label="Close quote modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-xs font-semibold uppercase tracking-wider mb-2 text-brand-purple-tint">
+                <MessageSquare className="w-3.5 h-3.5" />
+                <span>Fast WhatsApp Quotation</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold">Request a Consultation & Quote</h3>
+              <p className="text-xs sm:text-sm text-purple-100 mt-1">
+                Submit your requirements to connect instantly with our engineering team on WhatsApp ({COMPANY_INFO.phone}).
+              </p>
+            </div>
+
+            {/* Scrollable Body */}
+            <div className="overflow-y-auto flex-1 p-5 sm:p-6">
         {isSuccess ? (
           <div className="p-8 text-center space-y-4">
             <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto animate-bounce">
@@ -266,6 +280,9 @@ export default function QuoteModal() {
           </form>
         )}
       </div>
-    </div>
-  );
+    </motion.div>
+  </div>
+)}
+</AnimatePresence>
+);
 }

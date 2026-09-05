@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, Cog, SlidersHorizontal, Gauge, Network } from "lucide-react";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import CtaBanner from "@/components/home/CtaBanner";
+import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { PRIMARY_SERVICES } from "@/data/company";
 import { useQuoteModal } from "@/context/QuoteModalContext";
 
@@ -62,11 +63,11 @@ export default function ServicesPage() {
             const isReversed = index % 2 !== 0;
 
             return (
-              <div
-                key={service.id}
-                id={service.id}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center p-8 sm:p-10 rounded-2xl border border-gray-200 shadow-sm hover:shadow-brand transition-all duration-300 bg-gradient-to-br from-[#FAFCFF] to-white"
-              >
+              <ScrollReveal key={service.id} direction="up" distance={30}>
+                <div
+                  id={service.id}
+                  className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center p-8 sm:p-10 rounded-2xl border border-gray-200 shadow-sm hover:shadow-brand transition-all duration-300 bg-gradient-to-br from-[#FAFCFF] to-white"
+                >
                 {/* Image (5 cols) */}
                 <div
                   className={`lg:col-span-5 relative h-72 sm:h-80 rounded-xl overflow-hidden shadow-md bg-gray-100 ${
@@ -142,6 +143,7 @@ export default function ServicesPage() {
                   </div>
                 </div>
               </div>
+            </ScrollReveal>
             );
           })}
         </div>

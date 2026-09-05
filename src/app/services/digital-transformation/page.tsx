@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import CtaBanner from "@/components/home/CtaBanner";
+import { ScrollReveal, ScrollStagger, ScrollStaggerItem } from "@/components/shared/ScrollReveal";
 import { PRIMARY_SERVICES, SOLUTIONS_LIST } from "@/data/company";
 import { useQuoteModal } from "@/context/QuoteModalContext";
 
@@ -71,11 +72,11 @@ export default function DigitalTransformationPage() {
         </div>
       </div>
 
-      {/* Overview */}
+      {/* Overview Section */}
       <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-7 space-y-5">
+            <ScrollReveal direction="right" distance={30} className="lg:col-span-7 space-y-5">
               <div className="text-xs font-bold uppercase tracking-wider text-brand-purple">
                 Connecting People, Assets and Data
               </div>
@@ -104,9 +105,9 @@ export default function DigitalTransformationPage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </ScrollReveal>
 
-            <div className="lg:col-span-5 relative">
+            <ScrollReveal direction="left" distance={30} className="lg:col-span-5 relative">
               <div className="relative h-80 sm:h-96 rounded-2xl overflow-hidden shadow-xl border border-gray-200">
                 <Image
                   src="/images/service-digital-transformation.jpg"
@@ -115,7 +116,7 @@ export default function DigitalTransformationPage() {
                   className="object-cover"
                 />
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -123,37 +124,38 @@ export default function DigitalTransformationPage() {
       {/* Core Solution Pillars */}
       <section className="py-16 bg-brand-gray border-t border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <ScrollReveal direction="up" distance={20} className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight uppercase">
               Digital Transformation Capabilities
             </h2>
             <div className="w-16 h-1 bg-brand-purple mx-auto mt-2.5 rounded-full" />
-          </div>
+          </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ScrollStagger staggerDelay={0.1} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {SOLUTIONS_LIST.map((sol) => (
-              <div
-                key={sol.id}
-                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-brand transition-all duration-200 space-y-3"
-              >
-                <div className="w-10 h-10 rounded-lg bg-brand-purple-tint text-brand-purple flex items-center justify-center">
-                  <BrainCircuit className="w-5 h-5" />
+              <ScrollStaggerItem key={sol.id} direction="up" distance={20} className="flex">
+                <div className="w-full bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-brand hover:-translate-y-1 transition-all duration-300 space-y-3 flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-lg bg-brand-purple-tint text-brand-purple flex items-center justify-center mb-3">
+                      <BrainCircuit className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-base font-bold text-gray-900">{sol.title}</h3>
+                    <p className="text-xs text-brand-purple font-medium mt-1">{sol.tagline}</p>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mt-2">
+                      {sol.description}
+                    </p>
+                  </div>
+                  <Link
+                    href={`/solutions#${sol.id}`}
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-brand-purple hover:underline pt-2"
+                  >
+                    <span>View Details</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
                 </div>
-                <h3 className="text-base font-bold text-gray-900">{sol.title}</h3>
-                <p className="text-xs text-brand-purple font-medium">{sol.tagline}</p>
-                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                  {sol.description}
-                </p>
-                <Link
-                  href={`/solutions#${sol.id}`}
-                  className="inline-flex items-center gap-1 text-xs font-semibold text-brand-purple hover:underline pt-2"
-                >
-                  <span>View Details</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
+              </ScrollStaggerItem>
             ))}
-          </div>
+          </ScrollStagger>
         </div>
       </section>
 

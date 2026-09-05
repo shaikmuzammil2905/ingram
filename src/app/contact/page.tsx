@@ -12,6 +12,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
+import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { COMPANY_INFO, PRIMARY_SERVICES } from "@/data/company";
 import { getWhatsAppUrl, QuoteFormData } from "@/lib/whatsapp";
 
@@ -74,7 +75,7 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left: Contact Information Cards (5 cols) */}
-            <div className="lg:col-span-5 space-y-8">
+            <ScrollReveal direction="right" distance={30} className="lg:col-span-5 space-y-8">
               <div>
                 <div className="text-xs font-bold uppercase tracking-wider text-brand-purple mb-2">
                   Head Office & Workshop
@@ -177,11 +178,12 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
 
-            {/* Right: Contact Form (only submit button, no numbers at bottom) matching image copy 16 */}
-            <div className="lg:col-span-7 bg-white p-8 sm:p-10 rounded-2xl border border-gray-200 shadow-brand">
-              <div className="border-b border-gray-100 pb-6 mb-6">
+            {/* Right: Contact Form wrapped in ScrollReveal */}
+            <ScrollReveal direction="left" distance={30} className="lg:col-span-7">
+              <div className="bg-white p-8 sm:p-10 rounded-2xl border border-gray-200 shadow-brand">
+                <div className="border-b border-gray-100 pb-6 mb-6">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-purple-tint text-brand-purple text-xs font-semibold uppercase tracking-wider mb-2">
                   <span>Fast WhatsApp Forwarding</span>
                 </div>
@@ -363,32 +365,35 @@ export default function ContactPage() {
                   </div>
                 </form>
               )}
-            </div>
+              </div>
+            </ScrollReveal>
           </div>
 
           {/* Map Location Section */}
-          <div className="mt-16 bg-gray-50 rounded-2xl p-8 border border-gray-200 text-center space-y-3">
-            <div className="w-12 h-12 rounded-xl bg-brand-purple-tint text-brand-purple flex items-center justify-center mx-auto">
-              <MapPin className="w-6 h-6" />
+          <ScrollReveal direction="up" distance={25} className="mt-16">
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200 text-center space-y-3">
+              <div className="w-12 h-12 rounded-xl bg-brand-purple-tint text-brand-purple flex items-center justify-center mx-auto">
+                <MapPin className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900">
+                Ingram Enterprises Ltd - Dar Es Salaam Facility
+              </h3>
+              <p className="text-sm text-gray-600 max-w-lg mx-auto">
+                {COMPANY_INFO.fullAddress}
+              </p>
+              <div className="pt-2">
+                <a
+                  href="https://maps.google.com/?q=Kinondoni,Dar+Es+Salaam,Tanzania"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-brand-purple hover:underline"
+                >
+                  <span>Open in Google Maps</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
             </div>
-            <h3 className="text-lg font-bold text-gray-900">
-              Ingram Enterprises Ltd - Dar Es Salaam Facility
-            </h3>
-            <p className="text-sm text-gray-600 max-w-lg mx-auto">
-              {COMPANY_INFO.fullAddress}
-            </p>
-            <div className="pt-2">
-              <a
-                href="https://maps.google.com/?q=Kinondoni,Dar+Es+Salaam,Tanzania"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-brand-purple hover:underline"
-              >
-                <span>Open in Google Maps</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
     </div>

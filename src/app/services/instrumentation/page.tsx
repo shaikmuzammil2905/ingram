@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import CtaBanner from "@/components/home/CtaBanner";
+import { ScrollReveal, ScrollStagger, ScrollStaggerItem } from "@/components/shared/ScrollReveal";
 import { PRIMARY_SERVICES } from "@/data/company";
 import { useQuoteModal } from "@/context/QuoteModalContext";
 
@@ -75,7 +76,7 @@ export default function InstrumentationPage() {
       <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-7 space-y-5">
+            <ScrollReveal direction="right" distance={30} className="lg:col-span-7 space-y-5">
               <div className="text-xs font-bold uppercase tracking-wider text-brand-purple">
                 Uncompromising Measurement Accuracy
               </div>
@@ -104,9 +105,9 @@ export default function InstrumentationPage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </ScrollReveal>
 
-            <div className="lg:col-span-5 relative">
+            <ScrollReveal direction="left" distance={30} className="lg:col-span-5 relative">
               <div className="relative h-80 sm:h-96 rounded-2xl overflow-hidden shadow-xl border border-gray-200">
                 <Image
                   src="/images/service-instrumentation.jpg"
@@ -115,7 +116,7 @@ export default function InstrumentationPage() {
                   className="object-cover"
                 />
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -123,54 +124,62 @@ export default function InstrumentationPage() {
       {/* The 4 Core Process Variables */}
       <section className="py-16 bg-brand-gray border-t border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <ScrollReveal direction="up" distance={20} className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight uppercase">
               The 4 Core Measurement Dimensions
             </h2>
             <div className="w-16 h-1 bg-brand-purple mx-auto mt-2.5 rounded-full" />
-          </div>
+          </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-brand-purple-tint text-brand-purple flex items-center justify-center">
-                <Gauge className="w-6 h-6" />
+          <ScrollStagger staggerDelay={0.08} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <ScrollStaggerItem direction="up" distance={20} className="flex">
+              <div className="w-full bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-brand hover:-translate-y-1 transition-all duration-300 space-y-3">
+                <div className="w-12 h-12 rounded-xl bg-brand-purple-tint text-brand-purple flex items-center justify-center">
+                  <Gauge className="w-6 h-6" />
+                </div>
+                <h3 className="text-base font-bold text-gray-900 uppercase">Pressure</h3>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                  Yokogawa DPharp digital resonant sensors deliver industry-leading accuracy, multi-sensing capabilities, and zero long-term drift.
+                </p>
               </div>
-              <h3 className="text-base font-bold text-gray-900 uppercase">Pressure</h3>
-              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                Yokogawa DPharp digital resonant sensors deliver industry-leading accuracy, multi-sensing capabilities, and zero long-term drift.
-              </p>
-            </div>
+            </ScrollStaggerItem>
 
-            <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-brand-purple-tint text-brand-purple flex items-center justify-center">
-                <Waves className="w-6 h-6" />
+            <ScrollStaggerItem direction="up" distance={20} className="flex">
+              <div className="w-full bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-brand hover:-translate-y-1 transition-all duration-300 space-y-3">
+                <div className="w-12 h-12 rounded-xl bg-brand-purple-tint text-brand-purple flex items-center justify-center">
+                  <Waves className="w-6 h-6" />
+                </div>
+                <h3 className="text-base font-bold text-gray-900 uppercase">Flow</h3>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                  Rotamass Coriolis mass flowmeters and ADMAG magnetic flowmeters for high-precision custody transfer, slurry, and conductive liquids.
+                </p>
               </div>
-              <h3 className="text-base font-bold text-gray-900 uppercase">Flow</h3>
-              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                Rotamass Coriolis mass flowmeters and ADMAG magnetic flowmeters for high-precision custody transfer, slurry, and conductive liquids.
-              </p>
-            </div>
+            </ScrollStaggerItem>
 
-            <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-brand-purple-tint text-brand-purple flex items-center justify-center">
-                <Activity className="w-6 h-6" />
+            <ScrollStaggerItem direction="up" distance={20} className="flex">
+              <div className="w-full bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-brand hover:-translate-y-1 transition-all duration-300 space-y-3">
+                <div className="w-12 h-12 rounded-xl bg-brand-purple-tint text-brand-purple flex items-center justify-center">
+                  <Activity className="w-6 h-6" />
+                </div>
+                <h3 className="text-base font-bold text-gray-900 uppercase">Level</h3>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                  Continuous radar, ultrasonic, and hydrostatic level transmitters for extreme pressure vessels, storage silos, and open sumps.
+                </p>
               </div>
-              <h3 className="text-base font-bold text-gray-900 uppercase">Level</h3>
-              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                Continuous radar, ultrasonic, and hydrostatic level transmitters for extreme pressure vessels, storage silos, and open sumps.
-              </p>
-            </div>
+            </ScrollStaggerItem>
 
-            <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-brand-purple-tint text-brand-purple flex items-center justify-center">
-                <Thermometer className="w-6 h-6" />
+            <ScrollStaggerItem direction="up" distance={20} className="flex">
+              <div className="w-full bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-brand hover:-translate-y-1 transition-all duration-300 space-y-3">
+                <div className="w-12 h-12 rounded-xl bg-brand-purple-tint text-brand-purple flex items-center justify-center">
+                  <Thermometer className="w-6 h-6" />
+                </div>
+                <h3 className="text-base font-bold text-gray-900 uppercase">Temperature</h3>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                  Smart head-mounted transmitters, thermowells, and multi-point sensors engineered for high-vibration furnaces, kilns, and cryogenic lines.
+                </p>
               </div>
-              <h3 className="text-base font-bold text-gray-900 uppercase">Temperature</h3>
-              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                Smart head-mounted transmitters, thermowells, and multi-point sensors engineered for high-vibration furnaces, kilns, and cryogenic lines.
-              </p>
-            </div>
-          </div>
+            </ScrollStaggerItem>
+          </ScrollStagger>
         </div>
       </section>
 

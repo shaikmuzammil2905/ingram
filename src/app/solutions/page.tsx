@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import CtaBanner from "@/components/home/CtaBanner";
+import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { SOLUTIONS_LIST } from "@/data/company";
 import { useQuoteModal } from "@/context/QuoteModalContext";
 
@@ -55,21 +56,21 @@ export default function SolutionsPage() {
             const isReversed = index % 2 !== 0;
 
             return (
-              <div
-                key={sol.id}
-                id={sol.id}
-                className="p-6 sm:p-8 md:p-10 rounded-2xl border border-[#D5E6F7] shadow-sm hover:shadow-brand transition-all duration-300 bg-gradient-to-br from-[#F5F9FF] to-white"
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pb-8 border-b border-blue-100">
-                  {/* Solution Image (5 cols) */}
-                  <div
-                    className={`lg:col-span-5 relative h-64 sm:h-72 rounded-xl overflow-hidden shadow-md bg-gray-100 ${
-                      isReversed ? "lg:order-2" : "lg:order-1"
-                    }`}
-                  >
-                    <Image
-                      src={sol.image}
-                      alt={sol.title}
+              <ScrollReveal key={sol.id} direction="up" distance={30}>
+                <div
+                  id={sol.id}
+                  className="p-6 sm:p-8 md:p-10 rounded-2xl border border-[#D5E6F7] shadow-sm hover:shadow-brand transition-all duration-300 bg-gradient-to-br from-[#F5F9FF] to-white"
+                >
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pb-8 border-b border-blue-100">
+                    {/* Solution Image (5 cols) */}
+                    <div
+                      className={`lg:col-span-5 relative h-64 sm:h-72 rounded-xl overflow-hidden shadow-md bg-gray-100 ${
+                        isReversed ? "lg:order-2" : "lg:order-1"
+                      }`}
+                    >
+                      <Image
+                        src={sol.image}
+                        alt={sol.title}
                       fill
                       className="object-cover"
                     />
@@ -142,6 +143,7 @@ export default function SolutionsPage() {
                   </div>
                 </div>
               </div>
+            </ScrollReveal>
             );
           })}
         </div>

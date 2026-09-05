@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import CtaBanner from "@/components/home/CtaBanner";
+import { ScrollReveal, ScrollStagger, ScrollStaggerItem } from "@/components/shared/ScrollReveal";
 import { COMPANY_INFO } from "@/data/company";
 import { useQuoteModal } from "@/context/QuoteModalContext";
 
@@ -28,19 +29,19 @@ export default function PartnersPage() {
       icon: Gauge,
     },
     {
-      title: "Control Systems & DCS",
-      desc: "Integrated production control systems engineered for maximum availability, fault tolerance, and secure continuous plant operation.",
+      title: "Distributed Control & Safety Systems (DCS & SIS)",
+      desc: "CENTUM VP distributed control systems and ProSafe-RS safety instrumented systems providing 99.99999% availability for critical industrial infrastructure.",
       icon: SlidersHorizontal,
     },
     {
-      title: "Process Analyzers",
-      desc: "Liquid and gas analyzers including pH, conductivity, dissolved oxygen, and tunable diode laser spectrometers for process optimization and emissions compliance.",
-      icon: Cpu,
+      title: "Industrial IoT & Remote Telemetry",
+      desc: "Sushi Sensor wireless IIoT vibration and temperature monitors, LoRaWAN gateways, and plant asset monitoring for predictive maintenance.",
+      icon: Network,
     },
     {
-      title: "Industrial Software & Digital Solutions",
-      desc: "Plant information historians, advanced process control software, alarm management, and predictive asset condition monitoring platforms.",
-      icon: Network,
+      title: "Plant Information Management (Exaquantum)",
+      desc: "Real-time plant historians, alarm management (Exaquantum/ARA), and energy management software bridging operational equipment with corporate enterprise systems.",
+      icon: Cpu,
     },
   ];
 
@@ -76,21 +77,22 @@ export default function PartnersPage() {
       {/* Featured Partner Section: Yokogawa (Clean Logo, No Cutoff Boxes/Spaces) */}
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-br from-[#F5F8FE] to-white rounded-3xl p-8 sm:p-12 border border-blue-100 shadow-md">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              {/* Left Details */}
-              <div className="lg:col-span-8 space-y-6">
-                {/* Clean Yokogawa SVG Logo - completely removes the two cut-off boxes from image copy 18 */}
-                <div className="relative h-12 w-64">
-                  <Image
-                    src="/images/yokogawa-clean.svg"
-                    alt="Yokogawa Partner Logo"
-                    width={260}
-                    height={45}
-                    className="object-contain object-left"
-                    priority
-                  />
-                </div>
+          <ScrollReveal direction="up" distance={25}>
+            <div className="bg-gradient-to-br from-[#F5F8FE] to-white rounded-3xl p-8 sm:p-12 border border-blue-100 shadow-md">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                {/* Left Details */}
+                <div className="lg:col-span-8 space-y-6">
+                  {/* Clean Yokogawa SVG Logo */}
+                  <div className="relative h-12 w-64">
+                    <Image
+                      src="/images/yokogawa-clean.svg"
+                      alt="Yokogawa Partner Logo"
+                      width={260}
+                      height={45}
+                      className="object-contain object-left"
+                      priority
+                    />
+                  </div>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-brand-navy">
                   Yokogawa Technologies & Solutions in Tanzania
                 </h2>
@@ -151,33 +153,33 @@ export default function PartnersPage() {
               </div>
             </div>
           </div>
+        </ScrollReveal>
 
-          {/* Technology Categories */}
+          {/* Technology Categories with Scroll Stagger */}
           <div className="mt-16">
-            <div className="text-center max-w-2xl mx-auto mb-12">
+            <ScrollReveal direction="up" distance={20} className="text-center max-w-2xl mx-auto mb-12">
               <h3 className="text-2xl font-extrabold text-brand-navy uppercase tracking-tight">
                 Yokogawa Technology Categories Supported
               </h3>
               <div className="w-16 h-1 bg-brand-purple mx-auto mt-2.5 rounded-full" />
-            </div>
+            </ScrollReveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <ScrollStagger staggerDelay={0.1} className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {yokogawaCategories.map((cat, idx) => {
                 const IconComponent = cat.icon;
                 return (
-                  <div
-                    key={idx}
-                    className="bg-white p-7 rounded-2xl border border-gray-200 hover:border-brand-purple/40 hover:shadow-brand transition-all duration-300 space-y-3"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-brand-purple-tint text-brand-purple flex items-center justify-center">
-                      <IconComponent className="w-6 h-6" />
+                  <ScrollStaggerItem key={idx} direction="up" distance={20} className="flex">
+                    <div className="w-full bg-white p-7 rounded-2xl border border-gray-200 hover:border-brand-purple/40 hover:shadow-brand hover:-translate-y-1 transition-all duration-300 space-y-3">
+                      <div className="w-12 h-12 rounded-xl bg-brand-purple-tint text-brand-purple flex items-center justify-center">
+                        <IconComponent className="w-6 h-6" />
+                      </div>
+                      <h4 className="text-lg font-bold text-gray-900">{cat.title}</h4>
+                      <p className="text-sm text-gray-600 leading-relaxed">{cat.desc}</p>
                     </div>
-                    <h4 className="text-lg font-bold text-gray-900">{cat.title}</h4>
-                    <p className="text-sm text-gray-600 leading-relaxed">{cat.desc}</p>
-                  </div>
+                  </ScrollStaggerItem>
                 );
               })}
-            </div>
+            </ScrollStagger>
           </div>
         </div>
       </section>
