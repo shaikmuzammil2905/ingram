@@ -6,14 +6,9 @@ import {
   Phone,
   Mail,
   MapPin,
-  Inbox,
   MessageCircle,
-  Clock,
   Send,
   CheckCircle2,
-  Building2,
-  User,
-  Layers,
   ArrowRight,
 } from "lucide-react";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
@@ -48,23 +43,18 @@ export default function ContactPage() {
 
   return (
     <div>
-      {/* Subpage Header Banner */}
-      <div className="bg-brand-navy text-white py-14 md:py-20 relative overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-25">
-          <Image
-            src="/images/hero-bg.jpg"
-            alt="Ingram Head Office"
-            fill
-            className="object-cover"
-          />
-        </div>
+      {/* Light Blue Grand & Decent Header Banner matching image copy 17 */}
+      <div className="bg-gradient-to-r from-[#EBF3FC] via-[#F2F7FF] to-[#E4EFFC] text-brand-navy py-14 md:py-20 border-b border-[#D5E5F7] relative overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: "Contact Us" }]} />
           <div className="max-w-3xl mt-4">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-purple/10 text-brand-purple text-xs font-bold uppercase tracking-wider mb-2">
+              <span>Dar Es Salaam, Tanzania</span>
+            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-brand-navy">
               Contact Ingram Enterprises Ltd
             </h1>
-            <p className="text-base sm:text-lg text-gray-200 mt-4 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-700 mt-3 leading-relaxed font-medium">
               Connect with our automation engineering and instrumentation experts in Dar Es Salaam for technical consultations, product quotations, and emergency site support.
             </p>
           </div>
@@ -181,7 +171,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Right: Interactive Contact Form (7 cols) */}
+            {/* Right: Contact Form (only submit button, no numbers at bottom) matching image copy 16 */}
             <div className="lg:col-span-7 bg-white p-8 sm:p-10 rounded-2xl border border-gray-200 shadow-brand">
               <div className="border-b border-gray-100 pb-6 mb-6">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-purple-tint text-brand-purple text-xs font-semibold uppercase tracking-wider mb-2">
@@ -191,7 +181,7 @@ export default function ContactPage() {
                   Send Us an Enquiry
                 </h3>
                 <p className="text-sm text-gray-500 mt-1">
-                  Fill out the form below to immediately dispatch your inquiry to our engineering team on WhatsApp ({COMPANY_INFO.phone}).
+                  Fill out the form below to immediately dispatch your inquiry to our engineering team on WhatsApp.
                 </p>
               </div>
 
@@ -202,8 +192,7 @@ export default function ContactPage() {
                     Thank you! Your enquiry has been received.
                   </h4>
                   <p className="text-sm text-gray-600 max-w-md mx-auto">
-                    We have prepared your message and opened WhatsApp directly with our engineering team at{" "}
-                    <strong>{COMPANY_INFO.phone}</strong>. We will respond promptly.
+                    We have prepared your message and opened WhatsApp directly with our engineering team. We will respond promptly.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
@@ -347,23 +336,23 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full flex items-center justify-center gap-2 bg-brand-purple hover:bg-brand-purple-hover text-white font-semibold py-3.5 px-6 rounded-lg shadow-md transition-all duration-200"
-                  >
-                    {isSubmitting ? (
-                      <span>Submitting to WhatsApp...</span>
-                    ) : (
-                      <>
-                        <span>Submit Enquiry via WhatsApp</span>
-                        <Send className="w-4 h-4" />
-                      </>
-                    )}
-                  </button>
-                  <p className="text-center text-xs text-gray-500">
-                    Immediately forwards to official WhatsApp: <strong>{COMPANY_INFO.phone}</strong>
-                  </p>
+                  {/* ONLY THE SUBMIT BUTTON - Numbers hidden per user instruction */}
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full flex items-center justify-center gap-2 bg-brand-purple hover:bg-brand-purple-hover text-white font-semibold py-3.5 px-6 rounded-lg shadow-md transition-all duration-200"
+                    >
+                      {isSubmitting ? (
+                        <span>Submitting to WhatsApp...</span>
+                      ) : (
+                        <>
+                          <span>Submit Enquiry via WhatsApp</span>
+                          <Send className="w-4 h-4" />
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </form>
               )}
             </div>

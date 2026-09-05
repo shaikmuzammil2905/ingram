@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Award, CheckCircle, ArrowRight, ShieldCheck, MapPin, Target, Eye } from "lucide-react";
+import { Award, CheckCircle, ArrowRight, ShieldCheck, Target, Eye, Maximize2, X } from "lucide-react";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import CoreValuesSection from "@/components/home/CoreValuesSection";
 import CtaBanner from "@/components/home/CtaBanner";
@@ -12,30 +12,23 @@ import { useQuoteModal } from "@/context/QuoteModalContext";
 
 export default function AboutPage() {
   const { openQuoteModal } = useQuoteModal();
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   return (
     <div>
-      {/* Subpage Header Banner */}
-      <div className="bg-brand-navy text-white py-14 md:py-20 relative overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-20">
-          <Image
-            src="/images/hero-bg.jpg"
-            alt="Ingram Plant"
-            fill
-            className="object-cover"
-          />
-        </div>
+      {/* Light Blue Grand & Decent Header Banner matching image copy 13 */}
+      <div className="bg-gradient-to-r from-[#EBF3FC] via-[#F2F7FF] to-[#E4EFFC] text-brand-navy py-14 md:py-20 border-b border-[#D5E5F7] relative overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: "About Us" }]} />
           <div className="max-w-3xl mt-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-semibold uppercase tracking-wider text-brand-purple-tint mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-purple/10 text-brand-purple text-xs font-bold uppercase tracking-wider mb-3 shadow-sm border border-brand-purple/20">
               <Award className="w-3.5 h-3.5" />
               <span>7+ Years of Engineering Excellence</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-brand-navy">
               About Ingram Enterprises Ltd
             </h1>
-            <p className="text-base sm:text-lg text-gray-200 mt-4 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-700 mt-3 leading-relaxed font-medium">
               {COMPANY_INFO.tagline} We combine local knowledge and customer understanding with world-class industrial technologies and solutions.
             </p>
           </div>
@@ -95,20 +88,32 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Right Image Visual */}
+            {/* Right Box with image copy 12 (Engineer with laptop) + Popup Modal */}
             <div className="lg:col-span-5 relative">
-              <div className="relative h-[420px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+              <div
+                onClick={() => setLightboxOpen(true)}
+                className="relative h-72 sm:h-80 md:h-[400px] lg:h-[440px] rounded-2xl overflow-hidden shadow-xl border-4 border-white cursor-pointer group transition-all duration-300 hover:shadow-brand"
+              >
                 <Image
-                  src="/images/service-process-control.jpg"
-                  alt="Industrial Engineering Operations"
+                  src="/images/about-engineer-laptop.jpg"
+                  alt="Ingram Plant Engineer with Laptop & Robotics"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/70 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-transparent to-black/20 group-hover:from-brand-navy/90 transition-colors" />
+
+                {/* Click to Enlarge Badge */}
+                <div className="absolute top-4 right-4 bg-white/80 hover:bg-white text-brand-navy p-2 rounded-full shadow-md backdrop-blur-sm transition-transform group-hover:scale-110">
+                  <Maximize2 className="w-4 h-4" />
+                </div>
+
                 <div className="absolute bottom-6 left-6 right-6 text-white">
-                  <div className="text-2xl font-black">7+ Years</div>
-                  <div className="text-xs text-brand-purple-tint uppercase tracking-wider">
+                  <div className="text-3xl font-black">7+ Years</div>
+                  <div className="text-xs font-semibold text-brand-purple-tint uppercase tracking-wider mt-1">
                     Industrial Automation & Measurement in Tanzania
+                  </div>
+                  <div className="text-[11px] text-white/80 mt-1 flex items-center gap-1">
+                    <span>Click to expand image preview</span>
                   </div>
                 </div>
               </div>
@@ -117,8 +122,44 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Lightbox Popup Modal for the Image */}
+      {lightboxOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200"
+          onClick={() => setLightboxOpen(false)}
+        >
+          <div
+            className="relative max-w-4xl w-full max-h-[90vh] bg-white rounded-2xl overflow-hidden shadow-2xl p-2"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setLightboxOpen(false)}
+              className="absolute top-4 right-4 z-10 p-2 bg-black/60 hover:bg-black text-white rounded-full transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <div className="relative w-full h-[60vh] sm:h-[70vh]">
+              <Image
+                src="/images/about-engineer-laptop.jpg"
+                alt="Ingram Automation Engineer Preview"
+                fill
+                className="object-contain"
+              />
+            </div>
+            <div className="p-4 bg-gray-50 text-center">
+              <h4 className="text-base font-bold text-gray-900">
+                Ingram Enterprises Ltd - On-Site Industrial Engineering & Digital Telemetry
+              </h4>
+              <p className="text-xs text-gray-600 mt-1">
+                Robotics, Distributed Automation and IoT Telemetry deployment across Tanzanian plants.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Mission & Vision Feature Cards */}
-      <section className="py-16 bg-brand-gray border-t border-b border-gray-100">
+      <section className="py-16 bg-gradient-to-b from-[#F0F6FF] to-white border-t border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm space-y-4">

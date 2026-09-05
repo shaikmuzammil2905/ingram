@@ -104,7 +104,7 @@ export const PRIMARY_SERVICES = [
     ],
     ctaText: "Explore Automation",
     href: "/services/industrial-automation",
-    image: "/images/service-automation.jpg",
+    image: "/images/service-automation.jpg", // Robotic arms
     icon: "Cog",
     keyPoints: [
       "DCS & PLC Integration",
@@ -129,7 +129,7 @@ export const PRIMARY_SERVICES = [
     ],
     ctaText: "Explore Process Control",
     href: "/services/process-control",
-    image: "/images/service-process-control.jpg",
+    image: "/images/service-process-control.jpg", // Siemens plant holographic tanks
     icon: "SlidersHorizontal",
     keyPoints: [
       "Distributed Control Systems (DCS)",
@@ -154,7 +154,7 @@ export const PRIMARY_SERVICES = [
     ],
     ctaText: "Explore Instrumentation",
     href: "/services/instrumentation",
-    image: "/images/service-instrumentation.jpg",
+    image: "/images/service-instrumentation.jpg", // Precision pressure transmitters
     icon: "Gauge",
     keyPoints: [
       "Pressure Transmitters (Differential, Absolute, Gauge)",
@@ -179,7 +179,7 @@ export const PRIMARY_SERVICES = [
     ],
     ctaText: "Explore Digital Solutions",
     href: "/services/digital-transformation",
-    image: "/images/service-digital-transformation.jpg",
+    image: "/images/service-digital-transformation.jpg", // AI Lightbulb & network
     icon: "Network",
     keyPoints: [
       "Industrial IoT (IIoT) Sensor Networks",
@@ -197,6 +197,7 @@ export const SOLUTIONS_LIST = [
     id: "iiot",
     title: "Industrial IoT (IIoT)",
     tagline: "Interconnected sensing for holistic plant visibility",
+    image: "/images/solutions/iiot.jpg",
     description:
       "Deploy wireless field sensors, smart edge gateways, and secure mesh protocols to unlock telemetry across previously isolated industrial assets.",
     benefits: [
@@ -215,6 +216,7 @@ export const SOLUTIONS_LIST = [
     id: "real-time-analytics",
     title: "Real-Time Data Analytics",
     tagline: "Turn raw millisecond sensor streams into actionable intelligence",
+    image: "/images/solutions/analytics.jpg",
     description:
       "Transform disparate SCADA, DCS, and lab data into real-time operational KPI dashboards, predictive anomaly detection, and energy consumption models.",
     benefits: [
@@ -233,6 +235,7 @@ export const SOLUTIONS_LIST = [
     id: "asset-performance",
     title: "Asset Performance Monitoring",
     tagline: "Transition from reactive repair to predictive reliability",
+    image: "/images/service-process-control.jpg",
     description:
       "Advanced condition monitoring algorithms that predict mechanical wear, cavitation, bearing failure, and insulation breakdown well before catastrophic shutdown occurs.",
     benefits: [
@@ -251,6 +254,7 @@ export const SOLUTIONS_LIST = [
     id: "pims",
     title: "Plant Information Management (PIMS)",
     tagline: "A unified enterprise source of industrial operational truth",
+    image: "/images/solutions/analytics.jpg",
     description:
       "High-speed plant data historians capturing hundreds of thousands of process tags, enabling long-term historical analysis, golden-batch comparisons, and ERP integration.",
     benefits: [
@@ -269,6 +273,7 @@ export const SOLUTIONS_LIST = [
     id: "cloud-edge",
     title: "Cloud & Edge Technologies",
     tagline: "Sub-millisecond local control paired with scalable cloud intelligence",
+    image: "/images/about-engineer-laptop.jpg",
     description:
       "Edge computing nodes execute low-latency machine learning models locally on the plant floor, while securely replicating summary metrics to enterprise cloud infrastructures.",
     benefits: [
@@ -287,6 +292,7 @@ export const SOLUTIONS_LIST = [
     id: "ai-digitalization",
     title: "AI & Digitalization",
     tagline: "Self-optimizing autonomous control loops and digital twins",
+    image: "/images/service-digital-transformation.jpg",
     description:
       "Harness advanced neural networks and digital twin simulation models to auto-tune PID controllers, predict quality outcomes, and empower operators with intelligent assistants.",
     benefits: [
@@ -311,7 +317,7 @@ export const INDUSTRIES_LIST = [
     description:
       "High-speed packaging, automated recipe handling, batch tracking, and OEE optimization for food, beverage, consumer goods, and industrial manufacturing plants in Tanzania.",
     icon: "Factory",
-    image: "/images/service-automation.jpg",
+    image: "/images/industries/manufacturing.jpg",
     solutions: [
       "High-speed PLC & servo motion control",
       "OEE monitoring & downtime Pareto analytics",
@@ -326,7 +332,7 @@ export const INDUSTRIES_LIST = [
     description:
       "Harsh-environment instrumentation, emergency shutdown systems (ESD), terminal automation, tank gauging, and fiscal flow metering for Tanzania's growing energy corridors.",
     icon: "Flame",
-    image: "/images/hero-bg.jpg",
+    image: "/images/industries/oil-gas.jpg",
     solutions: [
       "SIL 2/3 Safety Instrumented Systems (SIS)",
       "High-precision radar tank gauging & inventory management",
@@ -341,7 +347,7 @@ export const INDUSTRIES_LIST = [
     description:
       "Instrumentation and automation engineered to endure abrasive slurry, high vibration, extreme dust, and remote operational conditions across Tanzanian mines.",
     icon: "Pickaxe",
-    image: "/images/service-process-control.jpg",
+    image: "/images/industries/mining.jpg",
     solutions: [
       "Crusher, ball mill & SAG mill automation",
       "Slurry density & electromagnetic flow monitoring",
@@ -356,7 +362,7 @@ export const INDUSTRIES_LIST = [
     description:
       "DCS and turbine control, electrical SCADA, substation automation, and automated load-shedding systems for power producers and industrial co-generation facilities.",
     icon: "Zap",
-    image: "/images/hero-bg.jpg",
+    image: "/images/industries/energy.jpg",
     solutions: [
       "Power plant DCS & boiler combustion management",
       "Substation IEC 61850 protocol integration",
@@ -371,7 +377,7 @@ export const INDUSTRIES_LIST = [
     description:
       "SCADA networks for municipal water authorities, pump stations, automated chemical dosing, turbidity/chlorine analyzers, and non-revenue water telemetry.",
     icon: "Droplets",
-    image: "/images/service-instrumentation.jpg",
+    image: "/images/industries/water.jpg",
     solutions: [
       "District metered area (DMA) flow telemetry",
       "Water treatment filtration and backwash sequencing",
@@ -386,7 +392,7 @@ export const INDUSTRIES_LIST = [
     description:
       "Continuous chemical reactors, distillation columns, cement clinker kilns, and sugar crystallization automation requiring uncompromised loop stability.",
     icon: "Cpu",
-    image: "/images/service-digital-transformation.jpg",
+    image: "/images/industries/chemical.jpg",
     solutions: [
       "Batch control compliant with ISA-88 standards",
       "Explosion-proof ATEX / IECEx certified instrumentation",

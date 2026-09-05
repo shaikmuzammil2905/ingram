@@ -29,23 +29,18 @@ export default function ServicesPage() {
 
   return (
     <div>
-      {/* Subpage Header Banner */}
-      <div className="bg-brand-navy text-white py-14 md:py-20 relative overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-25">
-          <Image
-            src="/images/hero-bg.jpg"
-            alt="Ingram Engineering Services"
-            fill
-            className="object-cover"
-          />
-        </div>
+      {/* Light Blue Grand & Decent Header Banner */}
+      <div className="bg-gradient-to-r from-[#EBF3FC] via-[#F2F7FF] to-[#E4EFFC] text-brand-navy py-14 md:py-20 border-b border-[#D5E5F7] relative overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: "Services" }]} />
           <div className="max-w-3xl mt-4">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-purple/10 text-brand-purple text-xs font-bold uppercase tracking-wider mb-2">
+              <span>Industrial Engineering Services</span>
+            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-brand-navy">
               Our Industrial Services
             </h1>
-            <p className="text-base sm:text-lg text-gray-200 mt-4 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-700 mt-3 leading-relaxed font-medium">
               Comprehensive automation, precision Yokogawa instrumentation, process control and digital transformation engineered for mission-critical industrial reliability in Tanzania.
             </p>
           </div>
@@ -62,11 +57,11 @@ export default function ServicesPage() {
               <div
                 key={service.id}
                 id={service.id}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center p-8 sm:p-10 rounded-2xl border border-gray-200/90 shadow-sm hover:shadow-brand transition-all duration-300"
+                className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center p-8 sm:p-10 rounded-2xl border border-gray-200 shadow-sm hover:shadow-brand transition-all duration-300 bg-gradient-to-br from-[#FAFCFF] to-white"
               >
                 {/* Image (5 cols) */}
                 <div
-                  className={`lg:col-span-5 relative h-72 sm:h-80 rounded-xl overflow-hidden shadow-md ${
+                  className={`lg:col-span-5 relative h-72 sm:h-80 rounded-xl overflow-hidden shadow-md bg-gray-100 ${
                     isReversed ? "lg:order-2" : "lg:order-1"
                   }`}
                 >
@@ -76,7 +71,7 @@ export default function ServicesPage() {
                     fill
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-dark/40 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
                 </div>
 
                 {/* Details (7 cols) */}
@@ -132,7 +127,7 @@ export default function ServicesPage() {
                     </Link>
                     <button
                       onClick={() => openQuoteModal(service.title)}
-                      className="inline-flex items-center gap-2 bg-gray-100 hover:bg-brand-purple-tint text-gray-800 hover:text-brand-purple text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors"
+                      className="inline-flex items-center gap-2 bg-white hover:bg-brand-purple-tint text-gray-800 hover:text-brand-purple border border-gray-200 text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors"
                     >
                       <span>Request Quote on WhatsApp</span>
                     </button>

@@ -10,10 +10,13 @@ export default function ServicesSection() {
   const [automation, processControl, instrumentation, digitalTransformation] = PRIMARY_SERVICES;
 
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-16 md:py-24 bg-gradient-to-b from-[#F0F6FF] via-[#F6F9FD] to-white border-t border-b border-[#E2EDFA]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-purple/10 text-brand-purple text-xs font-bold uppercase tracking-wider mb-2">
+            <span>Engineering Capabilities</span>
+          </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight uppercase">
             Our Services
           </h2>
@@ -25,17 +28,17 @@ export default function ServicesSection() {
 
         {/* Top 3 Service Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-          {/* 1. INDUSTRIAL AUTOMATION */}
-          <div className="bg-white rounded-2xl overflow-hidden border border-gray-200/90 shadow-brand-card hover:shadow-brand-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
+          {/* 1. INDUSTRIAL AUTOMATION (image copy 6.png) */}
+          <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-brand-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
             {/* Image Container */}
-            <div className="relative h-52 w-full overflow-hidden">
+            <div className="relative h-56 w-full overflow-hidden bg-gray-100">
               <Image
                 src={automation.image}
                 alt={automation.title}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-dark/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
             </div>
 
             {/* Content Container */}
@@ -67,17 +70,17 @@ export default function ServicesSection() {
             </div>
           </div>
 
-          {/* 2. PROCESS CONTROL */}
-          <div className="bg-white rounded-2xl overflow-hidden border border-gray-200/90 shadow-brand-card hover:shadow-brand-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
+          {/* 2. PROCESS CONTROL (image copy 7.png) */}
+          <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-brand-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
             {/* Image Container */}
-            <div className="relative h-52 w-full overflow-hidden">
+            <div className="relative h-56 w-full overflow-hidden bg-gray-100">
               <Image
                 src={processControl.image}
                 alt={processControl.title}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-dark/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
             </div>
 
             {/* Content Container */}
@@ -109,17 +112,17 @@ export default function ServicesSection() {
             </div>
           </div>
 
-          {/* 3. INSTRUMENTATION */}
-          <div className="bg-white rounded-2xl overflow-hidden border border-gray-200/90 shadow-brand-card hover:shadow-brand-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
+          {/* 3. INSTRUMENTATION (image copy 8.png) */}
+          <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-brand-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
             {/* Image Container */}
-            <div className="relative h-52 w-full overflow-hidden">
+            <div className="relative h-56 w-full overflow-hidden bg-gray-100">
               <Image
                 src={instrumentation.image}
                 alt={instrumentation.title}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-dark/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
             </div>
 
             {/* Content Container */}
@@ -152,22 +155,21 @@ export default function ServicesSection() {
           </div>
         </div>
 
-        {/* 4. DIGITAL TRANSFORMATION - Wide Card Layout matching image.png */}
-        <div className="bg-white rounded-2xl overflow-hidden border border-gray-200/90 shadow-brand-card hover:shadow-brand-hover transition-all duration-300 group">
+        {/* 4. DIGITAL TRANSFORMATION (image copy 9.png) - Wide Card Layout */}
+        <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-brand-hover transition-all duration-300 group">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
             {/* Left Image (5 cols) */}
-            <div className="lg:col-span-4 relative h-64 sm:h-72 lg:h-full min-h-[220px]">
+            <div className="lg:col-span-5 relative h-64 sm:h-72 lg:h-80 bg-gray-100">
               <Image
                 src={digitalTransformation.image}
                 alt={digitalTransformation.title}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-brand-purple/10 mix-blend-multiply" />
             </div>
 
-            {/* Right Details (8 cols) */}
-            <div className="lg:col-span-8 p-6 sm:p-8 lg:p-10 flex flex-col md:flex-row items-start md:items-center gap-6 justify-between">
+            {/* Right Details (7 cols) */}
+            <div className="lg:col-span-7 p-6 sm:p-8 lg:p-10 flex flex-col md:flex-row items-start md:items-center gap-6 justify-between">
               <div className="flex items-start gap-4">
                 {/* Icon */}
                 <div className="w-14 h-14 shrink-0 rounded-full border-2 border-brand-purple bg-brand-purple-tint/60 flex items-center justify-center text-brand-purple shadow-sm">
@@ -187,7 +189,7 @@ export default function ServicesSection() {
               <div className="shrink-0 w-full md:w-auto">
                 <Link
                   href={digitalTransformation.href}
-                  className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-transparent hover:bg-brand-purple text-brand-purple hover:text-white border-2 border-brand-purple text-sm font-semibold px-6 py-2.5 rounded-lg shadow-sm transition-all duration-200 group-hover:bg-brand-purple group-hover:text-white"
+                  className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-brand-purple hover:bg-brand-purple-hover text-white text-sm font-semibold px-6 py-3 rounded-lg shadow-sm transition-all duration-200"
                 >
                   <span>{digitalTransformation.ctaText}</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />

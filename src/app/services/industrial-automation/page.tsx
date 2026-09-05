@@ -24,16 +24,8 @@ export default function IndustrialAutomationPage() {
 
   return (
     <div>
-      {/* Hero Banner */}
-      <div className="bg-brand-navy text-white py-16 md:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-25">
-          <Image
-            src="/images/service-automation.jpg"
-            alt="Industrial Automation Systems"
-            fill
-            className="object-cover"
-          />
-        </div>
+      {/* Light Blue Grand & Decent Header Banner */}
+      <div className="bg-gradient-to-r from-[#EBF3FC] via-[#F2F7FF] to-[#E4EFFC] text-brand-navy py-16 md:py-24 border-b border-[#D5E5F7] relative overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs
             items={[
@@ -42,14 +34,14 @@ export default function IndustrialAutomationPage() {
             ]}
           />
           <div className="max-w-3xl mt-4 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-xs font-semibold uppercase tracking-wider text-brand-purple-tint">
-              <Cog className="w-4 h-4 text-brand-purple-tint" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-purple/10 text-brand-purple text-xs font-bold uppercase tracking-wider border border-brand-purple/20">
+              <Cog className="w-4 h-4 text-brand-purple" />
               <span>Plant Automation & Control Architecture</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-brand-navy">
               Industrial Automation Solutions
             </h1>
-            <p className="text-base sm:text-lg text-gray-200 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-medium">
               {service.fullDescription[0]}
             </p>
             <div className="pt-2 flex flex-wrap gap-4">
@@ -61,7 +53,7 @@ export default function IndustrialAutomationPage() {
               </button>
               <Link
                 href="/contact"
-                className="bg-white/10 hover:bg-white/20 text-white text-sm font-semibold px-6 py-3 rounded-lg border border-white/20 transition-all duration-200"
+                className="bg-white hover:bg-brand-purple-tint text-brand-navy text-sm font-semibold px-6 py-3 rounded-lg border border-gray-300 transition-all duration-200"
               >
                 Speak with an Automation Engineer
               </Link>

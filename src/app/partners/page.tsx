@@ -46,27 +46,19 @@ export default function PartnersPage() {
 
   return (
     <div>
-      {/* Subpage Header Banner */}
-      <div className="bg-brand-navy text-white py-14 md:py-20 relative overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-25">
-          <Image
-            src="/images/hero-bg.jpg"
-            alt="Technology Partners"
-            fill
-            className="object-cover"
-          />
-        </div>
+      {/* Light Blue Grand & Decent Header Banner */}
+      <div className="bg-gradient-to-r from-[#EBF3FC] via-[#F2F7FF] to-[#E4EFFC] text-brand-navy py-14 md:py-20 border-b border-[#D5E5F7] relative overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: "Partners" }]} />
           <div className="max-w-3xl mt-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-semibold uppercase tracking-wider text-brand-purple-tint mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-purple/10 text-brand-purple text-xs font-bold uppercase tracking-wider mb-3 shadow-sm border border-brand-purple/20">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>World-Class Technology Architecture</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-brand-navy">
               Technology & Solutions
             </h1>
-            <p className="text-base sm:text-lg text-gray-200 mt-4 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-700 mt-3 leading-relaxed font-medium">
               We deploy world-renowned industrial measurement and automation solutions from global leaders like Yokogawa to empower Tanzanian industry with uncompromising reliability.
             </p>
           </div>

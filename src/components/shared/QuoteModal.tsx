@@ -262,9 +262,6 @@ export default function QuoteModal() {
                   </>
                 )}
               </button>
-              <p className="text-center text-xs text-gray-500 mt-2">
-                Instantly directs to official WhatsApp: <strong className="text-gray-700">{COMPANY_INFO.phone}</strong>
-              </p>
             </div>
           </form>
         )}
