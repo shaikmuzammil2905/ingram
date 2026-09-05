@@ -182,38 +182,38 @@ export default function ContactPage() {
 
             {/* Right: Contact Form wrapped in ScrollReveal */}
             <ScrollReveal direction="left" distance={30} className="lg:col-span-7">
-              <div className="bg-white p-8 sm:p-10 rounded-2xl border border-gray-200 shadow-brand">
-                <div className="border-b border-gray-100 pb-6 mb-6">
+              <div className="bg-white p-5 sm:p-8 md:p-10 rounded-2xl border border-gray-200 shadow-brand">
+                <div className="border-b border-gray-100 pb-5 mb-5 sm:pb-6 sm:mb-6">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-purple-tint text-brand-purple text-xs font-semibold uppercase tracking-wider mb-2">
-                  <span>Fast WhatsApp Forwarding</span>
+                  <span>Enquiry Form</span>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
                   Send Us an Enquiry
                 </h3>
-                <p className="text-sm text-gray-500 mt-1">
-                  Fill out the form below to immediately dispatch your inquiry to our engineering team on WhatsApp.
+                <p className="text-xs sm:text-sm text-gray-500 mt-1">
+                  Fill out the form below to immediately dispatch your inquiry to our engineering team.
                 </p>
               </div>
 
               {submitted ? (
-                <div className="p-8 text-center space-y-4 bg-green-50 rounded-xl border border-green-200">
-                  <CheckCircle2 className="w-14 h-14 text-green-600 mx-auto" />
-                  <h4 className="text-xl font-bold text-gray-900">
+                <div className="p-6 sm:p-8 text-center space-y-4 bg-green-50 rounded-xl border border-green-200">
+                  <CheckCircle2 className="w-12 h-12 sm:w-14 sm:h-14 text-green-600 mx-auto" />
+                  <h4 className="text-lg sm:text-xl font-bold text-gray-900">
                     Thank you! Your enquiry has been received.
                   </h4>
-                  <p className="text-sm text-gray-600 max-w-md mx-auto">
-                    We have prepared your message and opened WhatsApp directly with our engineering team. We will respond promptly.
+                  <p className="text-xs sm:text-sm text-gray-600 max-w-md mx-auto">
+                    Our engineering team has received your submission and will get back to you promptly.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="bg-brand-purple text-white text-xs font-semibold px-5 py-2.5 rounded-lg hover:bg-brand-purple-hover"
+                    className="bg-brand-purple text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-lg hover:bg-brand-purple-hover cursor-pointer transition-colors"
                   >
                     Send Another Message
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 uppercase mb-1">
                         Full Name <span className="text-red-500">*</span>
@@ -226,7 +226,7 @@ export default function ContactPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, fullName: e.target.value })
                         }
-                        className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-purple"
+                        className="w-full px-3.5 py-3 sm:py-2.5 text-base sm:text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-purple transition-all"
                       />
                     </div>
                     <div>
@@ -240,12 +240,12 @@ export default function ContactPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, company: e.target.value })
                         }
-                        className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-purple"
+                        className="w-full px-3.5 py-3 sm:py-2.5 text-base sm:text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-purple transition-all"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 uppercase mb-1">
                         Email Address <span className="text-red-500">*</span>
@@ -258,7 +258,7 @@ export default function ContactPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
                         }
-                        className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-purple"
+                        className="w-full px-3.5 py-3 sm:py-2.5 text-base sm:text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-purple transition-all"
                       />
                     </div>
                     <div>
@@ -273,12 +273,12 @@ export default function ContactPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, phone: e.target.value })
                         }
-                        className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-purple"
+                        className="w-full px-3.5 py-3 sm:py-2.5 text-base sm:text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-purple transition-all"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 uppercase mb-1">
                         Service Interested In
@@ -288,7 +288,7 @@ export default function ContactPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, service: e.target.value })
                         }
-                        className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-purple bg-white"
+                        className="w-full px-3.5 py-3 sm:py-2.5 text-base sm:text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-purple bg-white transition-all"
                       >
                         {PRIMARY_SERVICES.map((s) => (
                           <option key={s.id} value={s.title}>
@@ -318,7 +318,7 @@ export default function ContactPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, industry: e.target.value })
                         }
-                        className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-purple bg-white"
+                        className="w-full px-3.5 py-3 sm:py-2.5 text-base sm:text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-purple bg-white transition-all"
                       >
                         <option value="Manufacturing & FMCG">Manufacturing & FMCG</option>
                         <option value="Oil & Gas / Petrochemical">Oil & Gas / Petrochemical</option>
@@ -342,22 +342,22 @@ export default function ContactPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
                       }
-                      className="w-full p-3.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-purple"
+                      className="w-full p-3.5 text-base sm:text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-purple transition-all"
                     />
                   </div>
 
-                  {/* ONLY THE SUBMIT BUTTON - Numbers hidden per user instruction */}
+                  {/* Submission button: strictly "Submit Form" */}
                   <div className="pt-2">
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full flex items-center justify-center gap-2 bg-brand-purple hover:bg-brand-purple-hover text-white font-semibold py-3.5 px-6 rounded-lg shadow-md transition-all duration-200"
+                      className="w-full flex items-center justify-center gap-2 bg-brand-purple hover:bg-brand-purple-hover active:bg-brand-navy text-white font-semibold py-3.5 px-6 rounded-lg shadow-md hover:shadow-brand transition-all duration-200 active:scale-[0.99] touch-manipulation cursor-pointer text-sm sm:text-base"
                     >
                       {isSubmitting ? (
-                        <span>Submitting to WhatsApp...</span>
+                        <span>Submitting...</span>
                       ) : (
                         <>
-                          <span>Submit Enquiry via WhatsApp</span>
+                          <span>Submit Form</span>
                           <Send className="w-4 h-4" />
                         </>
                       )}
