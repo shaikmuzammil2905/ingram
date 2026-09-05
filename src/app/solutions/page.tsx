@@ -21,19 +21,27 @@ export default function SolutionsPage() {
 
   return (
     <div>
-      {/* Light Blue Grand & Decent Header Banner */}
-      <div className="bg-gradient-to-r from-[#EBF3FC] via-[#F2F7FF] to-[#E4EFFC] text-brand-navy py-14 md:py-20 border-b border-[#D5E5F7] relative overflow-hidden">
+      {/* Logo Colour Header Banner */}
+      <div className="bg-gradient-to-r from-brand-purple via-[#351E6B] to-brand-navy text-white py-14 md:py-20 border-b border-brand-purple-light/40 relative overflow-hidden">
+        {/* Subtle geometric polygon decorative motif from logo */}
+        <div className="absolute right-[-2%] top-1/2 -translate-y-1/2 w-80 h-80 pointer-events-none opacity-20 z-0">
+          <svg viewBox="0 0 200 200" className="w-full h-full text-white">
+            <polygon points="100,10 170,50 170,140 100,190 30,140 30,50" fill="none" stroke="currentColor" strokeWidth="2" />
+            <polygon points="100,30 150,60 150,130 100,170 50,130 50,60" fill="currentColor" fillOpacity="0.15" />
+          </svg>
+        </div>
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Breadcrumbs items={[{ label: "Solutions" }]} />
+          <Breadcrumbs items={[{ label: "Solutions" }]} theme="dark" />
           <div className="max-w-3xl mt-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-purple/10 text-brand-purple text-xs font-bold uppercase tracking-wider mb-3 shadow-sm border border-brand-purple/20">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-brand-purple-tint text-xs font-bold uppercase tracking-wider mb-3 shadow-sm">
               <Cpu className="w-3.5 h-3.5" />
               <span>Intelligent Industrial Architectures</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-brand-navy">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white drop-shadow-sm">
               Industrial Technology Solutions
             </h1>
-            <p className="text-base sm:text-lg text-gray-700 mt-3 leading-relaxed font-medium">
+            <p className="text-base sm:text-lg text-purple-100 mt-3 leading-relaxed font-normal">
               Bridging operational technology (OT) with enterprise digital systems to optimize plant performance, mitigate risks, and empower data-driven decisions.
             </p>
           </div>
