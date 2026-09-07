@@ -7,6 +7,7 @@ import Footer from "@/components/layout/Footer";
 import WhatsAppFloatingButton from "@/components/shared/WhatsAppFloatingButton";
 import QuoteModal from "@/components/shared/QuoteModal";
 import MobileEngagementPopup from "@/components/shared/MobileEngagementPopup";
+import SplashScreen from "@/components/shared/SplashScreen";
 import { QuoteModalProvider } from "@/context/QuoteModalContext";
 import { COMPANY_INFO } from "@/data/company";
 
@@ -71,6 +72,7 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body className="min-h-screen flex flex-col bg-white text-gray-900 font-sans antialiased">
         <QuoteModalProvider>
+          <SplashScreen />
           <TopBar />
           <Navbar />
           <main className="flex-1">{children}</main>
