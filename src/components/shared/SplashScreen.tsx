@@ -33,12 +33,6 @@ export default function SplashScreen() {
       }`}
     >
       <div className="relative flex flex-col items-center justify-center">
-        {/* Outer rotating/flashing ring */}
-        <div
-          className="absolute -inset-8 rounded-full border-[3px] border-transparent border-t-brand-purple border-b-brand-purple animate-spin"
-          style={{ animationDuration: "1.5s" }}
-        ></div>
-
         {/* Inner pulsing glow */}
         <div className="absolute inset-0 bg-brand-purple-tint/40 rounded-full blur-2xl animate-pulse"></div>
 
