@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { ChevronDown, ArrowRight, Menu, X, Phone, Shield, Cpu, Gauge, Network, Layers, Sparkles } from "lucide-react";
+import { ChevronDown, ArrowRight, Menu, X, Phone, Shield, Cpu, Gauge, Network, Layers, Sparkles, ExternalLink } from "lucide-react";
 import { useQuoteModal } from "@/context/QuoteModalContext";
 import { PRIMARY_SERVICES, SOLUTIONS_LIST } from "@/data/company";
 
@@ -47,6 +47,7 @@ export default function Navbar() {
       type: "solutions",
     },
     { name: "Partners", href: "/partners" },
+    { name: "Products", href: "https://www.yokogawa.com/solutions/products-and-services/#Overview", isExternal: true },
     { name: "Industries", href: "/industries" },
     { name: "Contact Us", href: "/contact" },
   ];
@@ -197,6 +198,21 @@ export default function Navbar() {
                       </div>
                     )}
                   </div>
+                );
+              }
+
+              if ((link as any).isExternal) {
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-2 text-sm font-medium rounded-md transition-colors text-gray-700 hover:text-brand-purple flex items-center gap-1"
+                  >
+                    {link.name}
+                    <ExternalLink className="w-3 h-3 text-gray-400" />
+                  </a>
                 );
               }
 
@@ -366,6 +382,15 @@ export default function Navbar() {
               >
                 Partners (Yokogawa)
               </Link>
+              <a
+                href="https://www.yokogawa.com/solutions/products-and-services/#Overview"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-3 py-2.5 text-base font-medium text-gray-800 hover:text-brand-purple hover:bg-brand-purple-tint/40 rounded-lg"
+              >
+                <span>Products</span>
+                <ExternalLink className="w-3.5 h-3.5 text-gray-400" />
+              </a>
               <Link
                 href="/industries"
                 className="block px-3 py-2.5 text-base font-medium text-gray-800 hover:text-brand-purple hover:bg-brand-purple-tint/40 rounded-lg"

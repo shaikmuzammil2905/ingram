@@ -62,7 +62,7 @@ export default function IndustriesPage() {
               Industries We Empower
             </h1>
             <p className="text-base sm:text-lg text-purple-100 mt-3 leading-relaxed font-normal">
-              Delivering specialized automation, loop tuning, Yokogawa instrumentation and digitalization tailored to the severe operating demands of East Africa&apos;s leading sectors.
+              Delivering specialized automation, loop tuning, instrumentation and digitalization tailored to the severe operating demands of East Africa&apos;s leading sectors.
             </p>
           </div>
         </div>
