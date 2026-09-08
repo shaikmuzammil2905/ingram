@@ -47,7 +47,7 @@ export default function Navbar() {
       type: "solutions",
     },
     { name: "Partners", href: "/partners" },
-    { name: "Products", href: "https://www.yokogawa.com/solutions/products-and-services/#Overview", isExternal: true },
+    { name: "Products", href: "/products" },
     { name: "Industries", href: "/industries" },
     { name: "Contact Us", href: "/contact" },
   ];
@@ -381,14 +381,12 @@ export default function Navbar() {
               >
                 Partners (Yokogawa)
               </Link>
-              <a
-                href="https://www.yokogawa.com/solutions/products-and-services/#Overview"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/products"
                 className="block px-3 py-2.5 text-base font-medium text-gray-800 hover:text-brand-purple hover:bg-brand-purple-tint/40 rounded-lg"
               >
                 Products
-              </a>
+              </Link>
               <Link
                 href="/industries"
                 className="block px-3 py-2.5 text-base font-medium text-gray-800 hover:text-brand-purple hover:bg-brand-purple-tint/40 rounded-lg"
