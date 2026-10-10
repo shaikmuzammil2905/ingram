@@ -162,7 +162,7 @@ export default function IndustrialAutomationPage() {
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-3 left-3 bg-brand-purple text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow">
-                    Subcategory 1
+                    Process Control
                   </div>
                 </div>
                 <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
@@ -213,7 +213,7 @@ export default function IndustrialAutomationPage() {
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-3 left-3 bg-brand-purple text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow">
-                    Subcategory 2
+                    Instrumentation
                   </div>
                 </div>
                 <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
@@ -264,7 +264,7 @@ export default function IndustrialAutomationPage() {
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-3 left-3 bg-brand-purple text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow">
-                    Subcategory 3
+                    Digital Transformation
                   </div>
                 </div>
                 <div className="p-6 flex-1 flex flex-col justify-between space-y-4">

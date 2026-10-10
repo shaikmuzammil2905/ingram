@@ -202,7 +202,7 @@ export default function ServicesSection() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                     <div className="absolute top-3 left-3 bg-brand-navy text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow">
-                      Subcategory {index + 1}
+                      {sub.shortTitle}
                     </div>
                   </div>
 
