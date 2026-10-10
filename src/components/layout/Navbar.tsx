@@ -110,11 +110,13 @@ export default function Navbar() {
 
                     {/* Hierarchical Services Mega Dropdown */}
                     {servicesDropdownOpen && (
-                      <div className="absolute top-full left-0 w-[460px] bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 grid gap-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                      <div className="absolute top-full left-0 pt-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                        <div className="w-[460px] bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 grid gap-3">
                         {/* Top Link: All Services Overview */}
                         <div className="flex items-center justify-between pb-2 border-b border-gray-100 px-1">
                           <Link
                             href="/services"
+                            onClick={() => setServicesDropdownOpen(false)}
                             className="text-xs font-bold text-brand-purple hover:text-brand-navy flex items-center gap-1.5 uppercase tracking-wider transition-colors"
                           >
                             <Sparkles className="w-3.5 h-3.5" />
@@ -233,6 +235,7 @@ export default function Navbar() {
                             <span>Request Proposal</span>
                             <ArrowRight className="w-3 h-3" />
                           </button>
+                        </div>
                         </div>
                       </div>
                     )}
