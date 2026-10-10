@@ -80,13 +80,20 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 2: Quick Links (2 cols) */}
+          {/* Col 2: Solutions & Catalogs (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-brand-purple-tint">
-              Quick Links
+              Products & Catalogs
             </h4>
             <ul className="space-y-2">
-              {quickLinks.map((link) => (
+              {[
+                { name: "ICT Hardware", href: "/ict-hardware" },
+                { name: "Software Solutions", href: "/software" },
+                { name: "Electronics Showroom", href: "/electronics" },
+                { name: "Office Equipment", href: "/office-equipment" },
+                { name: "Consumables", href: "/consumables" },
+                { name: "All Services", href: "/services" },
+              ].map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
@@ -100,32 +107,29 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: Our Services (3 cols) */}
+          {/* Col 3: Industrial Automation & Services (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-brand-purple-tint">
-              Our Services
+              Industrial Automation
             </h4>
             <ul className="space-y-2">
-              {PRIMARY_SERVICES.map((service) => (
-                <li key={service.id}>
+              {[
+                { name: "Industrial Automation", href: "/services/industrial-automation" },
+                { name: "Process Control", href: "/services/process-control" },
+                { name: "Instrumentation", href: "/services/instrumentation" },
+                { name: "Digital Transformation", href: "/services/digital-transformation" },
+                { name: "Yokogawa Technologies", href: "/partners" },
+              ].map((service) => (
+                <li key={service.name}>
                   <Link
                     href={service.href}
                     className="text-gray-300 hover:text-white text-sm flex items-center gap-1.5 transition-colors group"
                   >
                     <ChevronRight className="w-3.5 h-3.5 text-brand-purple group-hover:translate-x-0.5 transition-transform" />
-                    <span>{service.shortTitle}</span>
+                    <span>{service.name}</span>
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  href="/partners"
-                  className="text-gray-300 hover:text-white text-sm flex items-center gap-1.5 transition-colors group"
-                >
-                  <ChevronRight className="w-3.5 h-3.5 text-brand-purple group-hover:translate-x-0.5 transition-transform" />
-                  <span>Yokogawa Technologies</span>
-                </Link>
-              </li>
             </ul>
           </div>
 
