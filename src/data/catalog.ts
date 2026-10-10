@@ -953,3 +953,14 @@ export const ALL_PRODUCTS: ProductItem[] = [
     tags: ["Toner Cartridge", "Laser Toner", "HP Compatible"]
   }
 ];
+
+export const ALL_CATALOG_CATEGORIES = [
+  ...ICT_HARDWARE_CATEGORIES.map(c => ({ ...c, section: "ict-hardware" })),
+  ...SOFTWARE_CATEGORIES.map(c => ({ ...c, section: "software" })),
+  ...ELECTRONICS_CATEGORIES.map(c => ({ ...c, section: "electronics", subtitle: `${c.count}`, bannerImage: c.image, iconName: "Tv", keyFeatures: [] })),
+  ...OFFICE_EQUIPMENT_CATEGORIES.map(c => ({ ...c, section: "office-equipment" })),
+  ...CONSUMABLES_CATEGORIES.map(c => ({ ...c, section: "consumables" })),
+];
+
+export const ELECTRONICS_PRODUCTS = ALL_PRODUCTS.filter(p => p.mainCategory === "electronics" || !p.mainCategory);
+

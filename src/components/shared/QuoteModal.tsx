@@ -6,6 +6,7 @@ import { X, Send, CheckCircle2, MessageSquare, Building2, Phone, Mail, User, Lay
 import { useQuoteModal } from "@/context/QuoteModalContext";
 import { getWhatsAppUrl, QuoteFormData } from "@/lib/whatsapp";
 import { COMPANY_INFO, PRIMARY_SERVICES } from "@/data/company";
+import { submitEnquiryToSupabase } from "@/lib/db-seed";
 
 export default function QuoteModal() {
   const { isOpen, preselectedService, closeQuoteModal } = useQuoteModal();
@@ -36,9 +37,23 @@ export default function QuoteModal() {
     }
   }, [isOpen]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    try {
+      await submitEnquiryToSupabase({
+        full_name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        service_interest: formData.service,
+        message: `${formData.industry ? `[Industry: ${formData.industry}] ` : ""}${formData.message}`,
+        source_page: typeof window !== "undefined" ? window.location.pathname : "",
+      });
+    } catch (err) {
+      console.warn("Supabase quote sync warning:", err);
+    }
 
     // Build the WhatsApp message link
     const whatsappUrl = getWhatsAppUrl(formData);

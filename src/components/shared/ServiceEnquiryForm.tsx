@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Send, CheckCircle2, MessageCircle, ShieldCheck, Clock, ArrowRight } from "lucide-react";
 import { COMPANY_INFO } from "@/data/company";
 import { getWhatsAppUrl, QuoteFormData } from "@/lib/whatsapp";
+import { submitEnquiryToSupabase } from "@/lib/db-seed";
 
 interface ServiceEnquiryFormProps {
   defaultService?: string;
@@ -40,9 +41,23 @@ export default function ServiceEnquiryForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    try {
+      await submitEnquiryToSupabase({
+        full_name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        service_interest: formData.service,
+        message: `${formData.industry ? `[Industry: ${formData.industry}] ` : ""}${formData.message}`,
+        source_page: typeof window !== "undefined" ? window.location.pathname : "",
+      });
+    } catch (err) {
+      console.warn("Supabase enquiry sync warning:", err);
+    }
 
     const whatsappUrl = getWhatsAppUrl(formData);
 

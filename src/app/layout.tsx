@@ -63,6 +63,8 @@ export const metadata: Metadata = {
   },
 };
 
+import AppShell from "@/components/layout/AppShell";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -71,17 +73,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="min-h-screen flex flex-col bg-white text-gray-900 font-sans antialiased">
-        <QuoteModalProvider>
-          <SplashScreen />
-          <TopBar />
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <WhatsAppFloatingButton />
-          <MobileEngagementPopup />
-          <QuoteModal />
-        </QuoteModalProvider>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );
 }
+
