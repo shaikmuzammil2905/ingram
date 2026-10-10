@@ -12,6 +12,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [iaDropdownHovered, setIaDropdownHovered] = useState(true);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileIaOpen, setMobileIaOpen] = useState(true);
   const [solutionsDropdownOpen, setSolutionsDropdownOpen] = useState(false);
   const pathname = usePathname();
   const { openQuoteModal } = useQuoteModal();
@@ -105,44 +108,130 @@ export default function Navbar() {
                       />
                     </Link>
 
-                    {/* Mega Dropdown */}
+                    {/* Hierarchical Services Mega Dropdown */}
                     {servicesDropdownOpen && (
-                      <div className="absolute top-full left-0 w-[420px] bg-white rounded-xl shadow-2xl border border-gray-100 p-3 grid gap-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                        <div className="text-xs font-semibold text-gray-400 uppercase px-3 pt-1">
-                          Our Engineering Services
-                        </div>
-                        {PRIMARY_SERVICES.map((svc) => (
+                      <div className="absolute top-full left-0 w-[460px] bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 grid gap-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                        {/* Top Link: All Services Overview */}
+                        <div className="flex items-center justify-between pb-2 border-b border-gray-100 px-1">
                           <Link
-                            key={svc.id}
-                            href={svc.href}
-                            className="flex items-start gap-3 p-2.5 rounded-lg hover:bg-brand-purple-tint/60 transition-colors group"
+                            href="/services"
+                            className="text-xs font-bold text-brand-purple hover:text-brand-navy flex items-center gap-1.5 uppercase tracking-wider transition-colors"
                           >
-                            <div className="p-2 rounded-md bg-brand-purple-tint text-brand-purple group-hover:bg-brand-purple group-hover:text-white transition-colors">
-                              {svc.id === "industrial-automation" && <Cpu className="w-4 h-4" />}
-                              {svc.id === "process-control" && <Layers className="w-4 h-4" />}
-                              {svc.id === "instrumentation" && <Gauge className="w-4 h-4" />}
-                              {svc.id === "digital-transformation" && <Network className="w-4 h-4" />}
-                            </div>
-                            <div>
-                              <div className="text-sm font-semibold text-gray-900 group-hover:text-brand-purple">
-                                {svc.shortTitle}
-                              </div>
-                              <p className="text-xs text-gray-500 line-clamp-1">
-                                {svc.subtitle}
-                              </p>
-                            </div>
+                            <Sparkles className="w-3.5 h-3.5" />
+                            <span>All Services Overview</span>
+                            <ArrowRight className="w-3 h-3" />
                           </Link>
-                        ))}
-                        <div className="border-t border-gray-100 pt-2 px-3 flex justify-between items-center text-xs">
-                          <span className="text-gray-500">Need customized automation?</span>
+                          <span className="text-[11px] text-gray-400 font-medium">Engineering Portfolio</span>
+                        </div>
+
+                        {/* Main Category: Industrial Automation */}
+                        <div className="bg-gradient-to-br from-brand-purple-tint/50 to-white p-3 rounded-xl border border-brand-purple/20">
+                          <div className="flex items-center justify-between mb-2">
+                            <Link
+                              href="/services/industrial-automation"
+                              className="flex items-center gap-2.5 group"
+                            >
+                              <div className="p-2 rounded-lg bg-brand-purple text-white shadow-sm group-hover:bg-brand-navy transition-colors">
+                                <Cpu className="w-4 h-4" />
+                              </div>
+                              <div>
+                                <div className="text-sm font-bold text-gray-900 group-hover:text-brand-purple transition-colors flex items-center gap-1">
+                                  <span>Industrial Automation</span>
+                                  <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                </div>
+                                <p className="text-[11px] text-gray-500">
+                                  Flagship plant automation & control systems
+                                </p>
+                              </div>
+                            </Link>
+                            <Link
+                              href="/services/industrial-automation"
+                              className="text-[11px] font-semibold text-brand-purple hover:underline bg-white px-2 py-1 rounded-md border border-brand-purple/20 shadow-2xs"
+                            >
+                              View Hub
+                            </Link>
+                          </div>
+
+                          {/* Subcategories inside Industrial Automation */}
+                          <div className="mt-2.5 pt-2.5 border-t border-brand-purple/15 pl-2 space-y-1.5">
+                            <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider px-1">
+                              Automation Subcategories:
+                            </div>
+
+                            <Link
+                              href="/services/process-control"
+                              className="flex items-center justify-between p-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all group"
+                            >
+                              <div className="flex items-center gap-2.5">
+                                <div className="p-1.5 rounded-md bg-white border border-gray-200 text-brand-purple group-hover:border-brand-purple transition-colors">
+                                  <Layers className="w-3.5 h-3.5" />
+                                </div>
+                                <div>
+                                  <div className="text-xs font-semibold text-gray-800 group-hover:text-brand-purple">
+                                    Process Control
+                                  </div>
+                                  <div className="text-[11px] text-gray-500">
+                                    DCS, PLC, SCADA & loop optimization
+                                  </div>
+                                </div>
+                              </div>
+                              <ArrowRight className="w-3 h-3 text-gray-300 group-hover:text-brand-purple group-hover:translate-x-0.5 transition-all" />
+                            </Link>
+
+                            <Link
+                              href="/services/instrumentation"
+                              className="flex items-center justify-between p-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all group"
+                            >
+                              <div className="flex items-center gap-2.5">
+                                <div className="p-1.5 rounded-md bg-white border border-gray-200 text-brand-purple group-hover:border-brand-purple transition-colors">
+                                  <Gauge className="w-3.5 h-3.5" />
+                                </div>
+                                <div>
+                                  <div className="text-xs font-semibold text-gray-800 group-hover:text-brand-purple">
+                                    Instrumentation
+                                  </div>
+                                  <div className="text-[11px] text-gray-500">
+                                    Yokogawa pressure, flow, level & temperature
+                                  </div>
+                                </div>
+                              </div>
+                              <ArrowRight className="w-3 h-3 text-gray-300 group-hover:text-brand-purple group-hover:translate-x-0.5 transition-all" />
+                            </Link>
+
+                            <Link
+                              href="/services/digital-transformation"
+                              className="flex items-center justify-between p-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all group"
+                            >
+                              <div className="flex items-center gap-2.5">
+                                <div className="p-1.5 rounded-md bg-white border border-gray-200 text-brand-purple group-hover:border-brand-purple transition-colors">
+                                  <Network className="w-3.5 h-3.5" />
+                                </div>
+                                <div>
+                                  <div className="text-xs font-semibold text-gray-800 group-hover:text-brand-purple">
+                                    Digital Transformation
+                                  </div>
+                                  <div className="text-[11px] text-gray-500">
+                                    Industrial IoT, AI analytics & connected plant
+                                  </div>
+                                </div>
+                              </div>
+                              <ArrowRight className="w-3 h-3 text-gray-300 group-hover:text-brand-purple group-hover:translate-x-0.5 transition-all" />
+                            </Link>
+                          </div>
+                        </div>
+
+                        {/* Bottom CTA Bar */}
+                        <div className="border-t border-gray-100 pt-2 px-1 flex justify-between items-center text-xs">
+                          <span className="text-gray-500">Need plant consultation?</span>
                           <button
                             onClick={() => {
                               setServicesDropdownOpen(false);
-                              openQuoteModal();
+                              openQuoteModal("Engineering Services");
                             }}
                             className="text-brand-purple font-semibold hover:underline flex items-center gap-1"
                           >
-                            Request Proposal <ArrowRight className="w-3 h-3" />
+                            <span>Request Proposal</span>
+                            <ArrowRight className="w-3 h-3" />
                           </button>
                         </div>
                       </div>
@@ -321,22 +410,75 @@ export default function Navbar() {
                   />
                 </button>
                 {servicesDropdownOpen && (
-                  <div className="pl-4 pr-2 py-1 space-y-1 bg-gray-50 rounded-lg my-1">
+                  <div className="pl-3 pr-2 py-2 space-y-2 bg-gray-50 rounded-xl my-1 border border-gray-100">
                     <Link
                       href="/services"
-                      className="block px-3 py-2 text-xs font-semibold text-brand-purple uppercase"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block px-3 py-2 text-xs font-bold text-brand-purple uppercase tracking-wider bg-white rounded-lg border border-brand-purple/10"
                     >
                       All Services Overview →
                     </Link>
-                    {PRIMARY_SERVICES.map((s) => (
-                      <Link
-                        key={s.id}
-                        href={s.href}
-                        className="block px-3 py-2 text-sm text-gray-700 hover:text-brand-purple rounded-md"
-                      >
-                        {s.shortTitle}
-                      </Link>
-                    ))}
+
+                    {/* Industrial Automation Parent Accordion */}
+                    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                      <div className="flex items-center justify-between px-3 py-2 bg-brand-purple-tint/40">
+                        <Link
+                          href="/services/industrial-automation"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex items-center gap-2 text-xs font-bold text-gray-900 hover:text-brand-purple"
+                        >
+                          <Cpu className="w-3.5 h-3.5 text-brand-purple" />
+                          <span>Industrial Automation</span>
+                        </Link>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setMobileIaOpen(!mobileIaOpen);
+                          }}
+                          className="p-1 text-gray-500 hover:text-brand-purple"
+                          aria-label="Toggle Industrial Automation subcategories"
+                        >
+                          <ChevronDown
+                            className={`w-3.5 h-3.5 transition-transform ${
+                              mobileIaOpen ? "rotate-180 text-brand-purple" : ""
+                            }`}
+                          />
+                        </button>
+                      </div>
+
+                      {mobileIaOpen && (
+                        <div className="pl-5 pr-3 py-2 space-y-1 bg-white border-t border-gray-100">
+                          <Link
+                            href="/services/industrial-automation"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block py-1 text-xs font-semibold text-brand-purple hover:underline"
+                          >
+                            • Industrial Automation Hub
+                          </Link>
+                          <Link
+                            href="/services/process-control"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block py-1 text-xs text-gray-700 hover:text-brand-purple"
+                          >
+                            • Process Control (DCS & PLC)
+                          </Link>
+                          <Link
+                            href="/services/instrumentation"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block py-1 text-xs text-gray-700 hover:text-brand-purple"
+                          >
+                            • Instrumentation (Yokogawa)
+                          </Link>
+                          <Link
+                            href="/services/digital-transformation"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block py-1 text-xs text-gray-700 hover:text-brand-purple"
+                          >
+                            • Digital Transformation & IIoT
+                          </Link>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 )}
               </div>
