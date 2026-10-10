@@ -111,131 +111,138 @@ export default function Navbar() {
                     {/* Hierarchical Services Mega Dropdown */}
                     {servicesDropdownOpen && (
                       <div className="absolute top-full left-0 pt-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
-                        <div className="w-[460px] bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 grid gap-3">
-                        {/* Top Link: All Services Overview */}
-                        <div className="flex items-center justify-between pb-2 border-b border-gray-100 px-1">
-                          <Link
-                            href="/services"
-                            onClick={() => setServicesDropdownOpen(false)}
-                            className="text-xs font-bold text-brand-purple hover:text-brand-navy flex items-center gap-1.5 uppercase tracking-wider transition-colors"
-                          >
-                            <Sparkles className="w-3.5 h-3.5" />
-                            <span>All Services Overview</span>
-                            <ArrowRight className="w-3 h-3" />
-                          </Link>
-                          <span className="text-[11px] text-gray-400 font-medium">Engineering Portfolio</span>
-                        </div>
+                        <div className="w-[520px] bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 grid gap-2.5">
+                          {/* Top Link: All Services Overview */}
+                          <div className="flex items-center justify-between pb-2.5 border-b border-gray-100 px-2">
+                            <Link
+                              href="/services"
+                              onClick={() => setServicesDropdownOpen(false)}
+                              className="inline-flex items-center gap-2 text-xs font-extrabold text-brand-purple hover:text-brand-navy uppercase tracking-wider transition-colors"
+                            >
+                              <Sparkles className="w-4 h-4 text-brand-purple" />
+                              <span>All Services Overview</span>
+                              <ArrowRight className="w-3.5 h-3.5" />
+                            </Link>
+                            <span className="text-[11px] font-semibold text-gray-400">Engineering Portfolio</span>
+                          </div>
 
-                        {/* Main Category: Industrial Automation */}
-                        <div className="bg-gradient-to-br from-brand-purple-tint/50 to-white p-3 rounded-xl border border-brand-purple/20">
-                          <div className="flex items-center justify-between mb-2">
+                          {/* 4 Prominent Distinct Services Cards */}
+                          <div className="grid gap-2">
+                            {/* 1. Industrial Automation (Flagship) */}
                             <Link
                               href="/services/industrial-automation"
-                              className="flex items-center gap-2.5 group"
+                              onClick={() => setServicesDropdownOpen(false)}
+                              className="flex items-start gap-3.5 p-3 rounded-xl bg-gradient-to-r from-brand-purple-tint/70 to-white hover:from-brand-purple hover:to-brand-navy hover:text-white transition-all duration-200 group border border-brand-purple/20 shadow-2xs"
                             >
-                              <div className="p-2 rounded-lg bg-brand-purple text-white shadow-sm group-hover:bg-brand-navy transition-colors">
-                                <Cpu className="w-4 h-4" />
+                              <div className="p-2.5 rounded-xl bg-brand-purple text-white group-hover:bg-white group-hover:text-brand-purple transition-colors shadow-sm shrink-0 mt-0.5">
+                                <Cpu className="w-5 h-5" />
                               </div>
-                              <div>
-                                <div className="text-sm font-bold text-gray-900 group-hover:text-brand-purple transition-colors flex items-center gap-1">
-                                  <span>Industrial Automation</span>
-                                  <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-sm font-bold text-gray-900 group-hover:text-white transition-colors">
+                                    1. Industrial Automation
+                                  </span>
+                                  <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-brand-purple text-white group-hover:bg-white group-hover:text-brand-purple transition-colors">
+                                    Flagship
+                                  </span>
                                 </div>
-                                <p className="text-[11px] text-gray-500">
-                                  Flagship plant automation & control systems
+                                <p className="text-xs text-gray-600 group-hover:text-purple-100 transition-colors mt-0.5 line-clamp-1">
+                                  Turnkey plant automation, control systems & safety shutdown
                                 </p>
                               </div>
+                              <ArrowRight className="w-4 h-4 text-brand-purple group-hover:text-white group-hover:translate-x-1 transition-all shrink-0 mt-2" />
                             </Link>
-                            <Link
-                              href="/services/industrial-automation"
-                              className="text-[11px] font-semibold text-brand-purple hover:underline bg-white px-2 py-1 rounded-md border border-brand-purple/20 shadow-2xs"
-                            >
-                              View Hub
-                            </Link>
-                          </div>
 
-                          {/* Subcategories inside Industrial Automation */}
-                          <div className="mt-2.5 pt-2.5 border-t border-brand-purple/15 pl-2 space-y-1.5">
-                            <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider px-1">
-                              Automation Subcategories:
-                            </div>
-
+                            {/* 2. Process Control */}
                             <Link
                               href="/services/process-control"
-                              className="flex items-center justify-between p-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all group"
+                              onClick={() => setServicesDropdownOpen(false)}
+                              className="flex items-start gap-3.5 p-3 rounded-xl hover:bg-brand-purple-tint/50 transition-all duration-200 group border border-gray-100 hover:border-brand-purple/30"
                             >
-                              <div className="flex items-center gap-2.5">
-                                <div className="p-1.5 rounded-md bg-white border border-gray-200 text-brand-purple group-hover:border-brand-purple transition-colors">
-                                  <Layers className="w-3.5 h-3.5" />
-                                </div>
-                                <div>
-                                  <div className="text-xs font-semibold text-gray-800 group-hover:text-brand-purple">
-                                    Process Control
-                                  </div>
-                                  <div className="text-[11px] text-gray-500">
-                                    DCS, PLC, SCADA & loop optimization
-                                  </div>
-                                </div>
+                              <div className="p-2.5 rounded-xl bg-brand-purple-tint text-brand-purple group-hover:bg-brand-purple group-hover:text-white transition-colors shadow-2xs shrink-0 mt-0.5">
+                                <Layers className="w-5 h-5" />
                               </div>
-                              <ArrowRight className="w-3 h-3 text-gray-300 group-hover:text-brand-purple group-hover:translate-x-0.5 transition-all" />
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-sm font-bold text-gray-900 group-hover:text-brand-purple transition-colors">
+                                    2. Process Control
+                                  </span>
+                                  <span className="text-[10px] font-semibold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-md">
+                                    Subcategory 1
+                                  </span>
+                                </div>
+                                <p className="text-xs text-gray-500 group-hover:text-gray-700 transition-colors mt-0.5 line-clamp-1">
+                                  DCS architecture, PLC sequencing, SCADA & loop tuning
+                                </p>
+                              </div>
+                              <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-brand-purple group-hover:translate-x-1 transition-all shrink-0 mt-2" />
                             </Link>
 
+                            {/* 3. Instrumentation */}
                             <Link
                               href="/services/instrumentation"
-                              className="flex items-center justify-between p-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all group"
+                              onClick={() => setServicesDropdownOpen(false)}
+                              className="flex items-start gap-3.5 p-3 rounded-xl hover:bg-brand-purple-tint/50 transition-all duration-200 group border border-gray-100 hover:border-brand-purple/30"
                             >
-                              <div className="flex items-center gap-2.5">
-                                <div className="p-1.5 rounded-md bg-white border border-gray-200 text-brand-purple group-hover:border-brand-purple transition-colors">
-                                  <Gauge className="w-3.5 h-3.5" />
-                                </div>
-                                <div>
-                                  <div className="text-xs font-semibold text-gray-800 group-hover:text-brand-purple">
-                                    Instrumentation
-                                  </div>
-                                  <div className="text-[11px] text-gray-500">
-                                    Yokogawa pressure, flow, level & temperature
-                                  </div>
-                                </div>
+                              <div className="p-2.5 rounded-xl bg-brand-purple-tint text-brand-purple group-hover:bg-brand-purple group-hover:text-white transition-colors shadow-2xs shrink-0 mt-0.5">
+                                <Gauge className="w-5 h-5" />
                               </div>
-                              <ArrowRight className="w-3 h-3 text-gray-300 group-hover:text-brand-purple group-hover:translate-x-0.5 transition-all" />
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-sm font-bold text-gray-900 group-hover:text-brand-purple transition-colors">
+                                    3. Instrumentation
+                                  </span>
+                                  <span className="text-[10px] font-semibold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-md">
+                                    Subcategory 2
+                                  </span>
+                                </div>
+                                <p className="text-xs text-gray-500 group-hover:text-gray-700 transition-colors mt-0.5 line-clamp-1">
+                                  Yokogawa pressure, flow, level & temperature transmitters
+                                </p>
+                              </div>
+                              <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-brand-purple group-hover:translate-x-1 transition-all shrink-0 mt-2" />
                             </Link>
 
+                            {/* 4. Digital Transformation */}
                             <Link
                               href="/services/digital-transformation"
-                              className="flex items-center justify-between p-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all group"
+                              onClick={() => setServicesDropdownOpen(false)}
+                              className="flex items-start gap-3.5 p-3 rounded-xl hover:bg-brand-purple-tint/50 transition-all duration-200 group border border-gray-100 hover:border-brand-purple/30"
                             >
-                              <div className="flex items-center gap-2.5">
-                                <div className="p-1.5 rounded-md bg-white border border-gray-200 text-brand-purple group-hover:border-brand-purple transition-colors">
-                                  <Network className="w-3.5 h-3.5" />
-                                </div>
-                                <div>
-                                  <div className="text-xs font-semibold text-gray-800 group-hover:text-brand-purple">
-                                    Digital Transformation
-                                  </div>
-                                  <div className="text-[11px] text-gray-500">
-                                    Industrial IoT, AI analytics & connected plant
-                                  </div>
-                                </div>
+                              <div className="p-2.5 rounded-xl bg-brand-purple-tint text-brand-purple group-hover:bg-brand-purple group-hover:text-white transition-colors shadow-2xs shrink-0 mt-0.5">
+                                <Network className="w-5 h-5" />
                               </div>
-                              <ArrowRight className="w-3 h-3 text-gray-300 group-hover:text-brand-purple group-hover:translate-x-0.5 transition-all" />
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-sm font-bold text-gray-900 group-hover:text-brand-purple transition-colors">
+                                    4. Digital Transformation
+                                  </span>
+                                  <span className="text-[10px] font-semibold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-md">
+                                    Subcategory 3
+                                  </span>
+                                </div>
+                                <p className="text-xs text-gray-500 group-hover:text-gray-700 transition-colors mt-0.5 line-clamp-1">
+                                  Industrial IoT, real-time historians & predictive AI
+                                </p>
+                              </div>
+                              <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-brand-purple group-hover:translate-x-1 transition-all shrink-0 mt-2" />
                             </Link>
                           </div>
-                        </div>
 
-                        {/* Bottom CTA Bar */}
-                        <div className="border-t border-gray-100 pt-2 px-1 flex justify-between items-center text-xs">
-                          <span className="text-gray-500">Need plant consultation?</span>
-                          <button
-                            onClick={() => {
-                              setServicesDropdownOpen(false);
-                              openQuoteModal("Engineering Services");
-                            }}
-                            className="text-brand-purple font-semibold hover:underline flex items-center gap-1"
-                          >
-                            <span>Request Proposal</span>
-                            <ArrowRight className="w-3 h-3" />
-                          </button>
-                        </div>
+                          {/* Bottom CTA Bar */}
+                          <div className="border-t border-gray-100 pt-2.5 px-2 flex justify-between items-center text-xs">
+                            <span className="text-gray-500 font-medium">Need plant engineering advice?</span>
+                            <button
+                              onClick={() => {
+                                setServicesDropdownOpen(false);
+                                openQuoteModal("Engineering Services");
+                              }}
+                              className="text-brand-purple font-bold hover:text-brand-navy hover:underline flex items-center gap-1 transition-colors"
+                            >
+                              <span>Request Proposal</span>
+                              <ArrowRight className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
                         </div>
                       </div>
                     )}
