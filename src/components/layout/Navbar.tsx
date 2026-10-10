@@ -167,8 +167,9 @@ export default function Navbar() {
 
                     {servicesDropdownOpen && (
                       <div className="absolute top-full left-0 pt-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
-                        <div className="w-[500px] bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 grid gap-2.5">
-                          <div className="flex items-center justify-between pb-2 border-b border-gray-100 px-2">
+                        <div className="w-[620px] max-h-[85vh] overflow-y-auto bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 grid gap-3">
+                          {/* Overview Link */}
+                          <div className="flex items-center justify-between pb-2 border-b border-gray-100 px-1">
                             <Link
                               href="/services"
                               onClick={() => setServicesDropdownOpen(false)}
@@ -178,88 +179,218 @@ export default function Navbar() {
                               <span>All Services Overview</span>
                               <ArrowRight className="w-3.5 h-3.5" />
                             </Link>
-                            <span className="text-[11px] font-semibold text-gray-400">Engineering Portfolio</span>
+                            <span className="text-[11px] font-semibold text-gray-400">Complete Enterprise Solutions</span>
                           </div>
 
-                          <div className="grid gap-2">
-                            {/* Industrial Automation (Flagship) */}
-                            <Link
-                              href="/services/industrial-automation"
-                              onClick={() => setServicesDropdownOpen(false)}
-                              className="flex items-start gap-3 p-2.5 rounded-xl bg-gradient-to-r from-brand-purple-tint/70 to-white hover:from-brand-purple hover:to-brand-navy hover:text-white transition-all duration-200 group border border-brand-purple/20"
-                            >
-                              <div className="p-2 rounded-lg bg-brand-purple text-white group-hover:bg-white group-hover:text-brand-purple transition-colors shrink-0 mt-0.5">
-                                <Cpu className="w-4 h-4" />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <div className="flex items-center gap-2">
-                                  <span className="text-xs font-bold text-gray-900 group-hover:text-white transition-colors">
-                                    Industrial Automation
+                          {/* Line 1: Industrial Automation & Nested Engineering */}
+                          <div className="rounded-xl border border-brand-purple/20 bg-gradient-to-br from-brand-purple-tint/40 to-white p-3 space-y-2">
+                            <div className="flex items-center justify-between">
+                              <Link
+                                href="/services/industrial-automation"
+                                onClick={() => setServicesDropdownOpen(false)}
+                                className="flex items-center gap-2 text-xs font-bold text-gray-900 hover:text-brand-purple transition-colors group"
+                              >
+                                <div className="p-1.5 rounded-lg bg-brand-purple text-white shrink-0">
+                                  <Cpu className="w-3.5 h-3.5" />
+                                </div>
+                                <span className="text-brand-navy font-extrabold text-xs">1. Industrial Automation</span>
+                                <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-full bg-brand-purple text-white">
+                                  Flagship
+                                </span>
+                              </Link>
+                              <Link
+                                href="/services/industrial-automation"
+                                onClick={() => setServicesDropdownOpen(false)}
+                                className="text-[11px] font-semibold text-brand-purple hover:underline flex items-center gap-1"
+                              >
+                                <span>Hub</span>
+                                <ArrowRight className="w-3 h-3" />
+                              </Link>
+                            </div>
+                            <div className="grid grid-cols-3 gap-2 pt-1 border-t border-brand-purple/10">
+                              <Link
+                                href="/services/process-control"
+                                onClick={() => setServicesDropdownOpen(false)}
+                                className="p-2 rounded-lg bg-white/80 hover:bg-white hover:shadow-xs border border-brand-purple/10 text-left group transition-all"
+                              >
+                                <div className="flex items-center gap-1.5 text-xs font-bold text-gray-800 group-hover:text-brand-purple">
+                                  <Layers className="w-3 h-3 text-brand-purple" />
+                                  <span>Process Control</span>
+                                </div>
+                                <p className="text-[10px] text-gray-500 mt-0.5 line-clamp-1">DCS, PLC & SCADA</p>
+                              </Link>
+                              <Link
+                                href="/services/instrumentation"
+                                onClick={() => setServicesDropdownOpen(false)}
+                                className="p-2 rounded-lg bg-white/80 hover:bg-white hover:shadow-xs border border-brand-purple/10 text-left group transition-all"
+                              >
+                                <div className="flex items-center gap-1.5 text-xs font-bold text-gray-800 group-hover:text-brand-purple">
+                                  <Gauge className="w-3 h-3 text-brand-purple" />
+                                  <span>Instrumentation</span>
+                                </div>
+                                <p className="text-[10px] text-gray-500 mt-0.5 line-clamp-1">Yokogawa Sensors</p>
+                              </Link>
+                              <Link
+                                href="/services/digital-transformation"
+                                onClick={() => setServicesDropdownOpen(false)}
+                                className="p-2 rounded-lg bg-white/80 hover:bg-white hover:shadow-xs border border-brand-purple/10 text-left group transition-all"
+                              >
+                                <div className="flex items-center gap-1.5 text-xs font-bold text-gray-800 group-hover:text-brand-purple">
+                                  <Network className="w-3 h-3 text-brand-purple" />
+                                  <span>Digital Transf.</span>
+                                </div>
+                                <p className="text-[10px] text-gray-500 mt-0.5 line-clamp-1">IIoT & Predictive AI</p>
+                              </Link>
+                            </div>
+                          </div>
+
+                          {/* Line 2: ICT Hardware */}
+                          <div className="rounded-xl border border-gray-100 bg-gray-50/70 p-3 space-y-2">
+                            <div className="flex items-center justify-between">
+                              <Link
+                                href="/ict-hardware"
+                                onClick={() => setServicesDropdownOpen(false)}
+                                className="flex items-center gap-2 text-xs font-bold text-gray-900 hover:text-brand-purple transition-colors"
+                              >
+                                <div className="p-1.5 rounded-lg bg-brand-purple-tint text-brand-purple shrink-0">
+                                  <Laptop className="w-3.5 h-3.5" />
+                                </div>
+                                <span className="font-extrabold text-xs">2. ICT Hardware</span>
+                              </Link>
+                              <Link
+                                href="/ict-hardware"
+                                onClick={() => setServicesDropdownOpen(false)}
+                                className="text-[11px] font-semibold text-brand-purple hover:underline flex items-center gap-1"
+                              >
+                                <span>All ICT Hardware</span>
+                                <ArrowRight className="w-3 h-3" />
+                              </Link>
+                            </div>
+                            <div className="grid grid-cols-5 gap-1.5 pt-1 border-t border-gray-200/60 text-center">
+                              {ICT_HARDWARE_CATEGORIES.map((cat) => (
+                                <Link
+                                  key={cat.id}
+                                  href={`/ict-hardware/${cat.slug}`}
+                                  onClick={() => setServicesDropdownOpen(false)}
+                                  className="p-1.5 rounded-lg bg-white hover:bg-brand-purple hover:text-white border border-gray-200/60 text-gray-700 transition-colors group flex flex-col items-center justify-center gap-1"
+                                >
+                                  <span className="text-[10.5px] font-semibold line-clamp-1 leading-tight">
+                                    {cat.title}
                                   </span>
-                                  <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-full bg-brand-purple text-white group-hover:bg-white group-hover:text-brand-purple transition-colors">
-                                    Flagship
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Line 3: Software Solutions */}
+                          <div className="rounded-xl border border-gray-100 bg-gray-50/70 p-3 space-y-2">
+                            <div className="flex items-center justify-between">
+                              <Link
+                                href="/software"
+                                onClick={() => setServicesDropdownOpen(false)}
+                                className="flex items-center gap-2 text-xs font-bold text-gray-900 hover:text-brand-purple transition-colors"
+                              >
+                                <div className="p-1.5 rounded-lg bg-brand-purple-tint text-brand-purple shrink-0">
+                                  <LayoutGrid className="w-3.5 h-3.5" />
+                                </div>
+                                <span className="font-extrabold text-xs">3. Software Solutions</span>
+                              </Link>
+                              <Link
+                                href="/software"
+                                onClick={() => setServicesDropdownOpen(false)}
+                                className="text-[11px] font-semibold text-brand-purple hover:underline flex items-center gap-1"
+                              >
+                                <span>All Software</span>
+                                <ArrowRight className="w-3 h-3" />
+                              </Link>
+                            </div>
+                            <div className="grid grid-cols-5 gap-1.5 pt-1 border-t border-gray-200/60 text-center">
+                              {SOFTWARE_CATEGORIES.map((cat) => (
+                                <Link
+                                  key={cat.id}
+                                  href={`/software/${cat.slug}`}
+                                  onClick={() => setServicesDropdownOpen(false)}
+                                  className="p-1.5 rounded-lg bg-white hover:bg-brand-purple hover:text-white border border-gray-200/60 text-gray-700 transition-colors group flex flex-col items-center justify-center gap-1"
+                                >
+                                  <span className="text-[10.5px] font-semibold line-clamp-1 leading-tight">
+                                    {cat.title}
                                   </span>
-                                </div>
-                                <p className="text-[11px] text-gray-600 group-hover:text-purple-100 transition-colors mt-0.5 line-clamp-1">
-                                  Turnkey plant automation, control systems & safety shutdown
-                                </p>
-                              </div>
-                            </Link>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
 
-                            {/* Subcategories */}
-                            <Link
-                              href="/services/process-control"
-                              onClick={() => setServicesDropdownOpen(false)}
-                              className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-brand-purple-tint/50 transition-all group border border-gray-100"
-                            >
-                              <div className="p-2 rounded-lg bg-brand-purple-tint text-brand-purple group-hover:bg-brand-purple group-hover:text-white transition-colors shrink-0 mt-0.5">
-                                <Layers className="w-4 h-4" />
+                          {/* Line 4 & 5 Grid: Electronics + Office Equipment & Consumables */}
+                          <div className="grid grid-cols-2 gap-3">
+                            {/* Line 4: Electronics */}
+                            <div className="rounded-xl border border-gray-100 bg-gray-50/70 p-3 space-y-2 flex flex-col justify-between">
+                              <div className="flex items-center justify-between">
+                                <Link
+                                  href="/electronics"
+                                  onClick={() => setServicesDropdownOpen(false)}
+                                  className="flex items-center gap-2 text-xs font-bold text-gray-900 hover:text-brand-purple transition-colors"
+                                >
+                                  <div className="p-1.5 rounded-lg bg-brand-purple-tint text-brand-purple shrink-0">
+                                    <Tv className="w-3.5 h-3.5" />
+                                  </div>
+                                  <span className="font-extrabold text-xs">4. Electronics</span>
+                                </Link>
+                                <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-800">
+                                  Showroom
+                                </span>
                               </div>
-                              <div className="flex-1 min-w-0">
-                                <div className="text-xs font-bold text-gray-900 group-hover:text-brand-purple">
-                                  Process Control
-                                </div>
-                                <p className="text-[11px] text-gray-500 line-clamp-1">
-                                  DCS architecture, PLC sequencing, SCADA & loop tuning
-                                </p>
-                              </div>
-                            </Link>
+                              <p className="text-[10.5px] text-gray-600 line-clamp-2">
+                                Commercial displays, refrigerators, freezers, ACs, washing machines & audio systems.
+                              </p>
+                              <Link
+                                href="/electronics"
+                                onClick={() => setServicesDropdownOpen(false)}
+                                className="w-full py-1.5 px-2.5 rounded-lg bg-white hover:bg-brand-purple hover:text-white border border-gray-200/80 text-xs font-bold text-brand-purple text-center transition-colors flex items-center justify-center gap-1"
+                              >
+                                <span>Open Electronics Showroom</span>
+                                <ArrowRight className="w-3 h-3" />
+                              </Link>
+                            </div>
 
-                            <Link
-                              href="/services/instrumentation"
-                              onClick={() => setServicesDropdownOpen(false)}
-                              className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-brand-purple-tint/50 transition-all group border border-gray-100"
-                            >
-                              <div className="p-2 rounded-lg bg-brand-purple-tint text-brand-purple group-hover:bg-brand-purple group-hover:text-white transition-colors shrink-0 mt-0.5">
-                                <Gauge className="w-4 h-4" />
+                            {/* Line 5: Office Equipment & Consumables */}
+                            <div className="rounded-xl border border-gray-100 bg-gray-50/70 p-3 space-y-2 flex flex-col justify-between">
+                              <div className="flex items-center justify-between">
+                                <Link
+                                  href="/office-equipment"
+                                  onClick={() => setServicesDropdownOpen(false)}
+                                  className="flex items-center gap-2 text-xs font-bold text-gray-900 hover:text-brand-purple transition-colors"
+                                >
+                                  <div className="p-1.5 rounded-lg bg-brand-purple-tint text-brand-purple shrink-0">
+                                    <Armchair className="w-3.5 h-3.5" />
+                                  </div>
+                                  <span className="font-extrabold text-xs">5. Office & Supplies</span>
+                                </Link>
                               </div>
-                              <div className="flex-1 min-w-0">
-                                <div className="text-xs font-bold text-gray-900 group-hover:text-brand-purple">
-                                  Instrumentation
-                                </div>
-                                <p className="text-[11px] text-gray-500 line-clamp-1">
-                                  Yokogawa pressure, flow, level & temperature transmitters
-                                </p>
+                              <div className="grid grid-cols-2 gap-1 text-[10.5px]">
+                                <Link
+                                  href="/office-equipment"
+                                  onClick={() => setServicesDropdownOpen(false)}
+                                  className="p-1.5 rounded bg-white hover:bg-brand-purple hover:text-white border border-gray-200/60 text-gray-700 text-center font-medium transition-colors"
+                                >
+                                  Office Furniture
+                                </Link>
+                                <Link
+                                  href="/consumables"
+                                  onClick={() => setServicesDropdownOpen(false)}
+                                  className="p-1.5 rounded bg-white hover:bg-brand-purple hover:text-white border border-gray-200/60 text-gray-700 text-center font-medium transition-colors"
+                                >
+                                  Consumables & Paper
+                                </Link>
                               </div>
-                            </Link>
-
-                            <Link
-                              href="/services/digital-transformation"
-                              onClick={() => setServicesDropdownOpen(false)}
-                              className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-brand-purple-tint/50 transition-all group border border-gray-100"
-                            >
-                              <div className="p-2 rounded-lg bg-brand-purple-tint text-brand-purple group-hover:bg-brand-purple group-hover:text-white transition-colors shrink-0 mt-0.5">
-                                <Network className="w-4 h-4" />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <div className="text-xs font-bold text-gray-900 group-hover:text-brand-purple">
-                                  Digital Transformation
-                                </div>
-                                <p className="text-[11px] text-gray-500 line-clamp-1">
-                                  Industrial IoT, real-time historians & predictive AI
-                                </p>
-                              </div>
-                            </Link>
+                              <Link
+                                href="/office-equipment"
+                                onClick={() => setServicesDropdownOpen(false)}
+                                className="w-full py-1 px-2 text-[11px] font-semibold text-brand-purple hover:underline text-center flex items-center justify-center gap-1"
+                              >
+                                <span>Explore Office Catalog</span>
+                                <ArrowRight className="w-3 h-3" />
+                              </Link>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -705,6 +836,101 @@ export default function Navbar() {
                           </Link>
                         </div>
                       )}
+                    </div>
+
+                    {/* 2. ICT Hardware inside Services */}
+                    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                      <div className="flex items-center justify-between px-3 py-2 bg-gray-50">
+                        <Link
+                          href="/ict-hardware"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex items-center gap-2 text-xs font-bold text-gray-900 hover:text-brand-purple"
+                        >
+                          <Laptop className="w-3.5 h-3.5 text-brand-purple" />
+                          <span>2. ICT Hardware</span>
+                        </Link>
+                      </div>
+                      <div className="pl-5 pr-3 py-2 space-y-1 bg-white border-t border-gray-100">
+                        {ICT_HARDWARE_CATEGORIES.map((cat) => (
+                          <Link
+                            key={cat.id}
+                            href={`/ict-hardware/${cat.slug}`}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block py-1 text-xs text-gray-700 hover:text-brand-purple"
+                          >
+                            • {cat.title}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* 3. Software Solutions inside Services */}
+                    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                      <div className="flex items-center justify-between px-3 py-2 bg-gray-50">
+                        <Link
+                          href="/software"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex items-center gap-2 text-xs font-bold text-gray-900 hover:text-brand-purple"
+                        >
+                          <LayoutGrid className="w-3.5 h-3.5 text-brand-purple" />
+                          <span>3. Software Solutions</span>
+                        </Link>
+                      </div>
+                      <div className="pl-5 pr-3 py-2 space-y-1 bg-white border-t border-gray-100">
+                        {SOFTWARE_CATEGORIES.map((cat) => (
+                          <Link
+                            key={cat.id}
+                            href={`/software/${cat.slug}`}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block py-1 text-xs text-gray-700 hover:text-brand-purple"
+                          >
+                            • {cat.title}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* 4. Electronics inside Services */}
+                    <Link
+                      href="/electronics"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between px-3 py-2 bg-white rounded-lg border border-gray-200 text-xs font-bold text-gray-900 hover:text-brand-purple"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Tv className="w-3.5 h-3.5 text-brand-purple" />
+                        <span>4. Electronics Showroom</span>
+                      </div>
+                      <span className="text-[9px] uppercase px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">Catalog</span>
+                    </Link>
+
+                    {/* 5. Office Equipment & Consumables inside Services */}
+                    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                      <div className="flex items-center justify-between px-3 py-2 bg-gray-50">
+                        <Link
+                          href="/office-equipment"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex items-center gap-2 text-xs font-bold text-gray-900 hover:text-brand-purple"
+                        >
+                          <Armchair className="w-3.5 h-3.5 text-brand-purple" />
+                          <span>5. Office & Consumables</span>
+                        </Link>
+                      </div>
+                      <div className="pl-5 pr-3 py-2 space-y-1 bg-white border-t border-gray-100">
+                        <Link
+                          href="/office-equipment"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-xs font-semibold text-brand-purple hover:underline"
+                        >
+                          • Office Furniture & Racks
+                        </Link>
+                        <Link
+                          href="/consumables"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-1 text-xs font-semibold text-brand-purple hover:underline"
+                        >
+                          • Printer Paper & Toners
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 )}
