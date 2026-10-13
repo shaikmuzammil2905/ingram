@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60" width="220" height="60">
+  <g transform="translate(10, 10)">
+    <!-- AutoCAD origami red A icon -->
+    <polygon points="18,0 36,38 27,38 22,26 14,26 14,38 6,38" fill="#E51937"/>
+    <polygon points="14,20 20,20 17,9" fill="#FFFFFF"/>
+    <polygon points="6,38 17,9 0,38" fill="#A81026" opacity="0.4"/>
+  </g>
+  <text x="56" y="31" font-family="'Inter', 'Arial', sans-serif" font-weight="800" font-size="19" fill="#E51937" letter-spacing="1.5">AUTOCAD</text>
+  <text x="56" y="46" font-family="'Inter', sans-serif" font-weight="600" font-size="10.5" fill="#737373" letter-spacing="2">BY AUTODESK</text>
+</svg>

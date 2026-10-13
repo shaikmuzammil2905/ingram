@@ -32,7 +32,7 @@ export default function TrustIndicatorRow() {
               </div>
               <div className="pt-5 border-t border-gray-100 mt-5 text-xs font-semibold text-brand-purple flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4" />
-                <span>Dedicated to Industrial Reliability & Safety</span>
+                <span>Dedicated to Technology Excellence, Quality & Safety</span>
               </div>
             </div>
           </ScrollStaggerItem>
@@ -58,7 +58,7 @@ export default function TrustIndicatorRow() {
               </div>
               <div className="pt-5 border-t border-gray-100 mt-5 text-xs font-semibold text-brand-purple flex items-center gap-2">
                 <Compass className="w-4 h-4" />
-                <span>Advancing Tanzania&apos;s Industrial Future</span>
+                <span>Advancing Tanzania&apos;s Digital & Industrial Future</span>
               </div>
             </div>
           </ScrollStaggerItem>

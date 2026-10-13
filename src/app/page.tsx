@@ -1,5 +1,6 @@
 import React from "react";
 import HeroSection from "@/components/home/HeroSection";
+import FourPortfoliosSection from "@/components/home/FourPortfoliosSection";
 import TrustIndicatorRow from "@/components/home/TrustIndicatorRow";
 import CoreValuesSection from "@/components/home/CoreValuesSection";
 import ServicesSection from "@/components/home/ServicesSection";
@@ -9,22 +10,25 @@ import CtaBanner from "@/components/home/CtaBanner";
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero Section matching image.png & image copy.png */}
+      {/* 1. Hero Section representing all four portfolios */}
       <HeroSection />
 
-      {/* 2. Trust Indicators & Mission/Vision Row (Replaces image copy 3 with interactive quote card) */}
+      {/* 2. Four Official Portfolios Section (Industrial Automation, Computer HW & SW, Electronics, Office Equipment) */}
+      <FourPortfoliosSection />
+
+      {/* 3. Trust Indicators & Mission/Vision Row */}
       <TrustIndicatorRow />
 
-      {/* 3. 8 Core Values Grid matching image.png */}
+      {/* 4. 8 Core Values Grid */}
       <CoreValuesSection />
 
-      {/* 4. Our Services (Industrial Automation, Process Control, Instrumentation, Digital Transformation) */}
+      {/* 5. Turnkey Engineering & Automation Capabilities */}
       <ServicesSection />
 
-      {/* 5. Technology Partner: Yokogawa */}
+      {/* 6. Technology Alliances & 12 Brands We Work With */}
       <PartnerSection />
 
-      {/* 6. Ready to Transform Your Operations Banner */}
+      {/* 7. Ready to Transform Your Operations Banner */}
       <CtaBanner />
     </>
   );

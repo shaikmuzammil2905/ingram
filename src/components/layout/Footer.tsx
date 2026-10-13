@@ -35,10 +35,10 @@ export default function Footer() {
           {/* Col 1: Brand & Overview (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
             <Link href="/" className="inline-block">
-              <div className="relative h-12 w-52">
+              <div className="relative h-12 w-56">
                 <Image
-                  src="/images/logo-white.png"
-                  alt="Ingram Enterprises Ltd"
+                  src="/images/logo-white.svg"
+                  alt="Ingram Enterprises Ltd Logo"
                   fill
                   className="object-contain object-left"
                 />
@@ -107,18 +107,19 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: Industrial Automation & Services (3 cols) */}
+          {/* Col 3: Core Portfolios & Solutions (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-brand-purple-tint">
-              Industrial Automation
+              Our Portfolios & Solutions
             </h4>
             <ul className="space-y-2">
               {[
                 { name: "Industrial Automation", href: "/services/industrial-automation" },
-                { name: "Process Control", href: "/services/process-control" },
-                { name: "Instrumentation", href: "/services/instrumentation" },
-                { name: "Digital Transformation", href: "/services/digital-transformation" },
-                { name: "Yokogawa Technologies", href: "/partners" },
+                { name: "Computer HW & Software", href: "/ict-hardware" },
+                { name: "Electronics Items", href: "/electronics" },
+                { name: "Office Equipment & Furniture", href: "/office-equipment" },
+                { name: "All 4 Solutions Overview", href: "/solutions" },
+                { name: "Technology Brands & Partners", href: "/partners" },
               ].map((service) => (
                 <li key={service.name}>
                   <Link

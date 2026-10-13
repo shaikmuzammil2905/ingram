@@ -44,9 +44,9 @@ export default function AdminLoginPage() {
       <div className="relative z-10 w-full max-w-md bg-white rounded-3xl shadow-2xl p-8 sm:p-10 border border-white/20">
         {/* Brand Header */}
         <div className="text-center space-y-3 pb-6 border-b border-gray-100">
-          <div className="relative h-10 w-44 mx-auto">
+          <div className="relative h-10 w-48 mx-auto">
             <Image
-              src="/images/logo.png"
+              src="/images/logo.svg"
               alt="Ingram Enterprises Ltd"
               fill
               className="object-contain"

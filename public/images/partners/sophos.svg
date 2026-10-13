@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60" width="220" height="60">
+  <g transform="translate(10, 11)">
+    <polygon points="19,0 38,19 19,38 0,19" fill="#0057B8"/>
+    <polygon points="19,7 31,19 19,31 7,19" fill="#236CD7"/>
+    <polygon points="19,13 25,19 19,25 13,19" fill="#FFFFFF"/>
+  </g>
+  <text x="58" y="38" font-family="'Arial Black', 'Inter', sans-serif" font-weight="900" font-size="26" fill="#0057B8" letter-spacing="2">SOPHOS</text>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <g transform="translate(14, 6)">
+    <circle cx="24" cy="24" r="23" stroke="#007DB8" stroke-width="3" fill="none"/>
+    <text x="24" y="32" text-anchor="middle" font-family="'Arial Black', sans-serif" font-weight="900" font-size="19" fill="#007DB8" letter-spacing="1">DELL</text>
+  </g>
+  <text x="74" y="39" font-family="'Arial Black', 'Trebuchet MS', sans-serif" font-weight="900" font-size="24" fill="#007DB8" letter-spacing="3">DELL</text>
+</svg>

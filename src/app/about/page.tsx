@@ -55,24 +55,24 @@ export default function AboutPage() {
                 Who We Are
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-brand-navy leading-tight">
-                Empowering Tanzanian Industries with Proven Automation & Digital Measurement
+                Tanzania&apos;s Comprehensive Partner for IT Infrastructure, Workplace Solutions & Industrial Automation
               </h2>
               <p className="text-gray-600 leading-relaxed text-base">
-                Established with a vision to modernize East Africa&apos;s industrial landscape, <strong>Ingram Enterprises Ltd</strong> has built an unwavering reputation over 7 years for delivering rigorous, world-class industrial automation, process control, and Yokogawa instrumentation.
+                Established with a vision to modernize Tanzania&apos;s business and industrial landscape, <strong>Ingram Enterprises Ltd</strong> has built an unwavering reputation over 7+ years delivering world-class technology solutions across four official portfolios: Industrial Automation, Computer Hardware & Software, Commercial Electronics, and Office Equipment.
               </p>
               <p className="text-gray-600 leading-relaxed text-base">
-                We bridge the critical gap between international technology manufacturers and Tanzanian manufacturing plants, refineries, mines, and utilities. Our engineers understand the operational realities of local industry—delivering systems designed for resilience, maximum uptime, and operator safety.
+                We bridge the critical gap between leading international technology manufacturers and Tanzanian enterprises, government bodies, schools, and processing plants. Our multi-disciplinary team understands local requirements—delivering systems designed for resilience, security, productivity, and long-term value.
               </p>
 
               {/* Key Highlights Grid */}
               <ScrollStagger staggerDelay={0.08} className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 {[
                   "Headquartered in Dar Es Salaam, Tanzania",
-                  "Over 7 Years of Field Engineering Track Record",
-                  "Certified Yokogawa Technology Integration",
-                  "Turnkey DCS, PLC & SCADA Implementations",
-                  "Rapid Emergency On-Site Engineering Dispatch",
-                  "Future-Ready IIoT & AI Digital Transformation",
+                  "Four Core Technology & Engineering Portfolios",
+                  "Alliances with HP, Dell, Microsoft, Yokogawa & More",
+                  "Turnkey IT Infrastructure & Industrial DCS/PLC",
+                  "Rapid On-Site Technical Support & SLA Dispatch",
+                  "100% Genuine, Fully Warranted Solutions",
                 ].map((item, idx) => (
                   <ScrollStaggerItem key={idx} direction="up" distance={15} className="flex items-start gap-2.5 text-sm text-gray-700">
                     <CheckCircle className="w-4 h-4 text-brand-purple shrink-0 mt-0.5" />

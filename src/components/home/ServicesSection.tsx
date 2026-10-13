@@ -52,14 +52,14 @@ export default function ServicesSection() {
         <ScrollReveal direction="up" distance={20} className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-purple/10 text-brand-purple text-xs font-bold uppercase tracking-wider mb-3">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Industrial Engineering Capabilities</span>
+            <span>Turnkey Engineering Division</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-brand-navy tracking-tight uppercase">
-            Services & Industrial Automation
+            Turnkey Automation & Process Engineering
           </h2>
           <div className="w-16 h-1 bg-brand-purple mx-auto mt-3 rounded-full" />
           <p className="text-sm sm:text-base text-gray-600 mt-3 leading-relaxed">
-            Ingram Enterprises provides turnkey Industrial Automation as our core engineering discipline, structured into three specialized domains: Process Control, Yokogawa Instrumentation, and Digital Transformation.
+            Alongside our IT and workplace equipment portfolios, Ingram Enterprises operates a specialized industrial engineering practice structured into Process Control, Yokogawa Instrumentation, and Digital Transformation.
           </p>
         </ScrollReveal>
 

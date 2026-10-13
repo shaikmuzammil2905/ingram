@@ -39,10 +39,10 @@ export default function HeroSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-xs font-bold uppercase tracking-wider text-white shadow-md [text-shadow:_0_1px_2px_rgba(0,0,0,0.8)]"
+            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-xs font-bold uppercase tracking-wider text-white shadow-md [text-shadow:_0_1px_2px_rgba(0,0,0,0.8)]"
           >
             <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping shrink-0" />
-            <span className="truncate">Industrial Automation & Digital Technology</span>
+            <span className="truncate">IT Infrastructure • Electronics • Office Systems • Industrial Automation</span>
           </motion.div>
 
           {/* Headline - Crystal Clear, Left-Aligned, High Visibility */}
@@ -50,9 +50,9 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.2 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-[46px] font-extrabold text-white tracking-tight leading-[1.2] [text-shadow:_0_2px_12px_rgba(0,0,0,0.9),_0_1px_3px_rgba(0,0,0,0.95)]"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-extrabold text-white tracking-tight leading-[1.2] [text-shadow:_0_2px_12px_rgba(0,0,0,0.9),_0_1px_3px_rgba(0,0,0,0.95)]"
           >
-            Empowering Tanzania Industries with World-Class Automation & Industrial Technologies
+            Empowering Tanzania with Enterprise IT Infrastructure, Electronics, Office Solutions & Industrial Automation
           </motion.h1>
 
           {/* Supporting Text - Crisp and highly legible */}
@@ -65,6 +65,29 @@ export default function HeroSection() {
             {COMPANY_INFO.heroDescription}
           </motion.p>
 
+          {/* Four Quick Portfolio Navigation Badges */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.35 }}
+            className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 pt-1"
+          >
+            {[
+              { name: "Industrial Automation", href: "/services/industrial-automation" },
+              { name: "Computer HW & Software", href: "/ict-hardware" },
+              { name: "Electronics Items", href: "/electronics" },
+              { name: "Office Equipment", href: "/office-equipment" },
+            ].map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="text-[11px] sm:text-xs font-semibold px-2.5 py-1.5 rounded-lg bg-black/40 hover:bg-brand-purple/90 text-white/95 hover:text-white border border-white/20 backdrop-blur-sm transition-all duration-200 text-center"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </motion.div>
+
           {/* Action Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -73,11 +96,18 @@ export default function HeroSection() {
             className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2 sm:pt-4"
           >
             <Link
-              href="/services"
+              href="/solutions"
               className="inline-flex items-center justify-center gap-2 bg-brand-purple hover:bg-brand-purple-hover text-white text-sm sm:text-base font-bold px-7 py-3.5 rounded-lg shadow-xl hover:shadow-brand transition-all duration-200 group"
             >
-              <span>Our Services</span>
+              <span>Explore Solutions</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+            </Link>
+
+            <Link
+              href="#portfolios"
+              className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/30 text-sm sm:text-base font-bold px-6 py-3.5 rounded-lg backdrop-blur-sm transition-all duration-200"
+            >
+              <span>View Portfolios</span>
             </Link>
 
             <button

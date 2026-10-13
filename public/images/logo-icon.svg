@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 182 177" width="182" height="177" fill="none">
+  <!-- 1. Top Apex facet -->
+  <polygon points="91,7 150,31 73,41 37,26" fill="#58298E" />
+  <!-- 2. Top-Right facet -->
+  <polygon points="150,31 176,76 144,72 73,41" fill="#7D55B3" />
+  <!-- 3. Middle-Right facet -->
+  <polygon points="176,76 164,134 144,72" fill="#9F81CA" />
+  <!-- 4. Bottom-Right facet -->
+  <polygon points="164,134 60,169 52,133 144,72" fill="#B9A5DB" />
+  <!-- 5. Bottom-Left facet -->
+  <polygon points="60,169 17,134 52,133" fill="#522784" />
+  <!-- 6. Far-Left facet -->
+  <polygon points="17,134 7,76 52,133" fill="#3B1863" />
+  <!-- 7. Top-Left facet -->
+  <polygon points="7,76 37,26 73,41 52,133" fill="#441C73" />
+  <!-- 8. Inner Triangle -->
+  <polygon points="73,41 144,72 52,133" fill="#FFFFFF" />
+</svg>

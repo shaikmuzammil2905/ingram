@@ -84,8 +84,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           >
             {mobileSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
-          <div className="relative h-7 w-32">
-            <Image src="/images/logo.png" alt="Ingram Logo" fill className="object-contain object-left" />
+          <div className="relative h-7 w-36">
+            <Image src="/images/logo.svg" alt="Ingram Logo" fill className="object-contain object-left" />
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -112,8 +112,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Brand Header */}
         <div className="p-6 border-b border-gray-100 flex items-center justify-between">
           <Link href="/admin" className="flex items-center gap-2">
-            <div className="relative h-8 w-40">
-              <Image src="/images/logo.png" alt="Ingram Logo" fill className="object-contain object-left" />
+            <div className="relative h-8 w-44">
+              <Image src="/images/logo.svg" alt="Ingram Logo" fill className="object-contain object-left" />
             </div>
           </Link>
           <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-brand-purple text-white">

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 92" width="420" height="92" fill="none">
+  <!-- HD Authentic Faceted Emblem -->
+  <g transform="translate(6, 3) scale(0.485)">
+    <!-- 1. Top Apex facet -->
+    <polygon points="91,7 150,31 73,41 37,26" fill="#7D4BC4" />
+    <!-- 2. Top-Right facet -->
+    <polygon points="150,31 176,76 144,72 73,41" fill="#9F73DF" />
+    <!-- 3. Middle-Right facet -->
+    <polygon points="176,76 164,134 144,72" fill="#B998F0" />
+    <!-- 4. Bottom-Right facet -->
+    <polygon points="164,134 60,169 52,133 144,72" fill="#D3C0FC" />
+    <!-- 5. Bottom-Left facet -->
+    <polygon points="60,169 17,134 52,133" fill="#6B3DAF" />
+    <!-- 6. Far-Left facet -->
+    <polygon points="17,134 7,76 52,133" fill="#52278F" />
+    <!-- 7. Top-Left facet -->
+    <polygon points="7,76 37,26 73,41 52,133" fill="#5E2EA6" />
+    <!-- 8. Inner Triangle -->
+    <polygon points="73,41 144,72 52,133" fill="#FFFFFF" />
+  </g>
+
+  <!-- Typography: Pure White for Dark Backgrounds -->
+  <g fill="#FFFFFF" font-family="'Times New Roman', Times, 'Georgia', serif" font-weight="900">
+    <text x="106" y="27" font-size="27" letter-spacing="1.8">INGRAM</text>
+    <text x="106" y="55" font-size="24" letter-spacing="2.2">ENTERPRISES</text>
+    <text x="106" y="83" font-size="24" letter-spacing="2.6">LTD</text>
+  </g>
+</svg>

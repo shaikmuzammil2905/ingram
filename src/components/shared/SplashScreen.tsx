@@ -38,7 +38,7 @@ export default function SplashScreen() {
 
         <div className="relative h-20 w-56 sm:h-24 sm:w-64 z-10 animate-pulse">
           <Image
-            src="/images/logo.png"
+            src="/images/logo.svg"
             alt="Ingram Enterprises Ltd Logo"
             fill
             className="object-contain"

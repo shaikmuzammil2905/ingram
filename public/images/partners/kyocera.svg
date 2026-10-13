@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60">
+  <g transform="translate(10, 14)">
+    <polygon points="16,0 32,16 16,32 0,16" fill="#E60012"/>
+    <polygon points="16,6 26,16 16,26 6,16" fill="#FFFFFF"/>
+    <polygon points="16,10 22,16 16,22 10,16" fill="#E60012"/>
+  </g>
+  <text x="56" y="38" font-family="'Arial Black', 'Inter', sans-serif" font-weight="900" font-size="24" fill="#E60012" letter-spacing="2">KYOCERA</text>
+</svg>

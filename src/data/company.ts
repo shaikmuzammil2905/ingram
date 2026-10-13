@@ -2,9 +2,9 @@ export const COMPANY_INFO = {
   name: "INGRAM ENTERPRISES LTD",
   shortName: "Ingram",
   tagline: "Local Expertise. Global Technology.",
-  heroHeadline: "Empowering Tanzania Industries with World-Class Automation & Industrial Technologies",
+  heroHeadline: "Enterprise IT Infrastructure, Computer Hardware & Software, Electronics, Office Equipment & Industrial Automation",
   heroDescription:
-    "We deliver advanced automation, measurement, and digital solutions that improve efficiency, reliability, and performance across industries.",
+    "Your trusted technology partner in Tanzania, providing end-to-end solutions across four core portfolios: Industrial Automation, Computer Hardware & Software, Electronics Items, and Commercial Office Equipment.",
   experienceYears: "7+",
   address: "Bamaga Rd, BAMAGA, Kinondoni",
   poBox: "P.O Box 22607, Dar Es Salaam",
@@ -22,13 +22,100 @@ export const COMPANY_INFO = {
   domain: "ingram.co.tz",
   website: "https://ingram.co.tz",
   mission:
-    "To empower Tanzanian industries with world-class automation and industrial technologies that transform the way businesses operate, produce and grow.",
+    "To empower Tanzanian organizations and industries with world-class technology, enterprise computing, office solutions, and industrial automation that drive efficiency, reliability, and sustainable growth.",
   vision:
-    "To accelerate Tanzania's journey toward a smarter, more automated and technologically advanced industrial future by becoming a trusted partner in industrial automation, measurement, digitalization and intelligent technologies.",
+    "To be Tanzania's foremost technology partner, accelerating business and industrial modernization through cutting-edge IT infrastructure, smart electronics, workplace equipment, and intelligent automation systems.",
   yokogawaTagline: "World-class technology. Trusted solutions. Real results.",
   copyright: "© 2026 Ingram Enterprises Ltd. All Rights Reserved.",
   footerCredit: "Designed with ❤️ in Tanzania"
 };
+
+export const FOUR_PORTFOLIOS = [
+  {
+    id: "industrial-automation",
+    slug: "industrial-automation",
+    number: "01",
+    title: "Industrial Automation",
+    subtitle: "DCS, PLC, Instrumentation & Plant Reliability",
+    description:
+      "Advanced control systems, Yokogawa field measurement instrumentation, electrical automation panels, and safety shutdown architectures engineered for factories and processing plants.",
+    image: "/images/service-automation.jpg",
+    icon: "Cog",
+    href: "/services/industrial-automation",
+    solutionsHref: "/solutions#industrial-automation",
+    badge: "Engineering & Control",
+    keyItems: [
+      "DCS & PLC Process Automation",
+      "Yokogawa Precision Instrumentation",
+      "SCADA & Real-Time Telemetry",
+      "Process Optimization & Plant Safety",
+    ],
+    ctaText: "Explore Automation",
+  },
+  {
+    id: "computer-hardware-software",
+    slug: "computer-hardware-software",
+    number: "02",
+    title: "Computer Hardware & Software",
+    subtitle: "Enterprise Computing, Networking & Software Licensing",
+    description:
+      "Business laptops, high-performance desktop workstations, rackmount servers, enterprise networking switches, Microsoft cloud licensing, AutoCAD, and endpoint cybersecurity.",
+    image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=1200&q=80",
+    icon: "Laptop",
+    href: "/ict-hardware",
+    solutionsHref: "/solutions#computer-hardware-software",
+    badge: "IT Infrastructure",
+    keyItems: [
+      "Laptops, Desktops & CAD Workstations",
+      "Enterprise Servers & Storage Arrays",
+      "Managed Network Switches & Wi-Fi 6",
+      "Microsoft 365, AutoCAD & Cybersecurity",
+    ],
+    ctaText: "Explore Hardware & Software",
+  },
+  {
+    id: "electronics",
+    slug: "electronics",
+    number: "03",
+    title: "Electronics Items",
+    subtitle: "Commercial Displays, Smart Electronics & Workplace Cooling",
+    description:
+      "Commercial digital signage displays, smart TVs, heavy-duty refrigeration, workplace air conditioning, audio systems, and high-reliability commercial electronics.",
+    image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=1200&q=80",
+    icon: "Tv",
+    href: "/electronics",
+    solutionsHref: "/solutions#electronics",
+    badge: "Commercial Electronics",
+    keyItems: [
+      "Commercial Digital Signage & Boardroom TVs",
+      "Office & Commercial Air Conditioning",
+      "Commercial Refrigerators & Deep Freezers",
+      "Audiovisual Equipment & Power Protection",
+    ],
+    ctaText: "Explore Electronics",
+  },
+  {
+    id: "office-equipment",
+    slug: "office-equipment",
+    number: "04",
+    title: "Office Equipment",
+    subtitle: "Printers, Multifunction Copiers, Ergonomic Furniture & UPS",
+    description:
+      "Cost-effective heavy-duty laser printers, network copiers, scanners, APC Smart-UPS power backup, ergonomic commercial office furniture, file storage, and paper supplies.",
+    image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=1200&q=80",
+    icon: "Printer",
+    href: "/office-equipment",
+    solutionsHref: "/solutions#office-equipment",
+    badge: "Workplace Solutions",
+    keyItems: [
+      "Office Printers & Multifunction Copiers",
+      "APC Smart-UPS & Clean Power Backup",
+      "Ergonomic Chairs & Computer Workstations",
+      "Document Scanners, Consumables & Paper",
+    ],
+    ctaText: "Explore Office Equipment",
+  },
+];
 
 export const CORE_VALUES = [
   {
@@ -440,3 +527,229 @@ export const WHY_CHOOSE_US = [
     icon: "Handshake",
   },
 ];
+
+export const PORTFOLIO_SOLUTIONS = [
+  {
+    id: "industrial-automation",
+    slug: "industrial-automation",
+    title: "Industrial Automation Solutions",
+    category: "Automation & Instrumentation",
+    tagline: "Turnkey DCS, PLC, Yokogawa Instrumentation & Process Loop Control",
+    image: "/images/service-automation.jpg",
+    description:
+      "Enterprise-grade industrial automation and field instrumentation architectures engineered for stability, zero unscheduled downtime, and rigorous safety compliance in processing plants across Tanzania.",
+    benefits: [
+      "Integrated DCS/PLC systems with sub-second control response times",
+      "High-accuracy Yokogawa pressure, temperature, flow, and level sensing",
+      "Automated ESD & safety shutdown loops compliant with IEC 61508/61511",
+      "Continuous process loop tuning minimizing waste and energy consumption",
+    ],
+    keyCapabilities: [
+      "Distributed Control Systems (DCS) & SCADA Telemetry",
+      "Yokogawa Precision Transmitters & Analyzers",
+      "Industrial IoT Wireless Condition Monitoring",
+      "Engineered Safety Instrumented Systems (SIL 2/3)",
+    ],
+    href: "/services/industrial-automation",
+    quoteService: "Industrial Automation Solutions",
+    badge: "Engineering Flagship",
+  },
+  {
+    id: "computer-hardware-software",
+    slug: "computer-hardware-software",
+    title: "Computer Hardware & Software Solutions",
+    category: "IT Infrastructure & Enterprise Software",
+    tagline: "Business Computing, High-Density Server Racks, Microsoft 365 & Cybersecurity",
+    image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=1200&q=80",
+    description:
+      "Complete IT infrastructure planning, high-availability server deployments, business computing fleets, enterprise networking, licensed Microsoft cloud solutions, AutoCAD engineering tools, and perimeter cyber protection.",
+    benefits: [
+      "Enterprise laptops, desktops, and engineering workstations from HP, Dell, and Lenovo",
+      "High-throughput rack servers, NAS/SAN storage arrays, and virtualization",
+      "Next-Gen Firewall security from Sophos and unified threat protection",
+      "Fully compliant Microsoft 365, Windows Server, and Autodesk AutoCAD licensing",
+    ],
+    keyCapabilities: [
+      "Enterprise Servers & High-Performance Workstations",
+      "Structured Cabling, Managed PoE+ Switches & Wi-Fi 6",
+      "Next-Gen Firewall & Endpoint Threat Prevention",
+      "Microsoft 365, Azure & AutoCAD CAD Software",
+    ],
+    href: "/ict-hardware",
+    quoteService: "Computer Hardware & Software Solutions",
+    badge: "Enterprise IT",
+  },
+  {
+    id: "electronics",
+    slug: "electronics",
+    title: "Electronics Solutions",
+    category: "Commercial Electronics & Climate Systems",
+    tagline: "Commercial Digital Signage, Commercial Cooling & Workplace Climate Systems",
+    image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=1200&q=80",
+    description:
+      "Tailored electronics systems for modern workplaces, conference centers, commercial retail, and healthcare facilities—encompassing commercial interactive displays, heavy-duty air conditioning, and cooling units.",
+    benefits: [
+      "High-brightness commercial displays for 24/7 boardroom and digital signage use",
+      "Energy-efficient inverter office and industrial air conditioning systems",
+      "Heavy-duty commercial refrigerators, chillers, and deep freezers",
+      "Clean power conditioning and surge protection for sensitive electronics",
+    ],
+    keyCapabilities: [
+      "Commercial Digital Signage & Boardroom Smart Displays",
+      "Split & Inverter Office Air Conditioning Systems",
+      "Commercial Refrigerators & Beverage Storage Freezers",
+      "Commercial Audiovisual & PA Infrastructure",
+    ],
+    href: "/electronics",
+    quoteService: "Electronics Solutions",
+    badge: "Commercial Tech",
+  },
+  {
+    id: "office-equipment",
+    slug: "office-equipment",
+    title: "Office Equipment Solutions",
+    category: "Workplace Technology & Furnishings",
+    tagline: "High-Volume Multifunction Copiers, APC Clean Power Backup & Ergonomics",
+    image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=1200&q=80",
+    description:
+      "Comprehensive workplace productivity solutions supplying high-volume laser printers, network copiers from Canon, Epson, and Kyocera, APC Smart-UPS uninterruptible power backup, and ergonomic commercial furniture.",
+    benefits: [
+      "Low cost-per-page high-speed laser printing and secure badge-release scanning",
+      "Zero-interruption clean battery backup during power outages with APC Smart-UPS",
+      "Ergonomic executive chairs, computer tables, and heavy-duty file archive racks",
+      "Guaranteed supply of genuine toner cartridges, drums, and premium paper",
+    ],
+    keyCapabilities: [
+      "High-Volume Network Multifunction Copiers & Printers",
+      "APC Uninterruptible Power Supply (UPS) & Clean Backup",
+      "Ergonomic Office Seating & Modular Desking",
+      "Heavy-Duty Document Cabinets & Filing Archive Racks",
+    ],
+    href: "/office-equipment",
+    quoteService: "Office Equipment Solutions",
+    badge: "Office Solutions",
+  },
+];
+
+export interface PartnerBrand {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  logo: string;
+  isCategory?: boolean;
+  website?: string;
+  badge?: string;
+}
+
+export const PARTNERS_LIST: PartnerBrand[] = [
+  {
+    id: "hp",
+    name: "HP",
+    category: "Computing & Printing",
+    description: "Enterprise laptops, ProBook & EliteBook series, desktop workstations, and heavy-duty office printers.",
+    logo: "/images/partners/hp.svg",
+    website: "https://www.hp.com",
+    badge: "Official Vendor",
+  },
+  {
+    id: "dell",
+    name: "Dell Technologies",
+    category: "Enterprise Computing & Servers",
+    description: "PowerEdge rack servers, OptiPlex desktops, Latitude laptops, and high-performance engineering workstations.",
+    logo: "/images/partners/dell.svg",
+    website: "https://www.dell.com",
+    badge: "Enterprise Partner",
+  },
+  {
+    id: "lenovo",
+    name: "Lenovo",
+    category: "Business Laptops & Workstations",
+    description: "Legendary ThinkPad laptops, ThinkCentre business desktops, and ThinkSystem scalable server solutions.",
+    logo: "/images/partners/lenovo.svg",
+    website: "https://www.lenovo.com",
+    badge: "Global Brand",
+  },
+  {
+    id: "microsoft",
+    name: "Microsoft",
+    category: "Software & Cloud Solutions",
+    description: "Authorized licensing for Microsoft 365, Windows 11 Pro, Windows Server, SQL Server, and Azure cloud.",
+    logo: "/images/partners/microsoft.svg",
+    website: "https://www.microsoft.com",
+    badge: "Software Partner",
+  },
+  {
+    id: "autocad",
+    name: "AutoCAD (Autodesk)",
+    category: "Engineering & CAD Software",
+    description: "Industry-standard 2D and 3D computer-aided design software for Tanzanian engineers, architects, and designers.",
+    logo: "/images/partners/autocad.svg",
+    website: "https://www.autodesk.com",
+    badge: "Design Suite",
+  },
+  {
+    id: "firewall",
+    name: "Next-Gen Firewall Security",
+    category: "Perimeter Cybersecurity Technology",
+    description: "Stateful packet inspection, deep packet SSL inspection, intrusion prevention (IPS), and secure VPN gateways.",
+    logo: "/images/partners/firewall.svg",
+    isCategory: true,
+    badge: "Core Technology",
+  },
+  {
+    id: "sophos",
+    name: "Sophos",
+    category: "Next-Gen Cybersecurity",
+    description: "Synchronized security featuring XGS Next-Gen hardware firewalls, Intercept X endpoint AI, and MDR protection.",
+    logo: "/images/partners/sophos.svg",
+    website: "https://www.sophos.com",
+    badge: "Cybersecurity",
+  },
+  {
+    id: "epson",
+    name: "Epson",
+    category: "Office Printing & Projection",
+    description: "High-yield EcoTank printers, WorkForce enterprise multifunction copiers, and interactive boardroom projectors.",
+    logo: "/images/partners/epson.svg",
+    website: "https://www.epson.com",
+    badge: "Printing Partner",
+  },
+  {
+    id: "apc",
+    name: "APC by Schneider Electric",
+    category: "Power Protection & UPS",
+    description: "Smart-UPS battery backup, line-interactive power regulators, and server rack surge protection systems.",
+    logo: "/images/partners/apc.svg",
+    website: "https://www.apc.com",
+    badge: "Power Solutions",
+  },
+  {
+    id: "canon",
+    name: "Canon",
+    category: "Multifunction Copiers & Scanners",
+    description: "imageRUNNER enterprise laser multifunction copiers, heavy-duty production print, and high-speed document scanners.",
+    logo: "/images/partners/canon.svg",
+    website: "https://www.canon.com",
+    badge: "Document Systems",
+  },
+  {
+    id: "kyocera",
+    name: "Kyocera",
+    category: "Document Solutions & Copiers",
+    description: "ECOSYS and TASKalfa heavy-duty multifunction printers known for low total cost of ownership and ceramic drum longevity.",
+    logo: "/images/partners/kyocera.svg",
+    website: "https://www.kyoceradocumentsolutions.com",
+    badge: "Office Partner",
+  },
+  {
+    id: "yokogawa",
+    name: "Yokogawa",
+    category: "Industrial Automation & Instrumentation",
+    description: "World-class CENTUM VP distributed control systems, DPharp pressure transmitters, and precision Coriolis flowmeters.",
+    logo: "/images/partners/yokogawa.svg",
+    website: "https://www.yokogawa.com",
+    badge: "Strategic Partner",
+  },
+];
+

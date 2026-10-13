@@ -6,7 +6,7 @@ export default function Loading() {
         <div className="absolute inset-0 bg-brand-purple-tint/40 rounded-full blur-xl animate-pulse"></div>
         
         <img
-          src="/images/logo.png"
+          src="/images/logo.svg"
           alt="Ingram Enterprises Ltd Logo"
           className="relative h-16 object-contain z-10"
         />
