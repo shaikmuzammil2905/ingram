@@ -71,7 +71,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { name: "Products Catalog", href: "/admin/products", icon: Package },
     { name: "Categories & Structure", href: "/admin/categories", icon: FolderTree },
     { name: "Enquiries & Leads", href: "/admin/enquiries", icon: MessageSquare },
-    { name: "Media Library (Cloudinary)", href: "/admin/media", icon: ImageIcon },
     { name: "Banners & Hero", href: "/admin/banners", icon: Sliders },
     { name: "Site Settings & SEO", href: "/admin/settings", icon: Settings },
   ];

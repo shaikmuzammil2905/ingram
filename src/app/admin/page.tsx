@@ -17,6 +17,7 @@ import {
   ArrowRight,
   Database,
   Sparkles,
+  Sliders,
 } from "lucide-react";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { useWebsiteContent } from "@/context/WebsiteContentContext";
@@ -229,11 +230,11 @@ export default function AdminDashboardPage() {
                 </Link>
 
                 <Link
-                  href="/admin/media"
+                  href="/admin/banners"
                   className="p-3.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-100 text-emerald-800 text-xs font-bold transition-colors flex flex-col gap-1.5"
                 >
-                  <ImageIcon className="w-5 h-5 text-emerald-600" />
-                  <span>Cloudinary Media Library</span>
+                  <Sliders className="w-5 h-5 text-emerald-600" />
+                  <span>Manage Banners & Hero</span>
                 </Link>
 
                 <Link
