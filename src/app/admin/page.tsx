@@ -245,32 +245,6 @@ export default function AdminDashboardPage() {
                 </Link>
               </div>
             </div>
-
-            {/* Cloudinary & Supabase Connected Status */}
-            <div className="p-5 rounded-2xl bg-gradient-to-br from-brand-purple/5 to-brand-navy/5 border border-brand-purple/15 space-y-3">
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-brand-purple" />
-                <h3 className="text-xs font-bold text-brand-navy uppercase tracking-wider">
-                  Connected Production Infrastructure
-                </h3>
-              </div>
-              <div className="space-y-2 text-xs text-gray-600">
-                <div className="flex items-center justify-between p-2 rounded-lg bg-white border border-gray-200/70">
-                  <span className="font-semibold text-gray-800">Supabase Backend:</span>
-                  <span className="inline-flex items-center gap-1 font-mono text-[11px] text-green-700 bg-green-50 px-2 py-0.5 rounded">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                    eiynktjlochrjhkbatmu
-                  </span>
-                </div>
-                <div className="flex items-center justify-between p-2 rounded-lg bg-white border border-gray-200/70">
-                  <span className="font-semibold text-gray-800">Cloudinary Media:</span>
-                  <span className="inline-flex items-center gap-1 font-mono text-[11px] text-blue-700 bg-blue-50 px-2 py-0.5 rounded">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                    qjeckycw (ml_default)
-                  </span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
