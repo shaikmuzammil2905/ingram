@@ -15,8 +15,10 @@ import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { COMPANY_INFO, PRIMARY_SERVICES } from "@/data/company";
 import { getWhatsAppUrl, QuoteFormData } from "@/lib/whatsapp";
+import { useWebsiteContent } from "@/context/WebsiteContentContext";
 
 export default function ContactPage() {
+  const { submitEnquiry } = useWebsiteContent();
   const [formData, setFormData] = useState<QuoteFormData>({
     fullName: "",
     company: "",
@@ -29,9 +31,23 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    try {
+      await submitEnquiry({
+        full_name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        service_interest: formData.service,
+        message: `${formData.industry ? `[Industry: ${formData.industry}] ` : ""}${formData.message}`,
+        source_page: "/contact",
+      });
+    } catch (err) {
+      console.warn("Save enquiry error:", err);
+    }
 
     const whatsappUrl = getWhatsAppUrl(formData);
 

@@ -7,9 +7,11 @@ import { useQuoteModal } from "@/context/QuoteModalContext";
 import { getWhatsAppUrl, QuoteFormData } from "@/lib/whatsapp";
 import { COMPANY_INFO, PRIMARY_SERVICES } from "@/data/company";
 import { submitEnquiryToSupabase } from "@/lib/db-seed";
+import { useWebsiteContent } from "@/context/WebsiteContentContext";
 
 export default function QuoteModal() {
   const { isOpen, preselectedService, closeQuoteModal } = useQuoteModal();
+  const { submitEnquiry } = useWebsiteContent();
   const [formData, setFormData] = useState<QuoteFormData>({
     fullName: "",
     company: "",
@@ -42,6 +44,15 @@ export default function QuoteModal() {
     setIsSubmitting(true);
 
     try {
+      await submitEnquiry({
+        full_name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        service_interest: formData.service,
+        message: `${formData.industry ? `[Industry: ${formData.industry}] ` : ""}${formData.message}`,
+        source_page: typeof window !== "undefined" ? window.location.pathname : "",
+      });
       await submitEnquiryToSupabase({
         full_name: formData.fullName,
         email: formData.email,

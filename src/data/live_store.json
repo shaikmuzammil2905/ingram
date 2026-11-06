@@ -1,0 +1,93 @@
+{
+  "services": [],
+  "products": [],
+  "categories": [],
+  "banners": [],
+  "settings": {},
+  "enquiries": [],
+  "customDropdowns": [
+    {
+      "id": "dd_product_type",
+      "name": "Product Type",
+      "field_key": "product_type",
+      "required": false,
+      "options": [
+        "Industrial Automation",
+        "Process Control",
+        "Instrumentation",
+        "Digital Transformation",
+        "ICT Hardware",
+        "Commercial Electronics"
+      ]
+    },
+    {
+      "id": "dd_brand",
+      "name": "Product Brand",
+      "field_key": "brand",
+      "required": true,
+      "options": [
+        "Yokogawa",
+        "HP",
+        "Dell",
+        "Lenovo",
+        "APC",
+        "Hisense",
+        "Samsung",
+        "Sony",
+        "Cisco"
+      ]
+    },
+    {
+      "id": "dd_application",
+      "name": "Product Application",
+      "field_key": "application",
+      "required": false,
+      "options": [
+        "Oil & Gas",
+        "Manufacturing",
+        "Power Generation",
+        "Water Treatment",
+        "Corporate Office",
+        "Data Center"
+      ]
+    }
+  ],
+  "navigationMenu": [
+    {
+      "id": "nav_1",
+      "label": "Home",
+      "href": "/",
+      "order": 1,
+      "is_active": true
+    },
+    {
+      "id": "nav_2",
+      "label": "Services",
+      "href": "/services",
+      "order": 2,
+      "is_active": true
+    },
+    {
+      "id": "nav_3",
+      "label": "Products",
+      "href": "/electronics",
+      "order": 3,
+      "is_active": true
+    },
+    {
+      "id": "nav_4",
+      "label": "About Us",
+      "href": "/about",
+      "order": 4,
+      "is_active": true
+    },
+    {
+      "id": "nav_5",
+      "label": "Contact",
+      "href": "/contact",
+      "order": 5,
+      "is_active": true
+    }
+  ],
+  "updatedAt": "2026-11-06T12:40:01.514Z"
+}

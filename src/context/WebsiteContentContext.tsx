@@ -21,7 +21,54 @@ const STORAGE_KEYS = {
   BANNERS: "ingram_db_banners_v2",
   SETTINGS: "ingram_db_settings_v2",
   ENQUIRIES: "ingram_db_enquiries_v2",
+  CUSTOM_DROPDOWNS: "ingram_db_custom_dropdowns_v2",
 };
+
+export interface CustomDropdown {
+  id: string;
+  name: string;
+  field_key: string;
+  required: boolean;
+  options: string[];
+}
+
+export const getDefaultCustomDropdowns = (): CustomDropdown[] => [
+  {
+    id: "dd_product_type",
+    name: "Product Type",
+    field_key: "product_type",
+    required: false,
+    options: [
+      "Industrial Automation",
+      "Process Control",
+      "Instrumentation",
+      "Digital Transformation",
+      "ICT Hardware",
+      "Commercial Electronics",
+    ],
+  },
+  {
+    id: "dd_brand",
+    name: "Product Brand",
+    field_key: "brand",
+    required: true,
+    options: ["Yokogawa", "HP", "Dell", "Lenovo", "APC", "Hisense", "Samsung", "Sony", "Cisco"],
+  },
+  {
+    id: "dd_application",
+    name: "Product Application",
+    field_key: "application",
+    required: false,
+    options: [
+      "Oil & Gas",
+      "Manufacturing",
+      "Power Generation",
+      "Water Treatment",
+      "Corporate Office",
+      "Data Center",
+    ],
+  },
+];
 
 // Default seed generators
 export const getDefaultServices = (): DbService[] => {
@@ -127,6 +174,7 @@ interface WebsiteContentContextType {
   banners: DbBanner[];
   settings: DbSiteSettings;
   enquiries: DbEnquiry[];
+  customDropdowns: CustomDropdown[];
   loading: boolean;
 
   // Actions
@@ -143,6 +191,9 @@ interface WebsiteContentContextType {
   deleteBanner: (id: string) => Promise<boolean>;
 
   saveSettings: (settings: Partial<DbSiteSettings>) => Promise<boolean>;
+
+  saveCustomDropdown: (dropdown: CustomDropdown) => Promise<boolean>;
+  deleteCustomDropdown: (id: string) => Promise<boolean>;
 
   submitEnquiry: (enquiry: Omit<DbEnquiry, "id" | "created_at" | "status">) => Promise<boolean>;
   updateEnquiryStatus: (id: string, status: DbEnquiry["status"]) => Promise<boolean>;
@@ -198,6 +249,7 @@ export function WebsiteContentProvider({ children }: { children: React.ReactNode
   const [banners, setBanners] = useState<DbBanner[]>(getDefaultBanners);
   const [settings, setSettings] = useState<DbSiteSettings>(getDefaultSettings);
   const [enquiries, setEnquiries] = useState<DbEnquiry[]>([]);
+  const [customDropdowns, setCustomDropdowns] = useState<CustomDropdown[]>(getDefaultCustomDropdowns);
   const [loading, setLoading] = useState(false);
 
   // Load from localStorage on client-side mount
@@ -208,6 +260,7 @@ export function WebsiteContentProvider({ children }: { children: React.ReactNode
     setBanners(readFromStorage(STORAGE_KEYS.BANNERS, getDefaultBanners()));
     setSettings(readFromStorage(STORAGE_KEYS.SETTINGS, getDefaultSettings()));
     setEnquiries(readFromStorage(STORAGE_KEYS.ENQUIRIES, []));
+    setCustomDropdowns(readFromStorage(STORAGE_KEYS.CUSTOM_DROPDOWNS, getDefaultCustomDropdowns()));
   }, []);
 
   // Fetch newer data from Supabase in the background
@@ -586,6 +639,33 @@ export function WebsiteContentProvider({ children }: { children: React.ReactNode
     return true;
   };
 
+  // CUSTOM DROPDOWNS CRUD
+  const saveCustomDropdown = async (dropdown: CustomDropdown): Promise<boolean> => {
+    const targetId = dropdown.id || `dd_${Date.now()}`;
+    const updated: CustomDropdown = {
+      id: targetId,
+      name: dropdown.name,
+      field_key: dropdown.field_key || dropdown.name.toLowerCase().replace(/[^a-z0-9]/g, "_"),
+      required: dropdown.required ?? false,
+      options: dropdown.options || [],
+    };
+
+    const next = customDropdowns.some((d) => d.id === targetId)
+      ? customDropdowns.map((d) => (d.id === targetId ? updated : d))
+      : [...customDropdowns, updated];
+
+    setCustomDropdowns(next);
+    writeToStorage(STORAGE_KEYS.CUSTOM_DROPDOWNS, next);
+    return true;
+  };
+
+  const deleteCustomDropdown = async (id: string): Promise<boolean> => {
+    const next = customDropdowns.filter((d) => d.id !== id);
+    setCustomDropdowns(next);
+    writeToStorage(STORAGE_KEYS.CUSTOM_DROPDOWNS, next);
+    return true;
+  };
+
   // SYNC INITIAL DATA & RESET
   const syncInitialData = async (): Promise<boolean> => {
     const defServices = getDefaultServices();
@@ -631,6 +711,7 @@ export function WebsiteContentProvider({ children }: { children: React.ReactNode
         banners,
         settings,
         enquiries,
+        customDropdowns,
         loading,
         saveService,
         deleteService,
@@ -641,6 +722,8 @@ export function WebsiteContentProvider({ children }: { children: React.ReactNode
         saveBanner,
         deleteBanner,
         saveSettings,
+        saveCustomDropdown,
+        deleteCustomDropdown,
         submitEnquiry,
         updateEnquiryStatus,
         deleteEnquiry,

@@ -22,7 +22,7 @@ import { DbProduct } from "@/lib/supabase";
 import { useWebsiteContent } from "@/context/WebsiteContentContext";
 
 export default function AdminProductsPage() {
-  const { products, saveProduct, deleteProduct } = useWebsiteContent();
+  const { products, saveProduct, deleteProduct, customDropdowns } = useWebsiteContent();
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [editingProduct, setEditingProduct] = useState<Partial<DbProduct> | null>(null);
@@ -80,9 +80,17 @@ export default function AdminProductsPage() {
             </p>
           </div>
 
-          <button
-            onClick={() => {
-              setIsNew(true);
+                  <Link
+                    href="/admin/dropdowns"
+                    className="inline-flex items-center gap-2 px-3 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs sm:text-sm font-bold rounded-xl transition-colors"
+                  >
+                    <SlidersHorizontal className="w-4 h-4 text-brand-purple" />
+                    <span>Manage Custom Dropdowns</span>
+                  </Link>
+
+                  <button
+                    onClick={() => {
+                      setIsNew(true);
               setEditingProduct({
                 id: `prod_${Date.now()}`,
                 slug: "",
@@ -364,18 +372,57 @@ export default function AdminProductsPage() {
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
-                    Short Description
-                  </label>
-                  <textarea
-                    rows={2}
-                    value={editingProduct.short_description || ""}
-                    onChange={(e) => setEditingProduct({ ...editingProduct, short_description: e.target.value })}
-                    placeholder="Brief summary for product card"
-                    className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-brand-purple"
-                  />
-                </div>
+                {/* Dynamic Custom Dropdowns Assigned by Administrator */}
+                {customDropdowns && customDropdowns.length > 0 && (
+                  <div className="p-4 bg-purple-50/50 border border-purple-100 rounded-2xl space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-brand-purple uppercase tracking-wider flex items-center gap-1.5">
+                        <SlidersHorizontal className="w-3.5 h-3.5" />
+                        <span>Dynamic Product Attributes</span>
+                      </span>
+                      <Link
+                        href="/admin/dropdowns"
+                        target="_blank"
+                        className="text-[11px] font-semibold text-brand-purple hover:underline"
+                      >
+                        + Add / Manage Dropdowns
+                      </Link>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {customDropdowns.map((dd) => {
+                        const currentSpecs = (editingProduct.specs as any) || {};
+                        const val = currentSpecs[dd.field_key] || (dd.field_key === "brand" ? editingProduct.brand : "") || "";
+                        return (
+                          <div key={dd.id}>
+                            <label className="block text-[11px] font-bold text-gray-700 uppercase tracking-wider mb-1">
+                              {dd.name} {dd.required && <span className="text-red-500">*</span>}
+                            </label>
+                            <select
+                              value={val}
+                              required={dd.required}
+                              onChange={(e) => {
+                                const selected = e.target.value;
+                                const updatedSpecs = { ...currentSpecs, [dd.field_key]: selected };
+                                const updates: any = { specs: updatedSpecs };
+                                if (dd.field_key === "brand") updates.brand = selected;
+                                setEditingProduct({ ...editingProduct, ...updates });
+                              }}
+                              className="w-full px-3 py-2 bg-white border border-gray-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:border-brand-purple"
+                            >
+                              <option value="">Select {dd.name}...</option>
+                              {dd.options.map((opt, i) => (
+                                <option key={i} value={opt}>
+                                  {opt}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
 
                 {/* Cloudinary Image Upload */}
                 <div>

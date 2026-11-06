@@ -189,9 +189,9 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
-          <p>{COMPANY_INFO.copyright}</p>
+          <p>© {new Date().getFullYear()} {settings?.company_name || COMPANY_INFO.name}. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <span>{COMPANY_INFO.footerCredit}</span>
+            <span>{settings?.tagline || COMPANY_INFO.tagline}</span>
           </div>
         </div>
       </div>

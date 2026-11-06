@@ -21,6 +21,7 @@ import {
   ShieldCheck,
   ChevronRight,
   Database,
+  SlidersHorizontal,
 } from "lucide-react";
 import { useAdminAuth } from "@/context/AdminAuthContext";
 import { useWebsiteContent } from "@/context/WebsiteContentContext";
@@ -70,6 +71,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { name: "Services & Automation", href: "/admin/services", icon: Cpu },
     { name: "Products Catalog", href: "/admin/products", icon: Package },
     { name: "Categories & Structure", href: "/admin/categories", icon: FolderTree },
+    { name: "Custom Dropdowns", href: "/admin/dropdowns", icon: SlidersHorizontal },
     { name: "Enquiries & Leads", href: "/admin/enquiries", icon: MessageSquare },
     { name: "Banners & Hero", href: "/admin/banners", icon: Sliders },
     { name: "Site Settings & SEO", href: "/admin/settings", icon: Settings },
