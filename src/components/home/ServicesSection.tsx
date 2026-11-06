@@ -118,47 +118,24 @@ export default function ServicesSection() {
                 {/* Subcategories preview tags */}
                 <div className="space-y-2">
                   <div className="text-xs font-bold uppercase tracking-wider text-gray-400">
-                    Includes 3 Specialized Subcategories:
+                    Includes {subcategories.length} Specialized Practices:
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                    <Link
-                      href="/services/process-control"
-                      className="p-2.5 rounded-xl bg-gray-50 hover:bg-brand-purple-tint/50 border border-gray-200 hover:border-brand-purple transition-all group/item block"
-                    >
-                      <div className="flex items-center gap-2">
-                        <SlidersHorizontal className="w-4 h-4 text-brand-purple shrink-0" />
-                        <span className="text-xs font-bold text-gray-900 group-hover/item:text-brand-purple">
-                          Process Control
-                        </span>
-                      </div>
-                      <p className="text-[11px] text-gray-500 mt-1 line-clamp-1">DCS, PLC & SCADA</p>
-                    </Link>
-
-                    <Link
-                      href="/services/instrumentation"
-                      className="p-2.5 rounded-xl bg-gray-50 hover:bg-brand-purple-tint/50 border border-gray-200 hover:border-brand-purple transition-all group/item block"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Gauge className="w-4 h-4 text-brand-purple shrink-0" />
-                        <span className="text-xs font-bold text-gray-900 group-hover/item:text-brand-purple">
-                          Instrumentation
-                        </span>
-                      </div>
-                      <p className="text-[11px] text-gray-500 mt-1 line-clamp-1">Yokogawa Sensors</p>
-                    </Link>
-
-                    <Link
-                      href="/services/digital-transformation"
-                      className="p-2.5 rounded-xl bg-gray-50 hover:bg-brand-purple-tint/50 border border-gray-200 hover:border-brand-purple transition-all group/item block"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Network className="w-4 h-4 text-brand-purple shrink-0" />
-                        <span className="text-xs font-bold text-gray-900 group-hover/item:text-brand-purple">
-                          Digital Transform
-                        </span>
-                      </div>
-                      <p className="text-[11px] text-gray-500 mt-1 line-clamp-1">IIoT & AI Analytics</p>
-                    </Link>
+                    {subcategories.slice(0, 3).map((subItem: any) => (
+                      <Link
+                        key={subItem.id}
+                        href={`/services/${subItem.slug}`}
+                        className="p-2.5 rounded-xl bg-gray-50 hover:bg-brand-purple-tint/50 border border-gray-200 hover:border-brand-purple transition-all group/item block"
+                      >
+                        <div className="flex items-center gap-2">
+                          {getSubcategoryIcon(subItem.id)}
+                          <span className="text-xs font-bold text-gray-900 group-hover/item:text-brand-purple truncate">
+                            {subItem.short_title || subItem.shortTitle || subItem.title}
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-gray-500 mt-1 line-clamp-1">{subItem.subtitle || subItem.description}</p>
+                      </Link>
+                    ))}
                   </div>
                 </div>
 
