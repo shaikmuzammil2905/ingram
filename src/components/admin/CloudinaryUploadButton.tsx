@@ -113,7 +113,7 @@ export default function CloudinaryUploadButton({
           </div>
 
           <p className="text-[11px] text-gray-500">
-            Supports PNG, JPG, WebP, SVG up to 10MB. Stored securely on Cloudinary.
+            Supports PNG, JPG, WebP, SVG up to 10MB.
           </p>
 
           {error && (
