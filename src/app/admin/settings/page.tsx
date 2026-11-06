@@ -3,62 +3,26 @@
 import React, { useState, useEffect } from "react";
 import { Settings, Save, CheckCircle, Phone, Mail, MapPin, Globe, Sparkles } from "lucide-react";
 import AdminLayout from "@/components/admin/AdminLayout";
-import { supabase, DbSiteSettings } from "@/lib/supabase";
-import { COMPANY_INFO } from "@/data/company";
+import { DbSiteSettings } from "@/lib/supabase";
+import { useWebsiteContent } from "@/context/WebsiteContentContext";
 
 export default function AdminSettingsPage() {
-  const [settings, setSettings] = useState<Partial<DbSiteSettings>>({
-    id: "main_settings",
-    company_name: COMPANY_INFO.name,
-    tagline: COMPANY_INFO.tagline,
-    phone: COMPANY_INFO.phone,
-    whatsapp: COMPANY_INFO.whatsapp,
-    email_primary: COMPANY_INFO.emails[0],
-    email_secondary: COMPANY_INFO.emails[1],
-    address: COMPANY_INFO.address,
-    po_box: COMPANY_INFO.poBox,
-    hero_headline: COMPANY_INFO.heroHeadline,
-    hero_description: COMPANY_INFO.heroDescription,
-  });
-
-  const [loading, setLoading] = useState(true);
+  const { settings: globalSettings, saveSettings } = useWebsiteContent();
+  const [settings, setSettings] = useState<Partial<DbSiteSettings>>(globalSettings);
   const [saving, setSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
 
   useEffect(() => {
-    fetchSettings();
-  }, []);
-
-  const fetchSettings = async () => {
-    setLoading(true);
-    try {
-      const { data, error } = await supabase
-        .from("site_settings")
-        .select("*")
-        .eq("id", "main_settings")
-        .single();
-
-      if (!error && data) {
-        setSettings(data);
-      }
-    } catch (err) {
-      console.warn("Settings fetch fallback:", err);
-    } finally {
-      setLoading(false);
+    if (globalSettings) {
+      setSettings(globalSettings);
     }
-  };
+  }, [globalSettings]);
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
     try {
-      const payload = {
-        ...settings,
-        id: "main_settings",
-        updated_at: new Date().toISOString(),
-      };
-
-      await supabase.from("site_settings").upsert([payload], { onConflict: "id" });
+      await saveSettings(settings);
       setSaveSuccess(true);
       setTimeout(() => setSaveSuccess(false), 3000);
     } catch (err) {

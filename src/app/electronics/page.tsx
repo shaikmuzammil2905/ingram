@@ -26,16 +26,48 @@ import ServiceEnquiryForm from "@/components/shared/ServiceEnquiryForm";
 import { ScrollReveal, ScrollStagger, ScrollStaggerItem } from "@/components/shared/ScrollReveal";
 import { ELECTRONICS_CATEGORIES, ALL_PRODUCTS } from "@/data/catalog";
 import { useQuoteModal } from "@/context/QuoteModalContext";
+import { useWebsiteContent } from "@/context/WebsiteContentContext";
 
 export default function ElectronicsPage() {
   const { openQuoteModal } = useQuoteModal();
+  const { products: liveProducts } = useWebsiteContent();
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [sortBy, setSortBy] = useState<string>("recommended");
 
-  const electronicsProducts = ALL_PRODUCTS.filter(
-    (p) => p.mainCategory === "electronics"
-  );
+  const fallbackElectronics = ALL_PRODUCTS.filter((p) => p.mainCategory === "electronics");
+  const electronicsProducts = liveProducts && liveProducts.length > 0
+    ? liveProducts
+        .filter((p) => {
+          return (
+            p.category_slug?.includes("electronics") ||
+            p.category_slug === "televisions" ||
+            p.category_slug === "refrigerators" ||
+            p.category_slug === "washing-machines" ||
+            p.category_slug === "audio-soundbars" ||
+            p.category_slug === "microwaves" ||
+            p.category_slug === "air-conditioners" ||
+            !p.category_slug
+          );
+        })
+        .map((p) => ({
+          id: p.id,
+          slug: p.slug,
+          name: p.name,
+          category: p.category_title || "Electronics",
+          categorySlug: p.category_slug,
+          mainCategory: "electronics" as const,
+          brand: p.brand,
+          model: p.model,
+          shortDescription: p.short_description || "",
+          description: p.description ? [p.description] : [],
+          features: p.features || [],
+          specifications: p.specs || {},
+          image: p.image_url,
+          price: p.price ? String(p.price) : undefined,
+          inStock: p.stock_status === "in_stock",
+        }))
+    : fallbackElectronics;
 
   const filteredProducts = electronicsProducts
     .filter((p) => {

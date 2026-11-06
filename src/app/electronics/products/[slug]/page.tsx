@@ -23,15 +23,37 @@ import ServiceEnquiryForm from "@/components/shared/ServiceEnquiryForm";
 import { ALL_PRODUCTS, ProductItem } from "@/data/catalog";
 import { useQuoteModal } from "@/context/QuoteModalContext";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { useWebsiteContent } from "@/context/WebsiteContentContext";
 
 export default function ProductDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
   const { openQuoteModal } = useQuoteModal();
+  const { products: liveProducts } = useWebsiteContent();
 
-  const product = ALL_PRODUCTS.find(
-    (p) => p.slug === slug || p.id === slug
-  );
+  const dynamicMatch = liveProducts.find((p) => p.slug === slug || p.id === slug);
+  const staticMatch = ALL_PRODUCTS.find((p) => p.slug === slug || p.id === slug);
+
+  const product: ProductItem | undefined = dynamicMatch
+    ? {
+        id: dynamicMatch.id,
+        slug: dynamicMatch.slug,
+        name: dynamicMatch.name,
+        category: dynamicMatch.category_title || "Electronics",
+        categorySlug: dynamicMatch.category_slug || "electronics",
+        mainCategory: "electronics",
+        brand: dynamicMatch.brand,
+        model: dynamicMatch.model,
+        shortDescription: dynamicMatch.short_description || "",
+        description: dynamicMatch.description ? dynamicMatch.description.split("\n\n") : [],
+        features: dynamicMatch.features || [],
+        specifications: dynamicMatch.specs || {},
+        image: dynamicMatch.image_url,
+        gallery: dynamicMatch.gallery_images,
+        price: dynamicMatch.price ? String(dynamicMatch.price) : undefined,
+        inStock: dynamicMatch.stock_status === "in_stock",
+      }
+    : staticMatch;
 
   const [activeImage, setActiveImage] = useState<string>(
     product?.image || ""

@@ -22,15 +22,31 @@ import {
 import { PRIMARY_SERVICES } from "@/data/company";
 import { ScrollReveal, ScrollStagger, ScrollStaggerItem } from "@/components/shared/ScrollReveal";
 import { useQuoteModal } from "@/context/QuoteModalContext";
-
-type ServiceItem = (typeof PRIMARY_SERVICES)[number];
+import { useWebsiteContent } from "@/context/WebsiteContentContext";
 
 export default function ServicesSection() {
   const { openQuoteModal } = useQuoteModal();
-  const [selectedMobileService, setSelectedMobileService] = useState<ServiceItem | null>(null);
-  const [automation, processControl, instrumentation, digitalTransformation] = PRIMARY_SERVICES;
+  const { services: liveServices } = useWebsiteContent();
 
-  const subcategories = [processControl, instrumentation, digitalTransformation];
+  const services = liveServices && liveServices.length > 0 ? liveServices : PRIMARY_SERVICES.map((s, idx) => ({
+    id: s.id,
+    slug: s.slug,
+    title: s.title,
+    short_title: s.shortTitle,
+    subtitle: s.subtitle,
+    description: s.description,
+    full_description: s.fullDescription,
+    key_points: s.keyPoints,
+    image_url: s.image,
+    icon: s.icon,
+    parent_id: s.id === "industrial-automation" ? null : "industrial-automation",
+    display_order: idx + 1,
+    is_published: true,
+  }));
+
+  const automation = services.find((s) => s.id === "industrial-automation") || services[0];
+  const subcategories = services.filter((s) => s.id !== automation?.id);
+  const [selectedMobileService, setSelectedMobileService] = useState<any | null>(null);
 
   const getSubcategoryIcon = (id: string) => {
     switch (id) {
@@ -70,7 +86,7 @@ export default function ServicesSection() {
               {/* Left Image (5 cols) */}
               <div className="lg:col-span-5 relative h-72 sm:h-80 lg:h-full min-h-[320px] bg-gray-100">
                 <Image
-                  src={automation.image}
+                  src={automation.image_url || (automation as any).image || "/images/service-automation.jpg"}
                   alt={automation.title}
                   fill
                   className="object-cover"
@@ -95,7 +111,7 @@ export default function ServicesSection() {
                     {automation.title}
                   </h3>
                   <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                    {automation.fullDescription[0]}
+                    {automation.full_description?.[0] || (automation as any).fullDescription?.[0] || automation.description}
                   </p>
                 </div>
 
@@ -149,7 +165,7 @@ export default function ServicesSection() {
                 {/* Actions */}
                 <div className="pt-2 flex flex-wrap items-center gap-4">
                   <Link
-                    href={automation.href}
+                    href={(automation as any).href || `/services/${automation.slug}`}
                     className="inline-flex items-center gap-2 bg-brand-purple hover:bg-brand-purple-hover text-white text-sm font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-brand transition-all group"
                   >
                     <span>Explore Industrial Automation Hub</span>
@@ -189,13 +205,13 @@ export default function ServicesSection() {
           </div>
 
           <ScrollStagger staggerDelay={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {subcategories.map((sub, index) => (
+            {subcategories.map((sub: any, index: number) => (
               <ScrollStaggerItem key={sub.id} direction="up" distance={30} className="flex">
                 <div className="w-full bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-brand hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
                   {/* Image Container */}
                   <div className="relative h-52 w-full overflow-hidden bg-gray-100">
                     <Image
-                      src={sub.image}
+                      src={sub.image_url || sub.image || "/images/service-automation.jpg"}
                       alt={sub.title}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -220,23 +236,25 @@ export default function ServicesSection() {
                       </p>
 
                       {/* Key bullet points */}
-                      <div className="pt-1 space-y-1 text-xs text-gray-700">
-                        {sub.keyPoints.slice(0, 3).map((pt, i) => (
-                          <div key={i} className="flex items-center gap-1.5">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-brand-purple shrink-0" />
-                            <span className="line-clamp-1">{pt}</span>
-                          </div>
-                        ))}
-                      </div>
+                      {((sub.key_points || sub.keyPoints) && (sub.key_points || sub.keyPoints).length > 0) && (
+                        <div className="pt-1 space-y-1 text-xs text-gray-700">
+                          {(sub.key_points || sub.keyPoints).slice(0, 3).map((pt: string, i: number) => (
+                            <div key={i} className="flex items-center gap-1.5">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-brand-purple shrink-0" />
+                              <span className="line-clamp-1">{pt}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
 
                     {/* Action */}
                     <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
                       <Link
-                        href={sub.href}
+                        href={sub.href || `/services/${sub.slug}`}
                         className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-purple hover:text-brand-navy group-hover:underline"
                       >
-                        <span>{sub.ctaText}</span>
+                        <span>{sub.ctaText || "Explore Details"}</span>
                         <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                       </Link>
 

@@ -21,6 +21,7 @@ import ServiceEnquiryForm from "@/components/shared/ServiceEnquiryForm";
 import { ScrollReveal, ScrollStagger, ScrollStaggerItem } from "@/components/shared/ScrollReveal";
 import { CategoryInfo, ProductItem, ALL_PRODUCTS } from "@/data/catalog";
 import { useQuoteModal } from "@/context/QuoteModalContext";
+import { useWebsiteContent } from "@/context/WebsiteContentContext";
 
 interface CategoryShowcaseProps {
   category: CategoryInfo;
@@ -29,26 +30,55 @@ interface CategoryShowcaseProps {
 }
 
 export default function CategoryShowcase({
-  category,
+  category: defaultCategory,
   parentCategoryName,
   parentCategoryHref,
 }: CategoryShowcaseProps) {
   const { openQuoteModal } = useQuoteModal();
+  const { products: liveProducts, categories: liveCategories } = useWebsiteContent();
   const [searchQuery, setSearchQuery] = useState("");
 
-  const products = ALL_PRODUCTS.filter(
-    (p) => p.categorySlug === category.slug || p.category === category.title
+  const matchedCat = liveCategories.find((c) => c.slug === defaultCategory.slug || c.id === defaultCategory.id);
+  const category = {
+    ...defaultCategory,
+    title: matchedCat?.title || defaultCategory.title,
+    subtitle: matchedCat?.subtitle || defaultCategory.subtitle,
+    description: matchedCat?.description || defaultCategory.description,
+    bannerImage: matchedCat?.image_url || defaultCategory.bannerImage,
+  };
+
+  // Get matching products from dynamic store or fallback
+  const products = (liveProducts && liveProducts.length > 0 ? liveProducts : ALL_PRODUCTS.map(p => ({
+    id: p.id,
+    slug: p.slug,
+    name: p.name,
+    category_slug: p.categorySlug,
+    category_title: p.category,
+    brand: p.brand || "",
+    model: p.model || "",
+    price: p.price || null,
+    short_description: p.shortDescription || "",
+    description: Array.isArray(p.description) ? p.description.join("\n\n") : (p.description || ""),
+    image_url: p.image,
+    features: p.features || [],
+    stock_status: p.inStock === false ? "out_of_stock" : "in_stock",
+    is_published: true,
+  }))).filter(
+    (p: any) =>
+      p.category_slug === category.slug ||
+      p.categorySlug === category.slug ||
+      p.category_title === category.title ||
+      p.category === category.title
   );
 
-  const filteredProducts = products.filter((p) => {
+  const filteredProducts = products.filter((p: any) => {
     if (!searchQuery) return true;
     const q = searchQuery.toLowerCase();
-    return (
-      p.name.toLowerCase().includes(q) ||
-      p.shortDescription.toLowerCase().includes(q) ||
-      (p.brand && p.brand.toLowerCase().includes(q)) ||
-      (p.model && p.model.toLowerCase().includes(q))
-    );
+    const name = (p.name || "").toLowerCase();
+    const shortDesc = (p.short_description || p.shortDescription || "").toLowerCase();
+    const brand = (p.brand || "").toLowerCase();
+    const model = (p.model || "").toLowerCase();
+    return name.includes(q) || shortDesc.includes(q) || brand.includes(q) || model.includes(q);
   });
 
   return (
@@ -187,7 +217,7 @@ export default function CategoryShowcase({
                     {/* Image */}
                     <div className="relative h-56 w-full bg-gray-100 overflow-hidden">
                       <Image
-                        src={p.image}
+                        src={(p as any).image_url || (p as any).image || "/images/electronics/tv-4k.jpg"}
                         alt={p.name}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -195,7 +225,7 @@ export default function CategoryShowcase({
                       <div className="absolute top-3 left-3 bg-brand-navy text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow">
                         {p.brand || "Ingram Verified"}
                       </div>
-                      {p.inStock && (
+                      {((p as any).stock_status === "in_stock" || (p as any).inStock) && (
                         <div className="absolute top-3 right-3 bg-green-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow">
                           Available
                         </div>
@@ -213,25 +243,27 @@ export default function CategoryShowcase({
                         {p.name}
                       </h4>
                       <p className="text-xs text-gray-600 leading-relaxed line-clamp-2">
-                        {p.shortDescription}
+                        {(p as any).short_description || (p as any).shortDescription}
                       </p>
 
                       {/* Specs pills */}
-                      <div className="space-y-1.5 pt-2 border-t border-gray-100">
-                        {Object.entries(p.specifications).slice(0, 3).map(([key, val], idx) => (
-                          <div key={idx} className="flex justify-between text-[11px] text-gray-600">
-                            <span className="font-medium text-gray-400">{key}:</span>
-                            <span className="font-semibold text-gray-800 text-right truncate max-w-[160px]">{val}</span>
-                          </div>
-                        ))}
-                      </div>
+                      {((p as any).specifications || (p as any).specs) && (
+                        <div className="space-y-1.5 pt-2 border-t border-gray-100">
+                          {Object.entries((p as any).specifications || (p as any).specs || {}).slice(0, 3).map(([key, val]: any, idx) => (
+                            <div key={idx} className="flex justify-between text-[11px] text-gray-600">
+                              <span className="font-medium text-gray-400">{key}:</span>
+                              <span className="font-semibold text-gray-800 text-right truncate max-w-[160px]">{String(val)}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
 
                       {/* Printer compatibility if available */}
-                      {p.printerCompatibility && (
+                      {(p as any).printerCompatibility && (
                         <div className="pt-2">
                           <div className="text-[10px] font-bold text-gray-400 uppercase">Compatible Printers:</div>
                           <div className="text-[11px] text-gray-600 line-clamp-1">
-                            {p.printerCompatibility.join(", ")}
+                            {(p as any).printerCompatibility.join(", ")}
                           </div>
                         </div>
                       )}
@@ -247,7 +279,7 @@ export default function CategoryShowcase({
                       <MessageSquare className="w-3.5 h-3.5" />
                       <span>Request Quote</span>
                     </button>
-                    {p.mainCategory === "electronics" && (
+                    {((p as any).mainCategory === "electronics" || p.category_slug.includes("tv") || p.category_slug.includes("sound")) && (
                       <Link
                         href={`/electronics/products/${p.slug}`}
                         className="p-2.5 bg-gray-100 hover:bg-brand-purple-tint text-gray-700 hover:text-brand-purple rounded-lg transition-colors"

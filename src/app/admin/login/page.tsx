@@ -2,14 +2,14 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/image";
+
 import { useRouter } from "next/navigation";
-import { Lock, Mail, ArrowRight, ShieldCheck, AlertCircle, Loader2, Sparkles } from "lucide-react";
+import { Lock, Mail, ArrowRight, AlertCircle, Loader2 } from "lucide-react";
 import { useAdminAuth } from "@/context/AdminAuthContext";
 
 export default function AdminLoginPage() {
-  const [email, setEmail] = useState("admin@ingram.co.tz");
-  const [password, setPassword] = useState("Admin@Ingram2026!");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -103,21 +103,6 @@ export default function AdminLoginPage() {
                 placeholder="••••••••••••"
                 className="w-full pl-9 pr-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-900 focus:bg-white focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition-all"
               />
-            </div>
-          </div>
-
-          <div className="p-3 bg-purple-50/70 rounded-xl border border-brand-purple/15 text-[11px] text-gray-700 space-y-1">
-            <div className="flex items-center gap-1 font-bold text-brand-purple">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Default Credentials Provided:</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Email:</span>
-              <strong className="font-mono text-gray-900">admin@ingram.co.tz</strong>
-            </div>
-            <div className="flex justify-between">
-              <span>Password:</span>
-              <strong className="font-mono text-gray-900">Admin@Ingram2026!</strong>
             </div>
           </div>
 

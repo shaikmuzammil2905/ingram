@@ -18,63 +18,16 @@ import {
 } from "lucide-react";
 import AdminLayout from "@/components/admin/AdminLayout";
 import CloudinaryUploadButton from "@/components/admin/CloudinaryUploadButton";
-import { supabase, DbProduct } from "@/lib/supabase";
-import { ELECTRONICS_PRODUCTS } from "@/data/catalog";
+import { DbProduct } from "@/lib/supabase";
+import { useWebsiteContent } from "@/context/WebsiteContentContext";
 
 export default function AdminProductsPage() {
-  const [products, setProducts] = useState<DbProduct[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { products, saveProduct, deleteProduct } = useWebsiteContent();
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [editingProduct, setEditingProduct] = useState<Partial<DbProduct> | null>(null);
   const [isNew, setIsNew] = useState(false);
   const [saving, setSaving] = useState(false);
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const fetchProducts = async () => {
-    setLoading(true);
-    try {
-      const { data, error } = await supabase
-        .from("products")
-        .select("*")
-        .order("display_order", { ascending: true });
-
-      if (!error && data && data.length > 0) {
-        setProducts(data);
-      } else {
-        // Fallback default electronics products
-        const defaults: DbProduct[] = ELECTRONICS_PRODUCTS.map((p, idx) => ({
-          id: p.id,
-          slug: p.slug,
-          name: p.name,
-          category_slug: p.categorySlug,
-          category_title: p.category,
-          brand: p.brand,
-          model: p.model,
-          price: p.price,
-          currency: "TZS",
-          short_description: p.shortDescription,
-          description: Array.isArray(p.description) ? p.description.join("\n\n") : p.description,
-          image_url: p.image,
-          gallery_images: p.gallery || [p.image],
-          features: p.features,
-          specs: p.specifications,
-          is_featured: false,
-          is_published: true,
-          stock_status: p.inStock ? "in_stock" : "available_on_order",
-          display_order: idx + 1,
-        }));
-        setProducts(defaults);
-      }
-    } catch (err) {
-      console.warn("Fetch products fallback:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -82,19 +35,9 @@ export default function AdminProductsPage() {
 
     setSaving(true);
     try {
-      const payload = {
-        ...editingProduct,
-        updated_at: new Date().toISOString(),
-      };
-
-      const { error } = await supabase.from("products").upsert([payload], { onConflict: "id" });
-      if (error) {
-        console.warn("Supabase upsert warning:", error.message);
-      }
-
+      await saveProduct(editingProduct);
       setEditingProduct(null);
       setIsNew(false);
-      fetchProducts();
     } catch (err) {
       console.error("Save product error:", err);
     } finally {
@@ -105,13 +48,11 @@ export default function AdminProductsPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this product?")) return;
     try {
-      await supabase.from("products").delete().eq("id", id);
-      fetchProducts();
+      await deleteProduct(id);
     } catch (err) {
       console.error("Delete product error:", err);
     }
   };
-
   const categories = Array.from(new Set(products.map((p) => p.category_slug)));
 
   const filteredProducts = products.filter((p) => {

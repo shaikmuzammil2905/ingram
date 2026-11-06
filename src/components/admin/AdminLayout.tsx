@@ -23,10 +23,12 @@ import {
   Database,
 } from "lucide-react";
 import { useAdminAuth } from "@/context/AdminAuthContext";
+import { useWebsiteContent } from "@/context/WebsiteContentContext";
 import { seedInitialDatabaseIfEmpty } from "@/lib/db-seed";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const { user, logout, loading, isAuthenticated } = useAdminAuth();
+  const { syncInitialData } = useWebsiteContent();
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [seeding, setSeeding] = useState(false);
   const [seedSuccess, setSeedSuccess] = useState(false);
@@ -41,6 +43,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   const handleSyncDatabase = async () => {
     setSeeding(true);
+    await syncInitialData();
     await seedInitialDatabaseIfEmpty();
     setSeeding(false);
     setSeedSuccess(true);

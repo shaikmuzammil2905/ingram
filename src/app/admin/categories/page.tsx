@@ -16,52 +16,16 @@ import {
 } from "lucide-react";
 import AdminLayout from "@/components/admin/AdminLayout";
 import CloudinaryUploadButton from "@/components/admin/CloudinaryUploadButton";
-import { supabase, DbCategory } from "@/lib/supabase";
-import { ALL_CATALOG_CATEGORIES } from "@/data/catalog";
+import { DbCategory } from "@/lib/supabase";
+import { useWebsiteContent } from "@/context/WebsiteContentContext";
 
 export default function AdminCategoriesPage() {
-  const [categories, setCategories] = useState<DbCategory[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { categories, saveCategory, deleteCategory } = useWebsiteContent();
   const [searchQuery, setSearchQuery] = useState("");
   const [sectionFilter, setSectionFilter] = useState("all");
   const [editingCategory, setEditingCategory] = useState<Partial<DbCategory> | null>(null);
   const [isNew, setIsNew] = useState(false);
   const [saving, setSaving] = useState(false);
-
-  useEffect(() => {
-    fetchCategories();
-  }, []);
-
-  const fetchCategories = async () => {
-    setLoading(true);
-    try {
-      const { data, error } = await supabase
-        .from("categories")
-        .select("*")
-        .order("display_order", { ascending: true });
-
-      if (!error && data && data.length > 0) {
-        setCategories(data);
-      } else {
-        const defaults: DbCategory[] = ALL_CATALOG_CATEGORIES.map((c: any, idx) => ({
-          id: c.id,
-          slug: c.slug,
-          title: c.title,
-          subtitle: c.subtitle,
-          description: c.description,
-          section_type: c.section as any,
-          image_url: c.image || c.bannerImage,
-          display_order: idx + 1,
-          is_published: true,
-        }));
-        setCategories(defaults);
-      }
-    } catch (err) {
-      console.warn("Fetch categories fallback:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,15 +33,9 @@ export default function AdminCategoriesPage() {
 
     setSaving(true);
     try {
-      const payload = {
-        ...editingCategory,
-        updated_at: new Date().toISOString(),
-      };
-
-      await supabase.from("categories").upsert([payload], { onConflict: "id" });
+      await saveCategory(editingCategory);
       setEditingCategory(null);
       setIsNew(false);
-      fetchCategories();
     } catch (err) {
       console.error("Save category error:", err);
     } finally {
@@ -88,13 +46,11 @@ export default function AdminCategoriesPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this category?")) return;
     try {
-      await supabase.from("categories").delete().eq("id", id);
-      fetchCategories();
+      await deleteCategory(id);
     } catch (err) {
       console.error("Delete category error:", err);
     }
   };
-
   const filteredCategories = categories.filter((c) => {
     const matchesSearch =
       c.title.toLowerCase().includes(searchQuery.toLowerCase()) ||

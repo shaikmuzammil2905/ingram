@@ -11,29 +11,32 @@ import MobileEngagementPopup from "@/components/shared/MobileEngagementPopup";
 import SplashScreen from "@/components/shared/SplashScreen";
 import { QuoteModalProvider } from "@/context/QuoteModalContext";
 import { AdminAuthProvider } from "@/context/AdminAuthContext";
+import { WebsiteContentProvider } from "@/context/WebsiteContentContext";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isAdminRoute = pathname?.startsWith("/admin");
 
   return (
-    <AdminAuthProvider>
-      <QuoteModalProvider>
-        {isAdminRoute ? (
-          <div className="min-h-screen bg-gray-50">{children}</div>
-        ) : (
-          <>
-            <SplashScreen />
-            <TopBar />
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-            <WhatsAppFloatingButton />
-            <MobileEngagementPopup />
-            <QuoteModal />
-          </>
-        )}
-      </QuoteModalProvider>
-    </AdminAuthProvider>
+    <WebsiteContentProvider>
+      <AdminAuthProvider>
+        <QuoteModalProvider>
+          {isAdminRoute ? (
+            <div className="min-h-screen bg-gray-50">{children}</div>
+          ) : (
+            <>
+              <SplashScreen />
+              <TopBar />
+              <Navbar />
+              <main className="flex-1">{children}</main>
+              <Footer />
+              <WhatsAppFloatingButton />
+              <MobileEngagementPopup />
+              <QuoteModal />
+            </>
+          )}
+        </QuoteModalProvider>
+      </AdminAuthProvider>
+    </WebsiteContentProvider>
   );
 }

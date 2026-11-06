@@ -16,44 +16,18 @@ import {
   MessageCircle,
 } from "lucide-react";
 import AdminLayout from "@/components/admin/AdminLayout";
-import { supabase, DbEnquiry } from "@/lib/supabase";
+import { DbEnquiry } from "@/lib/supabase";
+import { useWebsiteContent } from "@/context/WebsiteContentContext";
 
 export default function AdminEnquiriesPage() {
-  const [enquiries, setEnquiries] = useState<DbEnquiry[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { enquiries, updateEnquiryStatus, deleteEnquiry } = useWebsiteContent();
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [selectedEnquiry, setSelectedEnquiry] = useState<DbEnquiry | null>(null);
 
-  useEffect(() => {
-    fetchEnquiries();
-  }, []);
-
-  const fetchEnquiries = async () => {
-    setLoading(true);
-    try {
-      const { data, error } = await supabase
-        .from("enquiries")
-        .select("*")
-        .order("created_at", { ascending: false });
-
-      if (!error && data) {
-        setEnquiries(data);
-      }
-    } catch (err) {
-      console.warn("Enquiries fetch fallback:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const updateStatus = async (id: string, newStatus: DbEnquiry["status"]) => {
     try {
-      await supabase
-        .from("enquiries")
-        .update({ status: newStatus, updated_at: new Date().toISOString() })
-        .eq("id", id);
-      fetchEnquiries();
+      await updateEnquiryStatus(id, newStatus);
       if (selectedEnquiry && selectedEnquiry.id === id) {
         setSelectedEnquiry({ ...selectedEnquiry, status: newStatus });
       }
@@ -65,9 +39,8 @@ export default function AdminEnquiriesPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this enquiry record?")) return;
     try {
-      await supabase.from("enquiries").delete().eq("id", id);
+      await deleteEnquiry(id);
       setSelectedEnquiry(null);
-      fetchEnquiries();
     } catch (err) {
       console.error("Delete enquiry error:", err);
     }

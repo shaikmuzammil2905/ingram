@@ -22,57 +22,16 @@ import {
 } from "lucide-react";
 import AdminLayout from "@/components/admin/AdminLayout";
 import CloudinaryUploadButton from "@/components/admin/CloudinaryUploadButton";
-import { supabase, DbService } from "@/lib/supabase";
-import { PRIMARY_SERVICES } from "@/data/company";
+import { DbService } from "@/lib/supabase";
+import { useWebsiteContent } from "@/context/WebsiteContentContext";
 
 export default function AdminServicesPage() {
-  const [services, setServices] = useState<DbService[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { services, saveService, deleteService } = useWebsiteContent();
   const [searchQuery, setSearchQuery] = useState("");
   const [editingService, setEditingService] = useState<Partial<DbService> | null>(null);
   const [isNew, setIsNew] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
-
-  useEffect(() => {
-    fetchServices();
-  }, []);
-
-  const fetchServices = async () => {
-    setLoading(true);
-    try {
-      const { data, error } = await supabase
-        .from("services")
-        .select("*")
-        .order("display_order", { ascending: true });
-
-      if (!error && data && data.length > 0) {
-        setServices(data);
-      } else {
-        // Use default fallback
-        const defaults: DbService[] = PRIMARY_SERVICES.map((s, idx) => ({
-          id: s.id,
-          slug: s.slug,
-          title: s.title,
-          short_title: s.shortTitle,
-          subtitle: s.subtitle,
-          description: s.description,
-          full_description: s.fullDescription,
-          key_points: s.keyPoints,
-          image_url: s.image,
-          icon: s.icon,
-          parent_id: s.id === "industrial-automation" ? null : "industrial-automation",
-          display_order: idx + 1,
-          is_published: true,
-        }));
-        setServices(defaults);
-      }
-    } catch (err) {
-      console.warn("Fetch services fallback:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -80,21 +39,11 @@ export default function AdminServicesPage() {
 
     setSaving(true);
     try {
-      const payload = {
-        ...editingService,
-        updated_at: new Date().toISOString(),
-      };
-
-      const { error } = await supabase.from("services").upsert([payload], { onConflict: "id" });
-      if (error) {
-        console.warn("Supabase upsert warning:", error.message);
-      }
-
+      await saveService(editingService);
       setSaveSuccess(true);
       setTimeout(() => setSaveSuccess(false), 2500);
       setEditingService(null);
       setIsNew(false);
-      fetchServices();
     } catch (err) {
       console.error("Save service error:", err);
     } finally {
@@ -105,8 +54,7 @@ export default function AdminServicesPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this service?")) return;
     try {
-      await supabase.from("services").delete().eq("id", id);
-      fetchServices();
+      await deleteService(id);
     } catch (err) {
       console.error("Delete service error:", err);
     }
@@ -114,8 +62,8 @@ export default function AdminServicesPage() {
 
   const filteredServices = services.filter(
     (s) =>
-      s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      s.description.toLowerCase().includes(searchQuery.toLowerCase())
+      (s.title || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (s.description || "").toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (

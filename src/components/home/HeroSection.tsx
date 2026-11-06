@@ -7,16 +7,23 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useQuoteModal } from "@/context/QuoteModalContext";
 import { COMPANY_INFO } from "@/data/company";
+import { useWebsiteContent } from "@/context/WebsiteContentContext";
 
 export default function HeroSection() {
   const { openQuoteModal } = useQuoteModal();
+  const { settings, banners } = useWebsiteContent();
+
+  const heroBanner = banners.find((b) => b.placement === "home_hero" && b.is_active) || banners[0];
+  const headline = settings?.hero_headline || heroBanner?.title || COMPANY_INFO.heroHeadline;
+  const description = settings?.hero_description || heroBanner?.subtitle || COMPANY_INFO.heroDescription;
+  const bgImage = heroBanner?.image_url || "/images/hero-sunset-refinery.jpg";
 
   return (
     <section className="relative min-h-[580px] md:min-h-[660px] flex items-center overflow-hidden">
       {/* Hero Background Image - Sunset Refinery with Engineer */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <Image
-          src="/images/hero-sunset-refinery.jpg"
+          src={bgImage}
           alt="Industrial Automation & Engineering Sunset Refinery"
           fill
           priority
@@ -52,7 +59,7 @@ export default function HeroSection() {
             transition={{ duration: 0.65, delay: 0.2 }}
             className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-extrabold text-white tracking-tight leading-[1.2] [text-shadow:_0_2px_12px_rgba(0,0,0,0.9),_0_1px_3px_rgba(0,0,0,0.95)]"
           >
-            Empowering Tanzania with Enterprise IT Infrastructure, Electronics, Office Solutions & Industrial Automation
+            {headline}
           </motion.h1>
 
           {/* Supporting Text - Crisp and highly legible */}
@@ -62,7 +69,7 @@ export default function HeroSection() {
             transition={{ duration: 0.65, delay: 0.3 }}
             className="text-sm sm:text-base md:text-lg text-white/95 leading-relaxed font-medium max-w-xl [text-shadow:_0_1px_6px_rgba(0,0,0,0.95)]"
           >
-            {COMPANY_INFO.heroDescription}
+            {description}
           </motion.p>
 
           {/* Four Quick Portfolio Navigation Badges */}

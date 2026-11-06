@@ -5,59 +5,14 @@ import Image from "next/image";
 import { Sliders, Plus, Edit2, Trash2, Save, X, Eye } from "lucide-react";
 import AdminLayout from "@/components/admin/AdminLayout";
 import CloudinaryUploadButton from "@/components/admin/CloudinaryUploadButton";
-import { supabase, DbBanner } from "@/lib/supabase";
+import { DbBanner } from "@/lib/supabase";
+import { useWebsiteContent } from "@/context/WebsiteContentContext";
 
 export default function AdminBannersPage() {
-  const [banners, setBanners] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { banners, saveBanner, deleteBanner } = useWebsiteContent();
   const [editingBanner, setEditingBanner] = useState<any | null>(null);
   const [isNew, setIsNew] = useState(false);
   const [saving, setSaving] = useState(false);
-
-  const defaultBanners = [
-    {
-      id: "b1",
-      title: "Empowering Tanzania Industries with World-Class Automation",
-      subtitle: "Turnkey plant automation, control systems & safety shutdown",
-      image_url: "/images/service-automation.jpg",
-      button_text: "Explore Services",
-      link_url: "/services",
-      placement: "home_hero",
-      display_order: 1,
-      is_active: true,
-    },
-    {
-      id: "b2",
-      title: "Precision Yokogawa Field Instrumentation",
-      subtitle: "Measurement & control solutions for pressure, flow, level and temperature",
-      image_url: "/images/service-instrumentation.jpg",
-      button_text: "View Instrumentation",
-      link_url: "/services/instrumentation",
-      placement: "services_hero",
-      display_order: 2,
-      is_active: true,
-    },
-  ];
-
-  useEffect(() => {
-    fetchBanners();
-  }, []);
-
-  const fetchBanners = async () => {
-    setLoading(true);
-    try {
-      const { data, error } = await supabase.from("banners").select("*").order("display_order", { ascending: true });
-      if (!error && data && data.length > 0) {
-        setBanners(data);
-      } else {
-        setBanners(defaultBanners);
-      }
-    } catch {
-      setBanners(defaultBanners);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,10 +20,9 @@ export default function AdminBannersPage() {
 
     setSaving(true);
     try {
-      await supabase.from("banners").upsert([editingBanner], { onConflict: "id" });
+      await saveBanner(editingBanner);
       setEditingBanner(null);
       setIsNew(false);
-      fetchBanners();
     } catch (err) {
       console.error("Save banner error:", err);
     } finally {
@@ -79,8 +33,7 @@ export default function AdminBannersPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this banner?")) return;
     try {
-      await supabase.from("banners").delete().eq("id", id);
-      fetchBanners();
+      await deleteBanner(id);
     } catch (err) {
       console.error("Delete banner error:", err);
     }

@@ -16,8 +16,17 @@ import {
 } from "lucide-react";
 import { COMPANY_INFO, PRIMARY_SERVICES } from "@/data/company";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { useWebsiteContent } from "@/context/WebsiteContentContext";
 
 export default function Footer() {
+  const { settings } = useWebsiteContent();
+  const phone = settings?.phone || COMPANY_INFO.phone;
+  const phoneClean = phone.replace(/[^0-9+]/g, "");
+  const email1 = settings?.email_primary || COMPANY_INFO.emails[0];
+  const email2 = settings?.email_secondary || COMPANY_INFO.emails[1];
+  const address = settings?.address || COMPANY_INFO.address;
+  const poBox = settings?.po_box || COMPANY_INFO.poBox;
+  const heroDescription = settings?.hero_description || COMPANY_INFO.heroDescription;
   const quickLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
@@ -45,7 +54,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-gray-300 text-sm leading-relaxed max-w-sm">
-              {COMPANY_INFO.heroDescription}
+              {heroDescription}
             </p>
 
             {/* Social Links */}
@@ -143,35 +152,35 @@ export default function Footer() {
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-brand-purple-tint shrink-0 mt-0.5" />
                 <span>
-                  {COMPANY_INFO.address}.<br />
-                  {COMPANY_INFO.poBox}
+                  {address}.<br />
+                  {poBox}
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-brand-purple-tint shrink-0" />
                 <a
-                  href={`tel:${COMPANY_INFO.phoneClean}`}
+                  href={`tel:${phoneClean}`}
                   className="hover:text-white transition-colors"
                 >
-                  {COMPANY_INFO.phone}
+                  {phone}
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-brand-purple-tint shrink-0" />
                 <a
-                  href={`mailto:${COMPANY_INFO.emails[0]}`}
+                  href={`mailto:${email1}`}
                   className="hover:text-white transition-colors"
                 >
-                  {COMPANY_INFO.emails[0]}
+                  {email1}
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-brand-purple-tint shrink-0" />
                 <a
-                  href={`mailto:${COMPANY_INFO.emails[1]}`}
+                  href={`mailto:${email2}`}
                   className="hover:text-white transition-colors"
                 >
-                  {COMPANY_INFO.emails[1]}
+                  {email2}
                 </a>
               </div>
             </div>

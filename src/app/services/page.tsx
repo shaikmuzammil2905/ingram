@@ -22,9 +22,27 @@ import ServiceEnquiryForm from "@/components/shared/ServiceEnquiryForm";
 import { ScrollReveal, ScrollStagger, ScrollStaggerItem } from "@/components/shared/ScrollReveal";
 import { PRIMARY_SERVICES } from "@/data/company";
 import { useQuoteModal } from "@/context/QuoteModalContext";
+import { useWebsiteContent } from "@/context/WebsiteContentContext";
 
 export default function ServicesPage() {
   const { openQuoteModal } = useQuoteModal();
+  const { services: liveServices } = useWebsiteContent();
+
+  const services = liveServices && liveServices.length > 0 ? liveServices : PRIMARY_SERVICES.map((s, idx) => ({
+    id: s.id,
+    slug: s.slug,
+    title: s.title,
+    short_title: s.shortTitle,
+    subtitle: s.subtitle,
+    description: s.description,
+    full_description: s.fullDescription,
+    key_points: s.keyPoints,
+    image_url: s.image,
+    icon: s.icon,
+    parent_id: s.id === "industrial-automation" ? null : "industrial-automation",
+    display_order: idx + 1,
+    is_published: true,
+  }));
 
   const getServiceIcon = (id: string) => {
     switch (id) {
@@ -40,8 +58,6 @@ export default function ServicesPage() {
         return <Cog className="w-7 h-7 text-brand-purple" />;
     }
   };
-
-  const [automation, processControl, instrumentation, digitalTransformation] = PRIMARY_SERVICES;
 
   return (
     <div>
@@ -91,9 +107,14 @@ export default function ServicesPage() {
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           {/* Main Showcase Grid */}
-          {PRIMARY_SERVICES.map((service, index) => {
+          {services.map((service: any, index: number) => {
             const isReversed = index % 2 !== 0;
             const isFlagship = service.id === "industrial-automation";
+            const imageUrl = service.image_url || service.image || "/images/service-automation.jpg";
+            const desc0 = (service.full_description && service.full_description[0]) || (service.fullDescription && service.fullDescription[0]) || service.description;
+            const desc1 = (service.full_description && service.full_description[1]) || (service.fullDescription && service.fullDescription[1]) || service.subtitle;
+            const points = service.key_points || service.keyPoints || [];
+            const href = service.href || `/services/${service.slug}`;
 
             return (
               <ScrollReveal key={service.id} direction="up" distance={30}>
@@ -112,7 +133,7 @@ export default function ServicesPage() {
                     }`}
                   >
                     <Image
-                      src={service.image}
+                      src={imageUrl}
                       alt={service.title}
                       fill
                       className="object-cover"
@@ -145,35 +166,41 @@ export default function ServicesPage() {
                       </div>
                     </div>
 
-                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                      {service.fullDescription[0]}
-                    </p>
-                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                      {service.fullDescription[1]}
-                    </p>
+                    {desc0 && (
+                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                        {desc0}
+                      </p>
+                    )}
+                    {desc1 && (
+                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                        {desc1}
+                      </p>
+                    )}
 
                     {/* Key Capabilities Pills */}
-                    <div className="space-y-2 pt-1">
-                      <div className="text-xs font-bold uppercase tracking-wider text-gray-500">
-                        Key Capabilities:
+                    {points.length > 0 && (
+                      <div className="space-y-2 pt-1">
+                        <div className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                          Key Capabilities:
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {points.map((pt: string, i: number) => (
+                            <div key={i} className="flex items-center gap-2 text-xs sm:text-sm text-gray-700">
+                              <CheckCircle2 className="w-4 h-4 text-brand-purple shrink-0" />
+                              <span>{pt}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        {service.keyPoints.map((pt, i) => (
-                          <div key={i} className="flex items-center gap-2 text-xs sm:text-sm text-gray-700">
-                            <CheckCircle2 className="w-4 h-4 text-brand-purple shrink-0" />
-                            <span>{pt}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    )}
 
                     {/* Actions */}
                     <div className="pt-3 flex flex-wrap items-center gap-4">
                       <Link
-                        href={service.href}
+                        href={href}
                         className="inline-flex items-center gap-2 bg-brand-purple hover:bg-brand-purple-hover text-white text-sm font-semibold px-6 py-2.5 rounded-lg shadow-sm transition-colors group"
                       >
-                        <span>{service.ctaText}</span>
+                        <span>{service.ctaText || "Explore Service"}</span>
                         <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                       </Link>
                       <button

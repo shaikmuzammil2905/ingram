@@ -19,72 +19,21 @@ import {
   Sparkles,
 } from "lucide-react";
 import AdminLayout from "@/components/admin/AdminLayout";
-import { supabase, DbEnquiry } from "@/lib/supabase";
-import { PRIMARY_SERVICES } from "@/data/company";
-import { ELECTRONICS_PRODUCTS, ALL_CATALOG_CATEGORIES } from "@/data/catalog";
-import { seedInitialDatabaseIfEmpty } from "@/lib/db-seed";
+import { useWebsiteContent } from "@/context/WebsiteContentContext";
 
 export default function AdminDashboardPage() {
-  const [stats, setStats] = useState({
-    servicesCount: PRIMARY_SERVICES.length,
-    productsCount: ELECTRONICS_PRODUCTS.length,
-    categoriesCount: ALL_CATALOG_CATEGORIES.length,
-    enquiriesCount: 0,
-    newEnquiriesCount: 0,
-  });
-  const [recentEnquiries, setRecentEnquiries] = useState<DbEnquiry[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { services, products, categories, enquiries } = useWebsiteContent();
 
-  useEffect(() => {
-    async function loadStats() {
-      // Auto seed initial data if Supabase tables are fresh
-      await seedInitialDatabaseIfEmpty();
+  const newEnquiriesCount = enquiries.filter((e) => e.status === "new").length;
+  const recentEnquiries = enquiries.slice(0, 5);
 
-      try {
-        // Fetch services count
-        const { count: sCount } = await supabase
-          .from("services")
-          .select("*", { count: "exact", head: true });
-
-        // Fetch products count
-        const { count: pCount } = await supabase
-          .from("products")
-          .select("*", { count: "exact", head: true });
-
-        // Fetch categories count
-        const { count: cCount } = await supabase
-          .from("categories")
-          .select("*", { count: "exact", head: true });
-
-        // Fetch enquiries
-        const { data: enquiries, count: eCount } = await supabase
-          .from("enquiries")
-          .select("*")
-          .order("created_at", { ascending: false })
-          .limit(5);
-
-        const newCount = enquiries?.filter((e) => e.status === "new").length || 0;
-
-        setStats({
-          servicesCount: sCount || PRIMARY_SERVICES.length,
-          productsCount: pCount || ELECTRONICS_PRODUCTS.length,
-          categoriesCount: cCount || ALL_CATALOG_CATEGORIES.length,
-          enquiriesCount: eCount || 0,
-          newEnquiriesCount: newCount,
-        });
-
-        if (enquiries) {
-          setRecentEnquiries(enquiries);
-        }
-      } catch (err) {
-        console.warn("Stats load fallback:", err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadStats();
-  }, []);
+  const stats = {
+    servicesCount: services.length,
+    productsCount: products.length,
+    categoriesCount: categories.length,
+    enquiriesCount: enquiries.length,
+    newEnquiriesCount,
+  };
 
   const statCards = [
     {
